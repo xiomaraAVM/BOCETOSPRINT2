@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ESPERANZA EN DIOS · LA PINTANA · Envejecer en el lugar correcto</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  </head>
+  <body class="paper-texture">
+<header class="navbar">
+    <div class="nav-container" style="max-width: none; width: 100%; margin: 0; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; justify-content: space-between;">
+        <a href="../index.html" class="primary-button" style="text-decoration: none; padding: 8px 16px; font-size: 13px;">
+            ← Volver al inicio
+        </a>
+    </div>
+</header>
+    <main class="shell detail-page">
+      
+      <!-- HERO Y MAPA -->
+      <section class="detail-hero" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+        <div>
+          <p class="eyebrow"><span></span> Ficha territorial · LA PINTANA</p>
+          <h1 style="font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #001f3f;">ESPERANZA EN DIOS</h1>
+          <p class="address" style="color: #666; margin-bottom: 1.5rem;">CALLE LOS DURAZNOS .0179, LA PINTANA</p>
+          <p style="font-size: 1.1rem; line-height: 1.6; text-align: justify; color: #4a4a4a;" class="lead">
+            ESPERANZA EN DIOS se ubica en CALLE LOS DURAZNOS .0179, en la comuna de LA PINTANA. Este conjunto está conformado por 25 viviendas adaptadas para personas mayores de 60 años autovalentes. Su idea es ofrecer un lugar donde los adultos mayores puedan vivir con autonomía, conversar y tener actividades, pero manteniendo contacto con espacios que facilitan la vida de barrio.
+          </p>
+          <div class="chips" style="margin-top: 2rem;">
+            <span>En operación · 2022</span>
+            <span>25 viviendas tuteladas</span>
+          </div>
+        </div>
+        
+        <div class="summary-card map-container" style="background: #faf8f5; padding: 12px; border-radius: 24px; border: 1px solid #eaeaea;">
+          <div class="card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;">
+            <span style="font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: #888; text-transform: uppercase;">Resumen de proximidad</span>
+            <span style="font-size: 0.75rem; background: #fff; padding: 4px 10px; border-radius: 12px; border: 1px solid #ddd; font-weight: bold;">15 MINUTOS</span>
+          </div>
+          <div id="map" style="height: 380px; width: 100%; border-radius: 16px; z-index: 1;"></div>
+        </div>
+      </section>
+
+      <section class="dimension-tabs" role="tablist" aria-label="Dimensiones de análisis">
+        <span style="font-size: 0.85rem; letter-spacing: 2px; color: #888; text-transform: uppercase;">DIMENSIONES</span>
+      </section>
+
+      <!-- BOTONES DE PESTAÑAS -->
+      <section class="metrics">
+        <button class="metric active" data-tab-target="access">
+          <span></span><small>Equipamiento</small><strong>61</strong><em>servicios cercanos</em>
+        </button>
+        <button class="metric" data-tab-target="transport">
+          <span></span><small>Transporte público</small><strong>28</strong><em>paraderos en 15 min</em>
+        </button>
+        <button class="metric" data-tab-target="public-space">
+          <span></span><small>Espacio público</small><strong>2</strong><em>áreas verdes cercanas</em>
+        </button>
+      </section>
+
+      <!-- PANELES DE CONTENIDO -->
+      <section class="analysis-grid">
+        <article class="analysis-card">
+          <p class="eyebrow" style="color: #ff4757; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Lectura del entorno</p>
+          <h2 data-panel-title>Una ciudad para quedarse</h2>
+          <button class="method-link" type="button" data-action="methodology"></button>
+
+          <!-- EQUIPAMIENTOS -->
+          <div class="tab-panel active" data-panel="access">
+            <div class="big-score">44<span>/100</span></div>
+            <p>El proyecto tiene un acceso <b>medio</b> a servicios cotidianos en un radio caminable de 15 minutos.</p>
+            <ul class="nearby-list">
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Salud</span>
+                
+                  <b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Educación</span>
+                
+                  <b>Colegio Polivalente Ingles Los Duraznos / 158 m · 3 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Cultura</span>
+                
+                  <b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Deporte</span>
+                
+                  <b>Deporte sin nombre / 417 m · 6 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Esparcimiento</span>
+                
+                  <b>Área Verde / Plaza / 574 m · 8 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Culto</span>
+                
+                  <b>Parroquia Nuestra Señora del Huerto / 587 m · 8 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Seguridad</span>
+                
+                  <b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Servicios</span>
+                
+                  <b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Social</span>
+                
+                  <b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+                
+              </li>
+              
+              <br><b>Cálculo puntaje = (Categorías dentro de los 15 min / Total de categorías evaluadas) · 100</b>
+            </ul> 
+          </div> 
+          
+          <!-- TRANSPORTE PÚBLICO -->
+          <div class="tab-panel" data-panel="transport">
+            <div class="big-score">28<span></span></div>
+            <p>Se detectaron <b>28 paraderos</b> de transporte público en un radio de caminata de 15 minutos.</p>
+            <ul class="nearby-list">
+              <li><span style="width: 250px; display: inline-block; color: #888;">Paraderos cercanos consolidados</span><b>28 paraderos</b></li>
+              <li><span style="width: 250px; display: inline-block; color: #888;">Estación de Metro/Tren más cercana</span><b>Estación Metro Hospital El Pino (5,0 km · ~67 min a pie)</b></li>
+            </ul>
+          </div>
+
+          <!-- ESPACIO PÚBLICO -->
+          <div class="tab-panel" data-panel="public-space">
+            <h2>Entorno y áreas verdes</h2>
+            <p>Se detectaron <b>2</b> parques, plazas y áreas verdes en un radio de caminata de 15 minutos.</p>
+            <ul class="nearby-list">
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Área Verde / Plaza</span>
+                <b>574 m · 8 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Área Verde / Plaza</span>
+                <b>1178 m · 16 min</b>
+              </li>
+              
+            </ul>
+            <div class="bars">
+              <div>
+                <b style="color: #e74c3c;">2</b>
+                <i style="height: 100%; background-color: #e74c3c;"></i>
+                <small>Parques y Áreas Verdes Totales</small>
+              </div>
+            </div>
+          </div>
+          
+        </article>
+      </section>
+
+      <!-- INVENTARIO COMPLETO -->
+      <section class="inventory">
+        <div class="inventory-heading">
+          <div>
+            <p class="eyebrow">Inventario de proximidad</p>
+            <h2>Dentro del área caminable en 15 minutos</h2>
+          </div>
+          <div class="filter-list compact" id="equipment-filters">
+            <button class="filter active" data-equipment="Todos">Todos</button>
+            <button class="filter" data-equipment="Salud">Salud</button>
+            <button class="filter" data-equipment="Comercio">Comercio</button>
+            <button class="filter" data-equipment="Esparcimiento">Plaza/Parque</button>
+            <button class="filter" data-equipment="Cultura">Cultura</button>
+            <button class="filter" data-equipment="Transporte">Transporte</button>
+          </div>
+        </div>
+
+        <div class="inventory-list">
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Panadería La Pintana</b><small>Comercio</small></span>
+            <em>454 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela de Adultos El Almendral</b><small>Educación</small></span>
+            <em>908 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial José Maza Fernández</b><small>Educación</small></span>
+            <em>884 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio Instituto San Carlos</b><small>Educación</small></span>
+            <em>672 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica Particular Arcángel de María</b><small>Educación</small></span>
+            <em>871 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Liceo Villa La Pintana</b><small>Educación</small></span>
+            <em>283 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica Y Especial Centilen</b><small>Educación</small></span>
+            <em>1010 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Liceo Polivalente Los Guindos</b><small>Educación</small></span>
+            <em>288 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial El Olivar</b><small>Educación</small></span>
+            <em>420 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>El Parque / El Olivar</b><small>Transporte</small></span>
+            <em>535 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Tilos / El Olivar</b><small>Transporte</small></span>
+            <em>276 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Duraznos / El Olivar</b><small>Transporte</small></span>
+            <em>29 m · 1 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Granados / El Olivar</b><small>Transporte</small></span>
+            <em>493 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 47 Santa Rosa</b><small>Transporte</small></span>
+            <em>1049 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Naranjos / El Olivar</b><small>Transporte</small></span>
+            <em>609 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 47 Santa Rosa</b><small>Transporte</small></span>
+            <em>1066 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>El Parque / El Olivar</b><small>Transporte</small></span>
+            <em>275 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Manzanos / El Parque</b><small>Transporte</small></span>
+            <em>862 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Paltos / El Parque</b><small>Transporte</small></span>
+            <em>707 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Manzanos / Los Duraznos</b><small>Transporte</small></span>
+            <em>653 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Olmos / Los Duraznos</b><small>Transporte</small></span>
+            <em>862 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Cipreses / Los Duraznos</b><small>Transporte</small></span>
+            <em>1072 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Nogales / Los Duraznos</b><small>Transporte</small></span>
+            <em>259 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>El Olivar / Los Duraznos</b><small>Transporte</small></span>
+            <em>64 m · 1 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Nogales / Los Granados</b><small>Transporte</small></span>
+            <em>557 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Paltos / Los Granados</b><small>Transporte</small></span>
+            <em>670 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Duraznos / Los Paltos</b><small>Transporte</small></span>
+            <em>444 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Duraznos / Los Paltos</b><small>Transporte</small></span>
+            <em>453 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>San Francisco 1 / Camino El Mariscal</b><small>Transporte</small></span>
+            <em>681 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Las Magnolias / Camino El Mariscal</b><small>Transporte</small></span>
+            <em>698 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Granados 2 / Camino El Mariscal</b><small>Transporte</small></span>
+            <em>664 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>El Parque 1 / Camino El Mariscal</b><small>Transporte</small></span>
+            <em>419 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>El Parque 2 / Camino El Mariscal</b><small>Transporte</small></span>
+            <em>638 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 47 Santa Rosa</b><small>Transporte</small></span>
+            <em>1112 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 46 Santa Rosa</b><small>Transporte</small></span>
+            <em>1094 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 47 Santa Rosa</b><small>Transporte</small></span>
+            <em>1073 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 47 Santa Rosa</b><small>Transporte</small></span>
+            <em>1102 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela de lenguaje Vivan los Niños</b><small>Educación</small></span>
+            <em>365 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>417 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>496 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>868 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Jardín Infantil y Sala Cuna Mussa</b><small>Educación</small></span>
+            <em>1134 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Culto sin nombre</b><small>Culto</small></span>
+            <em>1176 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>682 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>666 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Liceo Villa La Pintana</b><small>Educación</small></span>
+            <em>299 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>447 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica San Javier</b><small>Educación</small></span>
+            <em>655 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio Australia de La Pintana</b><small>Educación</small></span>
+            <em>1063 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Likanray</b><small>Educación</small></span>
+            <em>1027 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Talleres Prevocacionales San Francisco</b><small>Educación</small></span>
+            <em>547 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio Polivalente Ingles Los Duraznos</b><small>Educación</small></span>
+            <em>158 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio Esjelavi</b><small>Educación</small></span>
+            <em>478 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica y Especial Francés de La Pintana</b><small>Educación</small></span>
+            <em>419 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Parroquia Nuestra Señora del Huerto</b><small>Culto</small></span>
+            <em>587 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>574 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Almacen y Rotiseria "Gloria"</b><small>Comercio</small></span>
+            <em>1175 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>1178 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Carnicería Scarleth</b><small>Comercio</small></span>
+            <em>1186 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Gym La Roca</b><small>Deporte</small></span>
+            <em>1099 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Capilla Escuela José Maza Fernández</b><small>Culto</small></span>
+            <em>853 m · 12 min</em>
+          </div>
+          
+        </div> 
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      var map = L.map('map', {zoomControl: false}).setView([-33.6141686, -70.6381809], 14);
+      L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { maxZoom: 18 }).addTo(map);
+      var customIcon = L.divIcon({
+          className: 'custom-pin',
+          html: "<div style='background-color:#ff4757; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></div>",
+          iconSize: [20, 20], iconAnchor: [10, 10]
+      });
+      L.marker([-33.6141686, -70.6381809], {icon: customIcon}).addTo(map);
+
+      var isocrona = [[-33.609697, -70.647548], [-33.613868, -70.643826], [-33.614807, -70.643947], [-33.615746, -70.644068], [-33.61671, -70.644191], [-33.617675, -70.644315], [-33.618639, -70.644436], [-33.619938, -70.644598], [-33.620262, -70.644638], [-33.624005, -70.64105], [-33.625329, -70.639729], [-33.625375, -70.639372], [-33.624297, -70.637729], [-33.621293, -70.633246], [-33.620861, -70.632566], [-33.618251, -70.627644], [-33.617613, -70.626938], [-33.615665, -70.625231], [-33.615355, -70.625078], [-33.614995, -70.625082], [-33.613271, -70.626569], [-33.611129, -70.628599], [-33.611041, -70.628694], [-33.610115, -70.631729], [-33.610346, -70.637635], [-33.61023, -70.638875], [-33.610189, -70.639291], [-33.610149, -70.639711], [-33.609741, -70.643154], [-33.609741, -70.643155], [-33.60954, -70.645334], [-33.609339, -70.647514], [-33.609697, -70.647548]];
+      if (isocrona && isocrona.length > 0) {
+          var polygon = L.polygon(isocrona, { color: '#3b82f6', weight: 3, fillColor: '#3b82f6', fillOpacity: 0.3 }).addTo(map);
+          map.fitBounds(polygon.getBounds());
+      }
+    </script>
+  </body>
+</html>

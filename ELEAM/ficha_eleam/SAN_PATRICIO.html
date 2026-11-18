@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SAN PATRICIO · SAN MIGUEL · Envejecer en el lugar correcto</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  </head>
+  <body class="paper-texture">
+<header class="navbar">
+    <div class="nav-container" style="max-width: none; width: 100%; margin: 0; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; justify-content: space-between;">
+        <a href="../index.html" class="primary-button" style="text-decoration: none; padding: 8px 16px; font-size: 13px;">
+            ← Volver al inicio
+        </a>
+    </div>
+</header>
+    <main class="shell detail-page">
+      
+      <!-- HERO Y MAPA -->
+      <section class="detail-hero" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+        <div>
+          <p class="eyebrow"><span></span> Ficha territorial · SAN MIGUEL</p>
+          <h1 style="font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #001f3f;">SAN PATRICIO</h1>
+          <p class="address" style="color: #666; margin-bottom: 1.5rem;">CALLE BRIGADIER DE LA CRUZ 689, SAN MIGUEL</p>
+          <p style="font-size: 1.1rem; line-height: 1.6; text-align: justify; color: #4a4a4a;" class="lead">
+            SAN PATRICIO se ubica en CALLE BRIGADIER DE LA CRUZ 689, en la comuna de SAN MIGUEL. Este conjunto está conformado por 12 viviendas adaptadas para personas mayores de 60 años autovalentes. Su idea es ofrecer un lugar donde los adultos mayores puedan vivir con autonomía, conversar y tener actividades, pero manteniendo contacto con espacios que facilitan la vida de barrio.
+          </p>
+          <div class="chips" style="margin-top: 2rem;">
+            <span>En operación · 2005</span>
+            <span>12 viviendas tuteladas</span>
+          </div>
+        </div>
+        
+        <div class="summary-card map-container" style="background: #faf8f5; padding: 12px; border-radius: 24px; border: 1px solid #eaeaea;">
+          <div class="card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;">
+            <span style="font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: #888; text-transform: uppercase;">Resumen de proximidad</span>
+            <span style="font-size: 0.75rem; background: #fff; padding: 4px 10px; border-radius: 12px; border: 1px solid #ddd; font-weight: bold;">15 MINUTOS</span>
+          </div>
+          <div id="map" style="height: 380px; width: 100%; border-radius: 16px; z-index: 1;"></div>
+        </div>
+      </section>
+
+      <section class="dimension-tabs" role="tablist" aria-label="Dimensiones de análisis">
+        <span style="font-size: 0.85rem; letter-spacing: 2px; color: #888; text-transform: uppercase;">DIMENSIONES</span>
+      </section>
+
+      <!-- BOTONES DE PESTAÑAS -->
+      <section class="metrics">
+        <button class="metric active" data-tab-target="access">
+          <span></span><small>Equipamiento</small><strong>170</strong><em>servicios cercanos</em>
+        </button>
+        <button class="metric" data-tab-target="transport">
+          <span></span><small>Transporte público</small><strong>52</strong><em>paraderos en 15 min</em>
+        </button>
+        <button class="metric" data-tab-target="public-space">
+          <span></span><small>Espacio público</small><strong>13</strong><em>áreas verdes cercanas</em>
+        </button>
+      </section>
+
+      <!-- PANELES DE CONTENIDO -->
+      <section class="analysis-grid">
+        <article class="analysis-card">
+          <p class="eyebrow" style="color: #ff4757; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Lectura del entorno</p>
+          <h2 data-panel-title>Una ciudad para quedarse</h2>
+          <button class="method-link" type="button" data-action="methodology"></button>
+
+          <!-- EQUIPAMIENTOS -->
+          <div class="tab-panel active" data-panel="access">
+            <div class="big-score">88<span>/100</span></div>
+            <p>El proyecto tiene un acceso <b>alto</b> a servicios cotidianos en un radio caminable de 15 minutos.</p>
+            <ul class="nearby-list">
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Salud</span>
+                
+                  <b>Clínica San Miguel / 296 m · 4 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Educación</span>
+                
+                  <b>Escuela Especial Bambini Insieme / 182 m · 3 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Cultura</span>
+                
+                  <b>Teatro Municipal / 740 m · 10 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Deporte</span>
+                
+                  <b>Instituto Miguel León Prado / 500 m · 7 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Esparcimiento</span>
+                
+                  <b>Área Verde / Plaza / 199 m · 3 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Culto</span>
+                
+                  <b>Salón Padre Claret / 411 m · 6 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Seguridad</span>
+                
+                  <b>12 Comisaria San Miguel / 458 m · 7 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Servicios</span>
+                
+                  <b>Chilexpress / 738 m · 10 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Social</span>
+                
+                  <b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+                
+              </li>
+              
+              <br><b>Cálculo puntaje = (Categorías dentro de los 15 min / Total de categorías evaluadas) · 100</b>
+            </ul> 
+          </div> 
+          
+          <!-- TRANSPORTE PÚBLICO -->
+          <div class="tab-panel" data-panel="transport">
+            <div class="big-score">52<span></span></div>
+            <p>Se detectaron <b>52 paraderos</b> de transporte público en un radio de caminata de 15 minutos.</p>
+            <ul class="nearby-list">
+              <li><span style="width: 250px; display: inline-block; color: #888;">Paraderos cercanos consolidados</span><b>52 paraderos</b></li>
+              <li><span style="width: 250px; display: inline-block; color: #888;">Estación de Metro/Tren más cercana</span><b>No se encontró estación de Metro/Tren dentro del área caminable de 15 min</b></li>
+            </ul>
+          </div>
+
+          <!-- ESPACIO PÚBLICO -->
+          <div class="tab-panel" data-panel="public-space">
+            <h2>Entorno y áreas verdes</h2>
+            <p>Se detectaron <b>13</b> parques, plazas y áreas verdes en un radio de caminata de 15 minutos.</p>
+            <ul class="nearby-list">
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Área Verde / Plaza</span>
+                <b>199 m · 3 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Plaza Bismark</span>
+                <b>475 m · 7 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Plaza Gabriela Mistral</span>
+                <b>802 m · 11 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Plaza Cívica José Miguel Carrera</span>
+                <b>811 m · 11 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Plaza 12 de Octubre</span>
+                <b>812 m · 11 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Área Verde / Plaza</span>
+                <b>826 m · 12 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Plaza Frankfort</span>
+                <b>887 m · 12 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Parque Llano Subercaseaux</span>
+                <b>903 m · 13 min</b>
+              </li>
+              
+            </ul>
+            <div class="bars">
+              <div>
+                <b style="color: #e74c3c;">13</b>
+                <i style="height: 100%; background-color: #e74c3c;"></i>
+                <small>Parques y Áreas Verdes Totales</small>
+              </div>
+            </div>
+          </div>
+          
+        </article>
+      </section>
+
+      <!-- INVENTARIO COMPLETO -->
+      <section class="inventory">
+        <div class="inventory-heading">
+          <div>
+            <p class="eyebrow">Inventario de proximidad</p>
+            <h2>Dentro del área caminable en 15 minutos</h2>
+          </div>
+          <div class="filter-list compact" id="equipment-filters">
+            <button class="filter active" data-equipment="Todos">Todos</button>
+            <button class="filter" data-equipment="Salud">Salud</button>
+            <button class="filter" data-equipment="Comercio">Comercio</button>
+            <button class="filter" data-equipment="Esparcimiento">Plaza/Parque</button>
+            <button class="filter" data-equipment="Cultura">Cultura</button>
+            <button class="filter" data-equipment="Transporte">Transporte</button>
+          </div>
+        </div>
+
+        <div class="inventory-list">
+          
+          <div data-equipment-item="Salud">
+            <span><b>SalcoBrand</b><small>Salud</small></span>
+            <em>436 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial De Adultos Hugo Morales Bizama</b><small>Educación</small></span>
+            <em>582 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica Gabriela Mistral</b><small>Educación</small></span>
+            <em>834 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica Alfred Binet School</b><small>Educación</small></span>
+            <em>980 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Liceo Técnico A-100 San Miguel</b><small>Educación</small></span>
+            <em>724 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica Los Carrera</b><small>Educación</small></span>
+            <em>396 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio Pan American College</b><small>Educación</small></span>
+            <em>685 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica Álvarez de Toledo</b><small>Educación</small></span>
+            <em>294 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica Y Especial San Clemente</b><small>Educación</small></span>
+            <em>690 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial Tecnológica</b><small>Educación</small></span>
+            <em>304 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Seguridad">
+            <span><b>Tercera Compañía del Cuerpo de Bomberos Metropolitano Sur</b><small>Seguridad</small></span>
+            <em>531 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 Santa Rosa</b><small>Transporte</small></span>
+            <em>767 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Av.Pdte. Salvador Allende / esq. Las Camelias</b><small>Transporte</small></span>
+            <em>1098 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Av.Pdte. Salvador Allende / esq. San Gregorio</b><small>Transporte</small></span>
+            <em>1022 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 6 Santa Rosa</b><small>Transporte</small></span>
+            <em>791 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Álvarez de Toledo / esq. San Gregorio</b><small>Transporte</small></span>
+            <em>973 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Salesianos / esq. San Francisco</b><small>Transporte</small></span>
+            <em>182 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Salesianos / esq. Murcia</b><small>Transporte</small></span>
+            <em>430 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 Santa Rosa</b><small>Transporte</small></span>
+            <em>682 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Salesianos / esq. Dresden</b><small>Transporte</small></span>
+            <em>165 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Teresa Vial / esq. Sn. Ignacio de Loyola</b><small>Transporte</small></span>
+            <em>974 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Teresa Vial / esq. Rey Alberto</b><small>Transporte</small></span>
+            <em>759 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Ureta Cox / esq. Chiloé</b><small>Transporte</small></span>
+            <em>697 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Ureta Cox / esq. San Francisco</b><small>Transporte</small></span>
+            <em>761 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Ureta Cox / esq. Montreal</b><small>Transporte</small></span>
+            <em>924 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Lo Vial</b><small>Transporte</small></span>
+            <em>766 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Alc. Pedro Alarcón / esq. Actor Báguena</b><small>Transporte</small></span>
+            <em>629 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Municipalidad de San Miguel</b><small>Transporte</small></span>
+            <em>703 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Alc. Pedro Alarcón / esq. Chiloé</b><small>Transporte</small></span>
+            <em>631 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Álvarez de Toledo / esq. Cuasimodo</b><small>Transporte</small></span>
+            <em>319 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 8 Santa Rosa</b><small>Transporte</small></span>
+            <em>514 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) San Miguel</b><small>Transporte</small></span>
+            <em>423 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>San Nicolás / esq. San Francisco</b><small>Transporte</small></span>
+            <em>920 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Hospital Barros Luco</b><small>Transporte</small></span>
+            <em>943 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Lo Vial</b><small>Transporte</small></span>
+            <em>880 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Municipalidad de San Miguel</b><small>Transporte</small></span>
+            <em>687 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 1/2 Santa Rosa</b><small>Transporte</small></span>
+            <em>932 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 1/2 Santa Rosa</b><small>Transporte</small></span>
+            <em>855 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 Santa Rosa</b><small>Transporte</small></span>
+            <em>748 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 Santa Rosa</b><small>Transporte</small></span>
+            <em>689 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 8 Santa Rosa</b><small>Transporte</small></span>
+            <em>618 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 8 Santa Rosa</b><small>Transporte</small></span>
+            <em>617 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 6 Santa Rosa</b><small>Transporte</small></span>
+            <em>724 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 6 Santa Rosa</b><small>Transporte</small></span>
+            <em>793 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 6 Santa Rosa</b><small>Transporte</small></span>
+            <em>753 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 6 Santa Rosa</b><small>Transporte</small></span>
+            <em>692 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 8 Santa Rosa</b><small>Transporte</small></span>
+            <em>597 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 8 Santa Rosa</b><small>Transporte</small></span>
+            <em>606 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 Santa Rosa</b><small>Transporte</small></span>
+            <em>691 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 Santa Rosa</b><small>Transporte</small></span>
+            <em>752 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 1/2 Santa Rosa</b><small>Transporte</small></span>
+            <em>868 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 1/2 Santa Rosa</b><small>Transporte</small></span>
+            <em>950 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Municipalidad de San Miguel</b><small>Transporte</small></span>
+            <em>839 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) San Miguel</b><small>Transporte</small></span>
+            <em>532 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 Gran Avenida</b><small>Transporte</small></span>
+            <em>471 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 1/2 Gran Avenida</b><small>Transporte</small></span>
+            <em>607 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 1/2 Gran Avenida</b><small>Transporte</small></span>
+            <em>613 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 Gran Avenida</b><small>Transporte</small></span>
+            <em>480 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) San Miguel</b><small>Transporte</small></span>
+            <em>467 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Municipalidad de San Miguel</b><small>Transporte</small></span>
+            <em>676 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Hospital Barros Luco</b><small>Transporte</small></span>
+            <em>905 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Álvarez de Toledo / esq. San Francisco</b><small>Transporte</small></span>
+            <em>176 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Aurorita</b><small>Educación</small></span>
+            <em>973 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Happy Class English Kindergarten</b><small>Educación</small></span>
+            <em>774 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Kutralwe</b><small>Educación</small></span>
+            <em>622 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Rukantu</b><small>Educación</small></span>
+            <em>778 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Sala Cuna Andres Bello</b><small>Educación</small></span>
+            <em>819 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Terra Mater</b><small>Educación</small></span>
+            <em>948 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Chilexpress</b><small>Servicios</small></span>
+            <em>738 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>1008 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Distribuidora Colchagua</b><small>Comercio</small></span>
+            <em>883 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacias Ahumada</b><small>Salud</small></span>
+            <em>516 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Pasteleria losArtesanos</b><small>Comercio</small></span>
+            <em>510 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacia Caryvon</b><small>Salud</small></span>
+            <em>632 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Comercio sin nombre</b><small>Comercio</small></span>
+            <em>864 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>ACHS</b><small>Salud</small></span>
+            <em>632 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>836 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>SalcoBrand</b><small>Salud</small></span>
+            <em>805 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Cultura">
+            <span><b>Biblioteca Harald Edelstam</b><small>Cultura</small></span>
+            <em>771 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Cultura">
+            <span><b>Cultura sin nombre</b><small>Cultura</small></span>
+            <em>802 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>O&E Dental San Miguel</b><small>Salud</small></span>
+            <em>542 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Jumbo</b><small>Comercio</small></span>
+            <em>859 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Inst. Regional de Educación Adultos San Miguel</b><small>Educación</small></span>
+            <em>962 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial Huépil</b><small>Educación</small></span>
+            <em>869 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial Bambini Insieme</b><small>Educación</small></span>
+            <em>182 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Salón Padre Claret</b><small>Culto</small></span>
+            <em>411 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Parroquia San Antonio María Claret</b><small>Culto</small></span>
+            <em>427 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>COSAM San Joaquín</b><small>Salud</small></span>
+            <em>798 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Spid</b><small>Comercio</small></span>
+            <em>807 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>San Camilo</b><small>Comercio</small></span>
+            <em>827 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio Arzobispo Manuel Vicuña</b><small>Educación</small></span>
+            <em>861 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Casa Munay Jardín de Infancia</b><small>Educación</small></span>
+            <em>849 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>San Camilo</b><small>Comercio</small></span>
+            <em>879 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Integramédica El Llano</b><small>Salud</small></span>
+            <em>839 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero 9 1/2 Santa Rosa</b><small>Transporte</small></span>
+            <em>871 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Sportlife</b><small>Deporte</small></span>
+            <em>551 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>My Pharma</b><small>Salud</small></span>
+            <em>500 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Frankfort</b><small>Esparcimiento</small></span>
+            <em>887 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Pintor Gordon</b><small>Esparcimiento</small></span>
+            <em>1128 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Nicomedes Guzmán</b><small>Esparcimiento</small></span>
+            <em>1024 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Bismark</b><small>Esparcimiento</small></span>
+            <em>475 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque Llano Subercaseaux</b><small>Esparcimiento</small></span>
+            <em>903 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Universidad Autónoma de Chile - Sede El Llano Subercaseaux</b><small>Educación</small></span>
+            <em>1002 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza de las Artes Gráficas</b><small>Esparcimiento</small></span>
+            <em>1080 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Gabriela Mistral</b><small>Esparcimiento</small></span>
+            <em>802 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza La Legua</b><small>Esparcimiento</small></span>
+            <em>1003 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Lider Express</b><small>Comercio</small></span>
+            <em>354 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Instituto Miguel León Prado</b><small>Educación</small></span>
+            <em>535 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Instituto Miguel León Prado</b><small>Deporte</small></span>
+            <em>500 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela de la Industria Gráfica Héctor Gómez Matus</b><small>Educación</small></span>
+            <em>1076 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Cenco El Llano</b><small>Comercio</small></span>
+            <em>848 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Roja San Miguel</b><small>Salud</small></span>
+            <em>550 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Ilustre Municipalidad de San Miguel</b><small>Servicios</small></span>
+            <em>783 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Iglesia de San Miguel Arcángel</b><small>Culto</small></span>
+            <em>711 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio Parroquial San Miguel</b><small>Educación</small></span>
+            <em>677 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Gimnasio</b><small>Deporte</small></span>
+            <em>626 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica San Miguel</b><small>Salud</small></span>
+            <em>296 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Cultura">
+            <span><b>Teatro Municipal</b><small>Cultura</small></span>
+            <em>740 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Carnes Trebol</b><small>Comercio</small></span>
+            <em>1046 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Carnes Trebol</b><small>Comercio</small></span>
+            <em>1042 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Eben-Ezer</b><small>Comercio</small></span>
+            <em>1072 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Minimarket</b><small>Comercio</small></span>
+            <em>612 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Iglesia del Evangelio Cuadrangular</b><small>Culto</small></span>
+            <em>1055 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Almacen Bazar</b><small>Comercio</small></span>
+            <em>929 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>663 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>aStop</b><small>Comercio</small></span>
+            <em>712 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco de Chile</b><small>Servicios</small></span>
+            <em>854 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Credi Chile</b><small>Servicios</small></span>
+            <em>881 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Universidad Tecnológica Metropolitana</b><small>Educación</small></span>
+            <em>433 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Universidad de Valparaíso Campus Santiago</b><small>Educación</small></span>
+            <em>402 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio San Cristóbal College</b><small>Educación</small></span>
+            <em>617 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Coopeuch Gran Avenida</b><small>Servicios</small></span>
+            <em>770 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>BCI</b><small>Servicios</small></span>
+            <em>819 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>La Esquina Azul</b><small>Comercio</small></span>
+            <em>781 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Liceo Andrés Bello</b><small>Educación</small></span>
+            <em>897 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacia San José</b><small>Salud</small></span>
+            <em>964 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Integramédica San Miguel</b><small>Salud</small></span>
+            <em>560 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>885 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>731 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>199 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>611 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>625 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>860 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Instituto Politécnico San Miguel Arcángel</b><small>Educación</small></span>
+            <em>637 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Hospital de Niños Doctor Exequiel González Cortés</b><small>Salud</small></span>
+            <em>846 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>826 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>813 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Espacio Imagine</b><small>Deporte</small></span>
+            <em>589 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica Dental El Llano</b><small>Salud</small></span>
+            <em>731 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>UnoSalud Dental</b><small>Salud</small></span>
+            <em>599 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Iglesia Adventista del Séptimo Día El Llano</b><small>Culto</small></span>
+            <em>595 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza 12 de Octubre</b><small>Esparcimiento</small></span>
+            <em>812 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Jardín Subercaseaux</b><small>Educación</small></span>
+            <em>665 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Educación sin nombre</b><small>Educación</small></span>
+            <em>665 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Jardín Infantil Antu</b><small>Educación</small></span>
+            <em>549 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Vitamina El Llano</b><small>Educación</small></span>
+            <em>542 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Jardín Infantil Lancuyen Montessori</b><small>Educación</small></span>
+            <em>601 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Cultura">
+            <span><b>Casa de la Cultura de San Miguel</b><small>Cultura</small></span>
+            <em>791 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Cívica José Miguel Carrera</b><small>Esparcimiento</small></span>
+            <em>811 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>549 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio Santa Rosa</b><small>Educación</small></span>
+            <em>315 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Paseo Vial</b><small>Comercio</small></span>
+            <em>560 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Liceo Betzabé Hormazábal de Alarcón</b><small>Educación</small></span>
+            <em>927 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Instituto Reg. De Educ. Adultos</b><small>Educación</small></span>
+            <em>939 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>879 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Liceo Comercial Instituto Superior De Comercio De Chile</b><small>Educación</small></span>
+            <em>426 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial Los Copihues N°4</b><small>Educación</small></span>
+            <em>896 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Educación sin nombre</b><small>Educación</small></span>
+            <em>693 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Seguridad">
+            <span><b>12 Comisaria San Miguel</b><small>Seguridad</small></span>
+            <em>458 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Hospital Barros Luco - Trudeau</b><small>Salud</small></span>
+            <em>803 m · 11 min</em>
+          </div>
+          
+        </div> 
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      var map = L.map('map', {zoomControl: false}).setView([-33.4924497, -70.6467808], 14);
+      L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { maxZoom: 18 }).addTo(map);
+      var customIcon = L.divIcon({
+          className: 'custom-pin',
+          html: "<div style='background-color:#ff4757; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></div>",
+          iconSize: [20, 20], iconAnchor: [10, 10]
+      });
+      L.marker([-33.4924497, -70.6467808], {icon: customIcon}).addTo(map);
+
+      var isocrona = [[-33.488877, -70.658842], [-33.490733, -70.65877], [-33.494847, -70.656542], [-33.498092, -70.653644], [-33.499854, -70.652558], [-33.501476, -70.651375], [-33.501582, -70.651031], [-33.50231, -70.6485], [-33.50232, -70.648452], [-33.501403, -70.645751], [-33.501345, -70.645596], [-33.500844, -70.644683], [-33.499645, -70.63967], [-33.499607, -70.639312], [-33.499429, -70.639038], [-33.495777, -70.63466], [-33.495418, -70.634639], [-33.491864, -70.635068], [-33.491778, -70.635156], [-33.488093, -70.63901], [-33.486147, -70.640976], [-33.486144, -70.641018], [-33.486163, -70.641185], [-33.486194, -70.641374], [-33.486261, -70.641591], [-33.486998, -70.645564], [-33.484104, -70.648987], [-33.48406, -70.649249], [-33.484016, -70.649511], [-33.484061, -70.649624], [-33.484425, -70.650445], [-33.485946, -70.653756], [-33.48871, -70.658572], [-33.488862, -70.658836], [-33.488877, -70.658842]];
+      if (isocrona && isocrona.length > 0) {
+          var polygon = L.polygon(isocrona, { color: '#3b82f6', weight: 3, fillColor: '#3b82f6', fillOpacity: 0.3 }).addTo(map);
+          map.fitBounds(polygon.getBounds());
+      }
+    </script>
+  </body>
+</html>

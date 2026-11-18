@@ -1,0 +1,1582 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CASA DE REPOSO LIDIA · CERRO NAVIA · Envejecer en el lugar correcto</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  </head>
+  <body class="paper-texture">
+<header class="navbar">
+    <div class="nav-container" style="max-width: none; width: 100%; margin: 0; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; justify-content: space-between;">
+        <a href="../index.html" class="primary-button" style="text-decoration: none; padding: 8px 16px; font-size: 13px;">
+            ← Volver al inicio
+        </a>
+    </div>
+</header>
+    <main class="shell detail-page">
+      
+      <!-- HERO Y MAPA -->
+      <section class="detail-hero" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+        <div>
+          <p class="eyebrow"><span></span> Ficha territorial · CERRO NAVIA</p>
+          <h1 style="font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #001f3f;">CASA DE REPOSO LIDIA</h1>
+          <p class="address" style="color: #666; margin-bottom: 1.5rem;">CALLE RAMON ANGEL JARA 1682, CERRO NAVIA</p>
+          <p style="font-size: 1.1rem; line-height: 1.6; text-align: justify; color: #4a4a4a;" class="lead">
+            CASA DE REPOSO LIDIA se ubica en CALLE RAMON ANGEL JARA 1682, en la comuna de CERRO NAVIA. Este conjunto está conformado por 15 viviendas adaptadas para personas mayores de 60 años autovalentes. Su idea es ofrecer un lugar donde los adultos mayores puedan vivir con autonomía, conversar y tener actividades, pero manteniendo contacto con espacios que facilitan la vida de barrio.
+          </p>
+          <div class="chips" style="margin-top: 2rem;">
+            <span>En operación · 2021</span>
+            <span>15 viviendas tuteladas</span>
+          </div>
+        </div>
+        
+        <div class="summary-card map-container" style="background: #faf8f5; padding: 12px; border-radius: 24px; border: 1px solid #eaeaea;">
+          <div class="card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;">
+            <span style="font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: #888; text-transform: uppercase;">Resumen de proximidad</span>
+            <span style="font-size: 0.75rem; background: #fff; padding: 4px 10px; border-radius: 12px; border: 1px solid #ddd; font-weight: bold;">15 MINUTOS</span>
+          </div>
+          <div id="map" style="height: 380px; width: 100%; border-radius: 16px; z-index: 1;"></div>
+        </div>
+      </section>
+
+      <section class="dimension-tabs" role="tablist" aria-label="Dimensiones de análisis">
+        <span style="font-size: 0.85rem; letter-spacing: 2px; color: #888; text-transform: uppercase;">DIMENSIONES</span>
+      </section>
+
+      <!-- BOTONES DE PESTAÑAS -->
+      <section class="metrics">
+        <button class="metric active" data-tab-target="access">
+          <span></span><small>Equipamiento</small><strong>266</strong><em>servicios cercanos</em>
+        </button>
+        <button class="metric" data-tab-target="transport">
+          <span></span><small>Transporte público</small><strong>97</strong><em>paraderos en 15 min</em>
+        </button>
+        <button class="metric" data-tab-target="public-space">
+          <span></span><small>Espacio público</small><strong>29</strong><em>áreas verdes cercanas</em>
+        </button>
+      </section>
+
+      <!-- PANELES DE CONTENIDO -->
+      <section class="analysis-grid">
+        <article class="analysis-card">
+          <p class="eyebrow" style="color: #ff4757; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Lectura del entorno</p>
+          <h2 data-panel-title>Una ciudad para quedarse</h2>
+          <button class="method-link" type="button" data-action="methodology"></button>
+
+          <!-- EQUIPAMIENTOS -->
+          <div class="tab-panel active" data-panel="access">
+            <div class="big-score">88<span>/100</span></div>
+            <p>El proyecto tiene un acceso <b>alto</b> a servicios cotidianos en un radio caminable de 15 minutos.</p>
+            <ul class="nearby-list">
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Salud</span>
+                
+                  <b>Farmacias Tierra del Fuego / 342 m · 5 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Educación</span>
+                
+                  <b>Escuela Especial El Castillo Encantado / 310 m · 5 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Cultura</span>
+                
+                  <b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Deporte</span>
+                
+                  <b>Deporte sin nombre / 239 m · 4 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Esparcimiento</span>
+                
+                  <b>Cerro Navia / 384 m · 6 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Culto</span>
+                
+                  <b>Asamblea de Dios Autónoma Cerro Navia / 229 m · 4 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Seguridad</span>
+                
+                  <b>Tercera Compañía del Cuerpo de Bomberos de Quinta Normal / 654 m · 9 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Servicios</span>
+                
+                  <b>Parque Canino / 1113 m · 15 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Social</span>
+                
+                  <b>Centro Comunitario de Cuidados Cerro Navia / 648 m · 9 min</b>
+                
+              </li>
+              
+              <br><b>Cálculo puntaje = (Categorías dentro de los 15 min / Total de categorías evaluadas) · 100</b>
+            </ul> 
+          </div> 
+          
+          <!-- TRANSPORTE PÚBLICO -->
+          <div class="tab-panel" data-panel="transport">
+            <div class="big-score">97<span></span></div>
+            <p>Se detectaron <b>97 paraderos</b> de transporte público en un radio de caminata de 15 minutos.</p>
+            <ul class="nearby-list">
+              <li><span style="width: 250px; display: inline-block; color: #888;">Paraderos cercanos consolidados</span><b>97 paraderos</b></li>
+              <li><span style="width: 250px; display: inline-block; color: #888;">Estación de Metro/Tren más cercana</span><b>Estación Metro San Pablo (2,4 km · ~32 min a pie)</b></li>
+            </ul>
+          </div>
+
+          <!-- ESPACIO PÚBLICO -->
+          <div class="tab-panel" data-panel="public-space">
+            <h2>Entorno y áreas verdes</h2>
+            <p>Se detectaron <b>29</b> parques, plazas y áreas verdes en un radio de caminata de 15 minutos.</p>
+            <ul class="nearby-list">
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Cerro Navia</span>
+                <b>384 m · 6 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Área Verde / Plaza</span>
+                <b>508 m · 7 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Área Verde / Plaza</span>
+                <b>522 m · 7 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Área Verde / Plaza</span>
+                <b>530 m · 8 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Plaza Torre de Pisa</span>
+                <b>603 m · 9 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Área Verde / Plaza</span>
+                <b>679 m · 10 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Área Verde / Plaza</span>
+                <b>742 m · 10 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Plaza Toscana</span>
+                <b>841 m · 12 min</b>
+              </li>
+              
+            </ul>
+            <div class="bars">
+              <div>
+                <b style="color: #e74c3c;">29</b>
+                <i style="height: 100%; background-color: #e74c3c;"></i>
+                <small>Parques y Áreas Verdes Totales</small>
+              </div>
+            </div>
+          </div>
+          
+        </article>
+      </section>
+
+      <!-- INVENTARIO COMPLETO -->
+      <section class="inventory">
+        <div class="inventory-heading">
+          <div>
+            <p class="eyebrow">Inventario de proximidad</p>
+            <h2>Dentro del área caminable en 15 minutos</h2>
+          </div>
+          <div class="filter-list compact" id="equipment-filters">
+            <button class="filter active" data-equipment="Todos">Todos</button>
+            <button class="filter" data-equipment="Salud">Salud</button>
+            <button class="filter" data-equipment="Comercio">Comercio</button>
+            <button class="filter" data-equipment="Esparcimiento">Plaza/Parque</button>
+            <button class="filter" data-equipment="Cultura">Cultura</button>
+            <button class="filter" data-equipment="Transporte">Transporte</button>
+          </div>
+        </div>
+
+        <div class="inventory-list">
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Particular Monte Grande</b><small>Educación</small></span>
+            <em>1077 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial Rugendas</b><small>Educación</small></span>
+            <em>603 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial La Pampa</b><small>Educación</small></span>
+            <em>541 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial Agora</b><small>Educación</small></span>
+            <em>590 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Liceo Politécnico San Francisco Solano</b><small>Educación</small></span>
+            <em>1025 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica Hispano Inglés</b><small>Educación</small></span>
+            <em>782 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial Padre Pio College</b><small>Educación</small></span>
+            <em>986 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio Polivalente Falcon College</b><small>Educación</small></span>
+            <em>1032 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica Angelmó</b><small>Educación</small></span>
+            <em>933 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio Saint Mark</b><small>Educación</small></span>
+            <em>694 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Particular María Cristina</b><small>Educación</small></span>
+            <em>566 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Antumalal</b><small>Educación</small></span>
+            <em>1019 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica España</b><small>Educación</small></span>
+            <em>604 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial Calin</b><small>Educación</small></span>
+            <em>492 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica Dr. Trevisio Girardi Tonel</b><small>Educación</small></span>
+            <em>545 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica Intendente Saavedra</b><small>Educación</small></span>
+            <em>643 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Nancu / Cardenal Raúl Silva H.</b><small>Transporte</small></span>
+            <em>1068 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Santos Luis Medel / Mapocho</b><small>Transporte</small></span>
+            <em>822 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Torre de Pisa / Mapocho</b><small>Transporte</small></span>
+            <em>579 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Avenida Mapocho / Esq. Araucanía</b><small>Transporte</small></span>
+            <em>363 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Hernan Domeyko / Mapocho</b><small>Transporte</small></span>
+            <em>244 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Hipolito Salas / Mapocho</b><small>Transporte</small></span>
+            <em>178 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>A. O'Higgins / Mapocho</b><small>Transporte</small></span>
+            <em>172 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Lo López/ Mapocho</b><small>Transporte</small></span>
+            <em>346 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Galo González / Mapocho</b><small>Transporte</small></span>
+            <em>1186 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Florencia / Mapocho</b><small>Transporte</small></span>
+            <em>872 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Vilupulli / Mapocho</b><small>Transporte</small></span>
+            <em>263 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Neptuno / Mapocho</b><small>Transporte</small></span>
+            <em>540 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>A. O'Higgins / M. de Toro y Zambrano</b><small>Transporte</small></span>
+            <em>243 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Heriberto Rojas / Neptuno</b><small>Transporte</small></span>
+            <em>919 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Sara Gajardo / Neptuno</b><small>Transporte</small></span>
+            <em>819 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>S. Gutiérrez / Neptuno</b><small>Transporte</small></span>
+            <em>564 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Cauquenes / Neptuno</b><small>Transporte</small></span>
+            <em>673 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>José Joaquín Pérez / Neptuno</b><small>Transporte</small></span>
+            <em>882 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Mapocho / Neptuno</b><small>Transporte</small></span>
+            <em>545 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Membrillar / Neptuno</b><small>Transporte</small></span>
+            <em>1044 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Luis Medel / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>910 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>3 de Julio / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>501 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Hernan Domeyko / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>342 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Ramón Angel Jara / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>218 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Lo López/ Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>373 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Sinai / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>1086 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Clorinda Silva / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>556 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Hernan Domeyko / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>307 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Ramón Angel Jara / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>200 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Neptuno / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>529 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Sinai / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>1132 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Luis Medel / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>952 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Violeta Parra / Santos Luis Medel</b><small>Transporte</small></span>
+            <em>863 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Mapocho / Santos Luis Medel</b><small>Transporte</small></span>
+            <em>856 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Rodas / Santos Luis Medel</b><small>Transporte</small></span>
+            <em>835 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>S. Gutiérrez / Santos Luis Medel</b><small>Transporte</small></span>
+            <em>914 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>José Joaquín Pérez / Torres de Pisa</b><small>Transporte</small></span>
+            <em>944 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Turin / Torres de Pisa</b><small>Transporte</small></span>
+            <em>755 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Turin / Torres de Pisa</b><small>Transporte</small></span>
+            <em>765 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Araucanía/ Vicuña Rozas</b><small>Transporte</small></span>
+            <em>1151 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Retamos / Vicuña Rozas</b><small>Transporte</small></span>
+            <em>1155 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Vicuña Rozas / Sofanor Parra</b><small>Transporte</small></span>
+            <em>1213 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Retamos / Vicuña Rozas</b><small>Transporte</small></span>
+            <em>1177 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Araucanía/ Vicuña Rozas</b><small>Transporte</small></span>
+            <em>1187 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Mestizo Alejo / Las Torres</b><small>Transporte</small></span>
+            <em>635 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Termas de Panimavida / Las Torres</b><small>Transporte</small></span>
+            <em>1046 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Mapocho / Las Torres</b><small>Transporte</small></span>
+            <em>595 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Espech / Mapocho</b><small>Transporte</small></span>
+            <em>767 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Samuel Izquierdo / Mapocho</b><small>Transporte</small></span>
+            <em>981 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Neptuno / Mapocho</b><small>Transporte</small></span>
+            <em>575 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Samuel Izquierdo / Mapocho</b><small>Transporte</small></span>
+            <em>949 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Neuquen / Mapocho</b><small>Transporte</small></span>
+            <em>779 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Heriberto Rojas / Neptuno</b><small>Transporte</small></span>
+            <em>910 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Sara Gajardo / Neptuno</b><small>Transporte</small></span>
+            <em>810 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>S. Gutiérrez / Neptuno</b><small>Transporte</small></span>
+            <em>576 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Manantiales / Neptuno</b><small>Transporte</small></span>
+            <em>538 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Mapocho / Neptuno</b><small>Transporte</small></span>
+            <em>581 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Eiting / Neptuno</b><small>Transporte</small></span>
+            <em>722 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>José Joaquín Pérez / Neptuno</b><small>Transporte</small></span>
+            <em>970 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Samuel Izquierdo / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>964 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Neptuno / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>571 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Samuel Izquierdo / Salvador Gutiérrez</b><small>Transporte</small></span>
+            <em>919 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Rodolfo Mondolfo / Costanera Sur</b><small>Transporte</small></span>
+            <em>1237 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Altura 6500 / Carrascal</b><small>Transporte</small></span>
+            <em>1113 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 2 / Lo López- J.J. Pérez</b><small>Transporte</small></span>
+            <em>871 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 2 / Araucanía- J.J. Pérez</b><small>Transporte</small></span>
+            <em>794 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 2 / El Peumo - J.J. Pérez</b><small>Transporte</small></span>
+            <em>854 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 2 / Las Torres - J.J. Pérez</b><small>Transporte</small></span>
+            <em>938 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 2 / Palermo - J.J. Pérez</b><small>Transporte</small></span>
+            <em>991 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 2 / Martín Necochea - J.J. Pérez</b><small>Transporte</small></span>
+            <em>809 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 2 / Ramón Angel Jara - J.J. Pérez</b><small>Transporte</small></span>
+            <em>757 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 2 / Hipolito Salas - J.J. Pérez</b><small>Transporte</small></span>
+            <em>752 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 1 / Padua - J.J. Pérez</b><small>Transporte</small></span>
+            <em>1037 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 1 / Las Torres - J.J. Pérez</b><small>Transporte</small></span>
+            <em>977 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Las Lomas / José Joaquín Pérez</b><small>Transporte</small></span>
+            <em>800 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 3 / Ramón Angel Jara - J.J. Pérez</b><small>Transporte</small></span>
+            <em>761 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 1 / Ramón A. Jara - J.J. Pérez</b><small>Transporte</small></span>
+            <em>767 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Avenida José Joaquín Pérez esquina Diego Ramírez</b><small>Transporte</small></span>
+            <em>795 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 1 / Neptuno - J.J. Pérez</b><small>Transporte</small></span>
+            <em>925 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Lo López/ Mapocho</b><small>Transporte</small></span>
+            <em>205 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Padre Las Casas / Costanera Sur</b><small>Transporte</small></span>
+            <em>998 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>San Sebastián / Costanera Sur</b><small>Transporte</small></span>
+            <em>1071 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>5 de Febrero / Costanera Sur</b><small>Transporte</small></span>
+            <em>1141 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>5 de Febrero / Costanera Sur</b><small>Transporte</small></span>
+            <em>1154 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Las Lumas / Costanera Sur</b><small>Transporte</small></span>
+            <em>962 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Padre Las Casas / Costanera Sur</b><small>Transporte</small></span>
+            <em>966 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Ceramica / Costanera Sur PJ444</b><small>Transporte</small></span>
+            <em>1119 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Brisas del Río / Carrascal</b><small>Transporte</small></span>
+            <em>1077 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Pedro Gil / Carrascal</b><small>Transporte</small></span>
+            <em>1125 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 4 / Neptuno - J.J. Pérez</b><small>Transporte</small></span>
+            <em>1007 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 2 / Neptuno - J.J. Pérez</b><small>Transporte</small></span>
+            <em>953 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Jardín Infantil Apolo XI</b><small>Educación</small></span>
+            <em>579 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Renacer</b><small>Educación</small></span>
+            <em>953 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>José Joaquín</b><small>Educación</small></span>
+            <em>982 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Paicaví</b><small>Educación</small></span>
+            <em>922 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Jardín Infantil Los Angelitos</b><small>Educación</small></span>
+            <em>813 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Jardín infantil y sala cuna Quico</b><small>Educación</small></span>
+            <em>809 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Comercio sin nombre</b><small>Comercio</small></span>
+            <em>763 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Panificadora El Turco</b><small>Comercio</small></span>
+            <em>921 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>El Chiri</b><small>Comercio</small></span>
+            <em>190 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Centro Medico y Dental</b><small>Salud</small></span>
+            <em>1070 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Donde El Yiyo</b><small>Comercio</small></span>
+            <em>1144 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Mini Market 2.0</b><small>Comercio</small></span>
+            <em>1074 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Ganadera</b><small>Comercio</small></span>
+            <em>1072 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Carnes Toltén</b><small>Comercio</small></span>
+            <em>1153 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero</b><small>Transporte</small></span>
+            <em>756 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Carnicería El Betito</b><small>Comercio</small></span>
+            <em>253 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacias Tierra del Fuego</b><small>Salud</small></span>
+            <em>342 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Carnicería Verónica</b><small>Comercio</small></span>
+            <em>358 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Carnes Loncomilla</b><small>Comercio</small></span>
+            <em>955 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero</b><small>Transporte</small></span>
+            <em>317 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Paradero</b><small>Transporte</small></span>
+            <em>502 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Tomate</b><small>Comercio</small></span>
+            <em>1150 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacia del Pueblo</b><small>Salud</small></span>
+            <em>1103 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Panadería Santa Margrita</b><small>Comercio</small></span>
+            <em>1002 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Consulta Dental</b><small>Salud</small></span>
+            <em>847 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Consulta Dental</b><small>Salud</small></span>
+            <em>765 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Salud Dental</b><small>Salud</small></span>
+            <em>747 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Panadería Pepe Pan</b><small>Comercio</small></span>
+            <em>168 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Panadería Maxipan</b><small>Comercio</small></span>
+            <em>937 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Bazar Margarita</b><small>Comercio</small></span>
+            <em>912 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmàcia</b><small>Salud</small></span>
+            <em>910 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>969 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial El Castillo Encantado</b><small>Educación</small></span>
+            <em>310 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Costanera Sur esq. La Carta</b><small>Transporte</small></span>
+            <em>1143 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Costanera Sur/ Las Lumas</b><small>Transporte</small></span>
+            <em>965 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Avenida Mapocho / Esq. Araucanía</b><small>Transporte</small></span>
+            <em>398 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>COSAM Cerro Navia</b><small>Salud</small></span>
+            <em>739 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacias Mevic</b><small>Salud</small></span>
+            <em>1019 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial Padre Pío College</b><small>Educación</small></span>
+            <em>1031 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Centro de Educacion Integrada de adultos Georgina Salas Dinamarca</b><small>Educación</small></span>
+            <em>1048 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela de Lenguaje Santa Rita de Casia</b><small>Educación</small></span>
+            <em>495 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela San Martín de Porres</b><small>Educación</small></span>
+            <em>800 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Cristian And Caren School II</b><small>Educación</small></span>
+            <em>831 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Parque Canino</b><small>Servicios</small></span>
+            <em>1113 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Juegos de Agua</b><small>Servicios</small></span>
+            <em>1146 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cecosf Antumalal</b><small>Salud</small></span>
+            <em>961 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial Cauquenes</b><small>Educación</small></span>
+            <em>500 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>990 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Minimarket</b><small>Comercio</small></span>
+            <em>1032 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Garín</b><small>Esparcimiento</small></span>
+            <em>1040 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Canchas Renca</b><small>Deporte</small></span>
+            <em>1243 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Complejo Deportivo Lideinsenoba</b><small>Deporte</small></span>
+            <em>956 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque Mapocho Río Tramo 3</b><small>Esparcimiento</small></span>
+            <em>1114 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Seguridad">
+            <span><b>Tercera Compañía del Cuerpo de Bomberos de Quinta Normal</b><small>Seguridad</small></span>
+            <em>654 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Juan de Dios Guajardo</b><small>Esparcimiento</small></span>
+            <em>1241 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque de la Alegría</b><small>Esparcimiento</small></span>
+            <em>1591 m · 22 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Ministerio Dios en la Familia</b><small>Culto</small></span>
+            <em>1113 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Iglesia Unida M. Pentecostal</b><small>Culto</small></span>
+            <em>460 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacia Las Torres</b><small>Salud</small></span>
+            <em>954 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Carnes</b><small>Comercio</small></span>
+            <em>944 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Mini Market El Trébol</b><small>Comercio</small></span>
+            <em>921 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Carnes Cortes</b><small>Comercio</small></span>
+            <em>685 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Mini Market El Glotón</b><small>Comercio</small></span>
+            <em>536 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Santa Josephina</b><small>Comercio</small></span>
+            <em>692 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Panaderia MaxiPan</b><small>Comercio</small></span>
+            <em>580 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacias Barroso</b><small>Salud</small></span>
+            <em>573 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Particular España</b><small>Educación</small></span>
+            <em>596 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacia Macarena</b><small>Salud</small></span>
+            <em>984 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Templo Bethelen</b><small>Culto</small></span>
+            <em>1144 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio San Francisco Javier</b><small>Educación</small></span>
+            <em>336 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Asamblea de Dios Autónoma Cerro Navia</b><small>Culto</small></span>
+            <em>229 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Cristian and Caren School</b><small>Educación</small></span>
+            <em>405 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Almacén Lf</b><small>Comercio</small></span>
+            <em>646 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Ministerio Apostólica y de Restauración</b><small>Culto</small></span>
+            <em>632 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Los Dos Hermanos</b><small>Comercio</small></span>
+            <em>752 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio Polivalente Falcón College</b><small>Educación</small></span>
+            <em>1028 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>La Iglesia de Jesucristo de los Santos de los Últimos Días</b><small>Culto</small></span>
+            <em>254 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>594 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Particular Carlos Pezoa Véliz</b><small>Educación</small></span>
+            <em>684 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Cerro Navia</b><small>Esparcimiento</small></span>
+            <em>384 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>883 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica Paulo Freire</b><small>Educación</small></span>
+            <em>592 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>1137 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>928 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Cancha Parque Javiera Carrera</b><small>Deporte</small></span>
+            <em>1230 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1040 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>1050 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1061 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>CESFAM Lo Amor</b><small>Salud</small></span>
+            <em>819 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Torre de Pisa</b><small>Esparcimiento</small></span>
+            <em>603 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>911 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>954 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>987 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1023 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>1047 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque Javiera Carrera</b><small>Esparcimiento</small></span>
+            <em>929 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque Javiera Carrera</b><small>Esparcimiento</small></span>
+            <em>1090 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1033 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1051 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque Javiera Carrera</b><small>Esparcimiento</small></span>
+            <em>1356 m · 19 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Toscana</b><small>Esparcimiento</small></span>
+            <em>841 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>834 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>844 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>616 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>466 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>483 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>480 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1022 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1130 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>1246 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>1070 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>530 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>680 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>742 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>522 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1080 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>980 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1075 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>976 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>880 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>881 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>679 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>508 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>970 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>578 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1086 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1027 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>983 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Ciudad Santo Domingo De Guzmán</b><small>Educación</small></span>
+            <em>1053 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Jorge Montt</b><small>Esparcimiento</small></span>
+            <em>1069 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1066 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>1071 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque Mapocho Río Tramo 2</b><small>Esparcimiento</small></span>
+            <em>1648 m · 22 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Complejo Educacional Cerro Navia</b><small>Educación</small></span>
+            <em>906 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela República de Italia</b><small>Educación</small></span>
+            <em>1063 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Herminda de la Victoria</b><small>Educación</small></span>
+            <em>1303 m · 18 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Básica Particular Centro Educacional San Pablo</b><small>Educación</small></span>
+            <em>1022 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Ho Chi Minh</b><small>Esparcimiento</small></span>
+            <em>1194 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Doctor Treviso Girardi Tonelli</b><small>Educación</small></span>
+            <em>552 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1211 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1192 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Especial Patagonia</b><small>Educación</small></span>
+            <em>1101 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Provincia de Arauco</b><small>Educación</small></span>
+            <em>365 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Angelmó</b><small>Educación</small></span>
+            <em>1085 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Liceo Polivalente San José de la Preciosa Sangre</b><small>Educación</small></span>
+            <em>956 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Membrillar</b><small>Educación</small></span>
+            <em>1074 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela Particular Presidente Abraham Lincoln</b><small>Educación</small></span>
+            <em>988 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Liceo Bicentenario de Excelencia</b><small>Educación</small></span>
+            <em>644 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Jardín Infantil Relmu</b><small>Educación</small></span>
+            <em>710 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>1238 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>973 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1015 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Parroquia San José</b><small>Culto</small></span>
+            <em>946 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>1024 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>239 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>723 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Social">
+            <span><b>Centro Comunitario de Cuidados Cerro Navia</b><small>Social</small></span>
+            <em>648 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>761 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>689 m · 10 min</em>
+          </div>
+          
+        </div> 
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      var map = L.map('map', {zoomControl: false}).setView([-33.4226682, -70.7238303], 14);
+      L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { maxZoom: 18 }).addTo(map);
+      var customIcon = L.divIcon({
+          className: 'custom-pin',
+          html: "<div style='background-color:#ff4757; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></div>",
+          iconSize: [20, 20], iconAnchor: [10, 10]
+      });
+      L.marker([-33.4226682, -70.7238303], {icon: customIcon}).addTo(map);
+
+      var isocrona = [[-33.417156, -70.734149], [-33.418938, -70.736101], [-33.423414, -70.737806], [-33.423528, -70.737774], [-33.42492, -70.736496], [-33.425063, -70.736366], [-33.427084, -70.734524], [-33.429882, -70.732153], [-33.433211, -70.727972], [-33.434779, -70.725965], [-33.43488, -70.725467], [-33.433864, -70.723198], [-33.432506, -70.72045], [-33.432457, -70.720353], [-33.431018, -70.717526], [-33.429228, -70.714535], [-33.427146, -70.7119], [-33.423677, -70.710699], [-33.423143, -70.710543], [-33.423077, -70.710524], [-33.420914, -70.711836], [-33.419609, -70.712829], [-33.417158, -70.714696], [-33.415831, -70.715734], [-33.412124, -70.719773], [-33.410814, -70.721164], [-33.410753, -70.721507], [-33.410755, -70.721533], [-33.411001, -70.722832], [-33.411692, -70.725273], [-33.412464, -70.729392], [-33.412766, -70.730613], [-33.413625, -70.731437], [-33.417156, -70.734149]];
+      if (isocrona && isocrona.length > 0) {
+          var polygon = L.polygon(isocrona, { color: '#3b82f6', weight: 3, fillColor: '#3b82f6', fillOpacity: 0.3 }).addTo(map);
+          map.fitBounds(polygon.getBounds());
+      }
+    </script>
+  </body>
+</html>

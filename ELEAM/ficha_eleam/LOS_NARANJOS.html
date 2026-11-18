@@ -1,0 +1,1917 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LOS NARANJOS · PROVIDENCIA · Envejecer en el lugar correcto</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  </head>
+  <body class="paper-texture">
+<header class="navbar">
+    <div class="nav-container" style="max-width: none; width: 100%; margin: 0; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; justify-content: space-between;">
+        <a href="../index.html" class="primary-button" style="text-decoration: none; padding: 8px 16px; font-size: 13px;">
+            ← Volver al inicio
+        </a>
+    </div>
+</header>
+    <main class="shell detail-page">
+      
+      <!-- HERO Y MAPA -->
+      <section class="detail-hero" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+        <div>
+          <p class="eyebrow"><span></span> Ficha territorial · PROVIDENCIA</p>
+          <h1 style="font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #001f3f;">LOS NARANJOS</h1>
+          <p class="address" style="color: #666; margin-bottom: 1.5rem;">CALLE LOS NAVEGANTES 2268, PROVIDENCIA</p>
+          <p style="font-size: 1.1rem; line-height: 1.6; text-align: justify; color: #4a4a4a;" class="lead">
+            LOS NARANJOS se ubica en CALLE LOS NAVEGANTES 2268, en la comuna de PROVIDENCIA. Este conjunto está conformado por 12 viviendas adaptadas para personas mayores de 60 años autovalentes. Su idea es ofrecer un lugar donde los adultos mayores puedan vivir con autonomía, conversar y tener actividades, pero manteniendo contacto con espacios que facilitan la vida de barrio.
+          </p>
+          <div class="chips" style="margin-top: 2rem;">
+            <span>En operación · 2010</span>
+            <span>12 viviendas tuteladas</span>
+          </div>
+        </div>
+        
+        <div class="summary-card map-container" style="background: #faf8f5; padding: 12px; border-radius: 24px; border: 1px solid #eaeaea;">
+          <div class="card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;">
+            <span style="font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: #888; text-transform: uppercase;">Resumen de proximidad</span>
+            <span style="font-size: 0.75rem; background: #fff; padding: 4px 10px; border-radius: 12px; border: 1px solid #ddd; font-weight: bold;">15 MINUTOS</span>
+          </div>
+          <div id="map" style="height: 380px; width: 100%; border-radius: 16px; z-index: 1;"></div>
+        </div>
+      </section>
+
+      <section class="dimension-tabs" role="tablist" aria-label="Dimensiones de análisis">
+        <span style="font-size: 0.85rem; letter-spacing: 2px; color: #888; text-transform: uppercase;">DIMENSIONES</span>
+      </section>
+
+      <!-- BOTONES DE PESTAÑAS -->
+      <section class="metrics">
+        <button class="metric active" data-tab-target="access">
+          <span></span><small>Equipamiento</small><strong>333</strong><em>servicios cercanos</em>
+        </button>
+        <button class="metric" data-tab-target="transport">
+          <span></span><small>Transporte público</small><strong>38</strong><em>paraderos en 15 min</em>
+        </button>
+        <button class="metric" data-tab-target="public-space">
+          <span></span><small>Espacio público</small><strong>40</strong><em>áreas verdes cercanas</em>
+        </button>
+      </section>
+
+      <!-- PANELES DE CONTENIDO -->
+      <section class="analysis-grid">
+        <article class="analysis-card">
+          <p class="eyebrow" style="color: #ff4757; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Lectura del entorno</p>
+          <h2 data-panel-title>Una ciudad para quedarse</h2>
+          <button class="method-link" type="button" data-action="methodology"></button>
+
+          <!-- EQUIPAMIENTOS -->
+          <div class="tab-panel active" data-panel="access">
+            <div class="big-score">100<span>/100</span></div>
+            <p>El proyecto tiene un acceso <b>alto</b> a servicios cotidianos en un radio caminable de 15 minutos.</p>
+            <ul class="nearby-list">
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Salud</span>
+                
+                  <b>Clínica Indisa Centro Médico de Diálisis / 193 m · 3 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Educación</span>
+                
+                  <b>Campus Lo Contador PUC / 91 m · 2 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Cultura</span>
+                
+                  <b>Biblioteca Lo Contador / 120 m · 2 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Deporte</span>
+                
+                  <b>Cancha Lo Contador / 55 m · 1 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Esparcimiento</span>
+                
+                  <b>Patio de la Virgen / 63 m · 1 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Culto</span>
+                
+                  <b>Capilla Lo Contador / 116 m · 2 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Seguridad</span>
+                
+                  <b>Tenencia Parque Metropolitano / 382 m · 6 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Servicios</span>
+                
+                  <b>Parque Canino / 215 m · 3 min</b>
+                
+              </li>
+              
+              <li>
+                <span style="width: 150px; display: inline-block; color: #888;">Social</span>
+                
+                  <b>Centro Integral de Desarrollo Social Los Misioneros / 335 m · 5 min</b>
+                
+              </li>
+              
+              <br><b>Cálculo puntaje = (Categorías dentro de los 15 min / Total de categorías evaluadas) · 100</b>
+            </ul> 
+          </div> 
+          
+          <!-- TRANSPORTE PÚBLICO -->
+          <div class="tab-panel" data-panel="transport">
+            <div class="big-score">38<span></span></div>
+            <p>Se detectaron <b>38 paraderos</b> de transporte público en un radio de caminata de 15 minutos.</p>
+            <ul class="nearby-list">
+              <li><span style="width: 250px; display: inline-block; color: #888;">Paraderos cercanos consolidados</span><b>38 paraderos</b></li>
+              <li><span style="width: 250px; display: inline-block; color: #888;">Estación de Metro/Tren más cercana</span><b>No se encontró estación de Metro/Tren dentro del área caminable de 15 min</b></li>
+            </ul>
+          </div>
+
+          <!-- ESPACIO PÚBLICO -->
+          <div class="tab-panel" data-panel="public-space">
+            <h2>Entorno y áreas verdes</h2>
+            <p>Se detectaron <b>40</b> parques, plazas y áreas verdes en un radio de caminata de 15 minutos.</p>
+            <ul class="nearby-list">
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Patio de la Virgen</span>
+                <b>63 m · 1 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Jardines FADEU</span>
+                <b>73 m · 1 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Plazuela El Mayorazgo</span>
+                <b>107 m · 2 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Patio de los Naranjos</span>
+                <b>159 m · 3 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Plaza Pintor Alberto Valenzuela Llanos</span>
+                <b>186 m · 3 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Plaza Peñihue</span>
+                <b>257 m · 4 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Plaza de la India</span>
+                <b>339 m · 5 min</b>
+              </li>
+              
+              <li>
+                <span style="width: 250px; display: inline-block; color: #888;">Área Verde / Plaza</span>
+                <b>363 m · 5 min</b>
+              </li>
+              
+            </ul>
+            <div class="bars">
+              <div>
+                <b style="color: #e74c3c;">40</b>
+                <i style="height: 100%; background-color: #e74c3c;"></i>
+                <small>Parques y Áreas Verdes Totales</small>
+              </div>
+            </div>
+          </div>
+          
+        </article>
+      </section>
+
+      <!-- INVENTARIO COMPLETO -->
+      <section class="inventory">
+        <div class="inventory-heading">
+          <div>
+            <p class="eyebrow">Inventario de proximidad</p>
+            <h2>Dentro del área caminable en 15 minutos</h2>
+          </div>
+          <div class="filter-list compact" id="equipment-filters">
+            <button class="filter active" data-equipment="Todos">Todos</button>
+            <button class="filter" data-equipment="Salud">Salud</button>
+            <button class="filter" data-equipment="Comercio">Comercio</button>
+            <button class="filter" data-equipment="Esparcimiento">Plaza/Parque</button>
+            <button class="filter" data-equipment="Cultura">Cultura</button>
+            <button class="filter" data-equipment="Transporte">Transporte</button>
+          </div>
+        </div>
+
+        <div class="inventory-list">
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Supermercado Diez</b><small>Comercio</small></span>
+            <em>398 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Santa Isabel</b><small>Comercio</small></span>
+            <em>796 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco de Chile</b><small>Servicios</small></span>
+            <em>1041 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Edwards-Citi</b><small>Servicios</small></span>
+            <em>1009 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Estado</b><small>Servicios</small></span>
+            <em>878 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Mutualidad del Ejército y Aviación - MEAV</b><small>Servicios</small></span>
+            <em>1013 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>981 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>827 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>853 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>1000 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>903 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>BCI</b><small>Servicios</small></span>
+            <em>1084 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Big John</b><small>Comercio</small></span>
+            <em>728 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco BICE</b><small>Servicios</small></span>
+            <em>848 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Correos de Chile</b><small>Servicios</small></span>
+            <em>1032 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>1011 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Itaú</b><small>Servicios</small></span>
+            <em>1057 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>1023 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Estado</b><small>Servicios</small></span>
+            <em>887 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacias del Doctor Simi</b><small>Salud</small></span>
+            <em>1027 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>748 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco de Chile</b><small>Servicios</small></span>
+            <em>764 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Desarrollo</b><small>Servicios</small></span>
+            <em>746 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>SalcoBrand</b><small>Salud</small></span>
+            <em>769 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>BCI</b><small>Servicios</small></span>
+            <em>1069 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>RpFARMA</b><small>Salud</small></span>
+            <em>1051 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Scotiabank</b><small>Servicios</small></span>
+            <em>897 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>907 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Santander</b><small>Servicios</small></span>
+            <em>909 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Cecinas Chillán</b><small>Comercio</small></span>
+            <em>743 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>BCI</b><small>Servicios</small></span>
+            <em>847 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacia Aravil</b><small>Salud</small></span>
+            <em>928 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>950 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Santander</b><small>Servicios</small></span>
+            <em>1067 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Almacen</b><small>Comercio</small></span>
+            <em>913 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Correos de Chile</b><small>Servicios</small></span>
+            <em>861 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Santander</b><small>Servicios</small></span>
+            <em>861 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Almacen</b><small>Comercio</small></span>
+            <em>788 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Santander</b><small>Servicios</small></span>
+            <em>1213 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica Costanera</b><small>Salud</small></span>
+            <em>798 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>876 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Salud sin nombre</b><small>Salud</small></span>
+            <em>743 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Fischer English Institute</b><small>Educación</small></span>
+            <em>981 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>870 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Santander</b><small>Servicios</small></span>
+            <em>795 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Bioformula Farmacia</b><small>Salud</small></span>
+            <em>1044 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacias Ahumada</b><small>Salud</small></span>
+            <em>793 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Escuela de Artes Vocales</b><small>Educación</small></span>
+            <em>867 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Pronto Express</b><small>Comercio</small></span>
+            <em>956 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Berlitz</b><small>Servicios</small></span>
+            <em>642 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Granjero Productos Naturales</b><small>Comercio</small></span>
+            <em>663 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>659 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Security</b><small>Servicios</small></span>
+            <em>844 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacias Carmen</b><small>Salud</small></span>
+            <em>803 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>SalcoBrand</b><small>Salud</small></span>
+            <em>902 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>SalcoBrand</b><small>Salud</small></span>
+            <em>866 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>ALmacen</b><small>Comercio</small></span>
+            <em>1076 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>1111 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>723 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Instituto Chileno Frances</b><small>Educación</small></span>
+            <em>609 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Edwards</b><small>Servicios</small></span>
+            <em>731 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>BCI</b><small>Servicios</small></span>
+            <em>1107 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco de Chile</b><small>Servicios</small></span>
+            <em>1178 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Oxxo</b><small>Comercio</small></span>
+            <em>1157 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Barros Errázuriz / Carlos Antúnez</b><small>Transporte</small></span>
+            <em>1080 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Pedro de Valdivia</b><small>Transporte</small></span>
+            <em>951 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Pedro de Valdivia</b><small>Transporte</small></span>
+            <em>886 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Pedro de Valdivia</b><small>Transporte</small></span>
+            <em>881 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Guardia Vieja</b><small>Transporte</small></span>
+            <em>883 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Guardia Vieja</b><small>Transporte</small></span>
+            <em>883 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Los Leones</b><small>Transporte</small></span>
+            <em>910 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Los Leones</b><small>Transporte</small></span>
+            <em>960 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Los Leones</b><small>Transporte</small></span>
+            <em>1043 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Los Leones</b><small>Transporte</small></span>
+            <em>1099 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Avenida El Cerro / Los Conquistadores</b><small>Transporte</small></span>
+            <em>694 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Av. Los Conquistadores / Esq. Padre Letelier</b><small>Transporte</small></span>
+            <em>440 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Av. Los Conquistadores / Esq. Av. Pedro De Valdivia</b><small>Transporte</small></span>
+            <em>242 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada / Clínica Indisa</b><small>Transporte</small></span>
+            <em>265 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Hidalgos / Los Conquistadores</b><small>Transporte</small></span>
+            <em>969 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Andrés Bello / Nueva de Lyon</b><small>Transporte</small></span>
+            <em>688 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Pedro de Valdivia</b><small>Transporte</small></span>
+            <em>959 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Juana de Arco / Pedro de Valdivia</b><small>Transporte</small></span>
+            <em>1144 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Pedro de Valdivia</b><small>Transporte</small></span>
+            <em>813 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Los Leones</b><small>Transporte</small></span>
+            <em>984 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Los Leones</b><small>Transporte</small></span>
+            <em>969 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Los Leones</b><small>Transporte</small></span>
+            <em>856 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Los Leones</b><small>Transporte</small></span>
+            <em>816 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Pedro de Valdivia</b><small>Transporte</small></span>
+            <em>760 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Pedro de Valdivia</b><small>Transporte</small></span>
+            <em>773 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Pedro de Valdivia</b><small>Transporte</small></span>
+            <em>836 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Pedro de Valdivia</b><small>Transporte</small></span>
+            <em>879 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada 2 / Biblioteca Providencia</b><small>Transporte</small></span>
+            <em>993 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada / Clínica Indisa</b><small>Transporte</small></span>
+            <em>352 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Avenida Santa María / Esq. Av. Pedro De Valdivia</b><small>Transporte</small></span>
+            <em>378 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Avenida Santa María / Esq. Padre Letelier</b><small>Transporte</small></span>
+            <em>558 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Nueva Los Leones / Santa María</b><small>Transporte</small></span>
+            <em>771 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Los Hidalgos / Santa María</b><small>Transporte</small></span>
+            <em>1081 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Hospital Metropolitano</b><small>Transporte</small></span>
+            <em>1125 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Hospital Metropolitano</b><small>Transporte</small></span>
+            <em>1137 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Oxxo</b><small>Comercio</small></span>
+            <em>852 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Cenco Costanera</b><small>Comercio</small></span>
+            <em>1164 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Jumbo</b><small>Comercio</small></span>
+            <em>987 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Capilla Lo Contador</b><small>Culto</small></span>
+            <em>116 m · 2 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco de Chile</b><small>Servicios</small></span>
+            <em>1096 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>810 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Supermercado Diez</b><small>Comercio</small></span>
+            <em>372 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco de Chile</b><small>Servicios</small></span>
+            <em>1094 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>OK Market</b><small>Comercio</small></span>
+            <em>883 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacia Bio Cuba</b><small>Salud</small></span>
+            <em>1094 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Verduleria Marbella</b><small>Comercio</small></span>
+            <em>1068 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Mini Market</b><small>Comercio</small></span>
+            <em>1071 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1013 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Prime Express</b><small>Comercio</small></span>
+            <em>1017 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Lido</b><small>Comercio</small></span>
+            <em>1008 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Deli Frut</b><small>Comercio</small></span>
+            <em>1003 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>OK Market</b><small>Comercio</small></span>
+            <em>995 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Arte Chino</b><small>Comercio</small></span>
+            <em>989 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>El Tata</b><small>Comercio</small></span>
+            <em>969 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Loteria</b><small>Comercio</small></span>
+            <em>921 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>O´Jota</b><small>Comercio</small></span>
+            <em>917 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>La Barcarola</b><small>Educación</small></span>
+            <em>1185 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Palu</b><small>Educación</small></span>
+            <em>496 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Chilexpress</b><small>Servicios</small></span>
+            <em>1228 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Chilexpress</b><small>Servicios</small></span>
+            <em>886 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Chilexpress</b><small>Servicios</small></span>
+            <em>1024 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Big John</b><small>Comercio</small></span>
+            <em>986 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>761 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacias del Dr. Simi</b><small>Salud</small></span>
+            <em>756 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>SalcoBrand</b><small>Salud</small></span>
+            <em>971 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Salud sin nombre</b><small>Salud</small></span>
+            <em>1001 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacias del Dr. Simi</b><small>Salud</small></span>
+            <em>992 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Oxxo</b><small>Comercio</small></span>
+            <em>1085 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>1043 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacias Knop</b><small>Salud</small></span>
+            <em>874 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacias Knop</b><small>Salud</small></span>
+            <em>885 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>MindFit</b><small>Deporte</small></span>
+            <em>896 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Internacional</b><small>Servicios</small></span>
+            <em>894 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Scotiabank</b><small>Servicios</small></span>
+            <em>889 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>907 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Lider Express</b><small>Comercio</small></span>
+            <em>1002 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Gimnasio Pacific</b><small>Deporte</small></span>
+            <em>1060 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>868 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Big Pan</b><small>Comercio</small></span>
+            <em>884 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Itaú</b><small>Servicios</small></span>
+            <em>976 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>943 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>aStop by Aramco</b><small>Comercio</small></span>
+            <em>881 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Upa Market</b><small>Comercio</small></span>
+            <em>1082 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Oxxo</b><small>Comercio</small></span>
+            <em>939 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Dentimagen</b><small>Salud</small></span>
+            <em>722 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Uno Salud</b><small>Salud</small></span>
+            <em>632 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>DHL</b><small>Servicios</small></span>
+            <em>639 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacias Ahumada</b><small>Salud</small></span>
+            <em>696 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Dentisani</b><small>Salud</small></span>
+            <em>869 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacia Mapuche</b><small>Salud</small></span>
+            <em>927 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>764 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>SalcoBrand</b><small>Salud</small></span>
+            <em>908 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>OK Market</b><small>Comercio</small></span>
+            <em>741 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Oxxo</b><small>Comercio</small></span>
+            <em>845 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>OK Market</b><small>Comercio</small></span>
+            <em>998 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>913 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Dental America</b><small>Salud</small></span>
+            <em>942 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>OK Market</b><small>Comercio</small></span>
+            <em>984 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Bice Vida</b><small>Servicios</small></span>
+            <em>758 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Centro Médico y Dental RedSalud</b><small>Salud</small></span>
+            <em>864 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Control - Fit</b><small>Deporte</small></span>
+            <em>868 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>BCI</b><small>Servicios</small></span>
+            <em>778 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Chilexpress</b><small>Servicios</small></span>
+            <em>966 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Scotiabank</b><small>Servicios</small></span>
+            <em>1191 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>1040 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica Oftalmológica Providencia</b><small>Salud</small></span>
+            <em>645 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Dr. Vergara Morales, Cirujano Dentista</b><small>Salud</small></span>
+            <em>769 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Cultura">
+            <span><b>Mediateca Instituto Francés</b><small>Cultura</small></span>
+            <em>603 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Chinese Mark</b><small>Comercio</small></span>
+            <em>1009 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>1127 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Correos de Chile</b><small>Servicios</small></span>
+            <em>974 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Decanato</b><small>Educación</small></span>
+            <em>192 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica Odontológica SmartDent Spa</b><small>Salud</small></span>
+            <em>975 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>363 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Oxxo</b><small>Comercio</small></span>
+            <em>916 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Mi Market</b><small>Comercio</small></span>
+            <em>837 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>1002 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>MiniMarket Barcelona</b><small>Comercio</small></span>
+            <em>997 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Tabaquería Lyon</b><small>Comercio</small></span>
+            <em>869 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Galería Pedro de Valdivia</b><small>Comercio</small></span>
+            <em>829 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clini Salud</b><small>Salud</small></span>
+            <em>1019 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Galería Drugstore</b><small>Comercio</small></span>
+            <em>751 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Farmacias del Dr. Simi</b><small>Salud</small></span>
+            <em>810 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Cultura">
+            <span><b>Museo al Aire Libre Parque de Las Esculturas</b><small>Cultura</small></span>
+            <em>490 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Hojaldes</b><small>Comercio</small></span>
+            <em>961 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica Le Ciel</b><small>Salud</small></span>
+            <em>824 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Convatec Medical Care</b><small>Salud</small></span>
+            <em>821 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica Somno</b><small>Salud</small></span>
+            <em>823 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Falabella</b><small>Servicios</small></span>
+            <em>754 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza de Juegos Infantiles</b><small>Esparcimiento</small></span>
+            <em>412 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Parada Buses Parquemet</b><small>Transporte</small></span>
+            <em>514 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Peñihue</b><small>Esparcimiento</small></span>
+            <em>257 m · 4 min</em>
+          </div>
+          
+          <div data-equipment-item="Cultura">
+            <span><b>Cultura sin nombre</b><small>Cultura</small></span>
+            <em>388 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Itaú</b><small>Servicios</small></span>
+            <em>862 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>393 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Seguridad">
+            <span><b>Brigada Roble 18 Conaf</b><small>Seguridad</small></span>
+            <em>638 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>EcoFarmacias</b><small>Salud</small></span>
+            <em>754 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>625 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>Costanera Center</b><small>Transporte</small></span>
+            <em>1136 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Aravil Farmacia</b><small>Salud</small></span>
+            <em>909 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Minimarket Rigoletto</b><small>Comercio</small></span>
+            <em>911 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Sportlife</b><small>Deporte</small></span>
+            <em>1210 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>334 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>1111 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>OK Market</b><small>Comercio</small></span>
+            <em>910 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio Hospitalario Clinica INDISA</b><small>Educación</small></span>
+            <em>338 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>China House Market</b><small>Comercio</small></span>
+            <em>1057 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>453 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Smart Fit</b><small>Deporte</small></span>
+            <em>909 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Boulangerie Paname</b><small>Comercio</small></span>
+            <em>973 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Panadería y pastelería Paula</b><small>Comercio</small></span>
+            <em>1007 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Oxxo</b><small>Comercio</small></span>
+            <em>941 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Universidad de Concepción Campus Santiago</b><small>Educación</small></span>
+            <em>840 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banca Ética Lat</b><small>Servicios</small></span>
+            <em>1059 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Happyland</b><small>Esparcimiento</small></span>
+            <em>1062 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Smart Fit</b><small>Deporte</small></span>
+            <em>1186 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Spid</b><small>Comercio</small></span>
+            <em>934 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Parque Canino</b><small>Servicios</small></span>
+            <em>215 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque Aventura Kids</b><small>Esparcimiento</small></span>
+            <em>466 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica Aires</b><small>Salud</small></span>
+            <em>897 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Oxfar</b><small>Salud</small></span>
+            <em>850 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Spid</b><small>Comercio</small></span>
+            <em>868 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>aStop</b><small>Comercio</small></span>
+            <em>910 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Odontología Especializada Nueva Suecia</b><small>Salud</small></span>
+            <em>1000 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>944 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Castaño</b><small>Comercio</small></span>
+            <em>1114 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>BOC</b><small>Servicios</small></span>
+            <em>1031 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Estado</b><small>Servicios</small></span>
+            <em>819 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>1113 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Get It</b><small>Comercio</small></span>
+            <em>730 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Novasalud</b><small>Salud</small></span>
+            <em>694 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Get It</b><small>Comercio</small></span>
+            <em>742 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Cardenal Samoré</b><small>Esparcimiento</small></span>
+            <em>905 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Carnes Falon</b><small>Comercio</small></span>
+            <em>979 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>SalcoBrand</b><small>Salud</small></span>
+            <em>524 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Get It</b><small>Comercio</small></span>
+            <em>548 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>BTG Pactual</b><small>Servicios</small></span>
+            <em>1229 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Transporte">
+            <span><b>(M) Pedro de Valdivia</b><small>Transporte</small></span>
+            <em>890 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque República de Ecuador</b><small>Esparcimiento</small></span>
+            <em>684 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque Nemesio Antúnez</b><small>Esparcimiento</small></span>
+            <em>379 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Juan XXIII</b><small>Esparcimiento</small></span>
+            <em>1075 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque Uruguay</b><small>Esparcimiento</small></span>
+            <em>503 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Vivo Panorámico</b><small>Comercio</small></span>
+            <em>926 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza de la India</b><small>Esparcimiento</small></span>
+            <em>339 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Padre Letelier</b><small>Esparcimiento</small></span>
+            <em>368 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plazuela Diego de Velásquez</b><small>Esparcimiento</small></span>
+            <em>893 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Palacio Schacht</b><small>Esparcimiento</small></span>
+            <em>917 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica Plus Médica</b><small>Salud</small></span>
+            <em>1034 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Integramédica La Concepción</b><small>Salud</small></span>
+            <em>687 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plazuela Diaz Egaña</b><small>Esparcimiento</small></span>
+            <em>662 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Jardín Botánico Mapulemu</b><small>Esparcimiento</small></span>
+            <em>432 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Iglesia de Nuestra Señora de la Divina Providencia</b><small>Culto</small></span>
+            <em>1037 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Cenco Costanera</b><small>Comercio</small></span>
+            <em>1038 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque Metropolitano de Santiago</b><small>Esparcimiento</small></span>
+            <em>1079 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque Titanium</b><small>Esparcimiento</small></span>
+            <em>1238 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Catedral Castrense de Chile de Nuestra Señora del Carmen</b><small>Culto</small></span>
+            <em>1107 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque de las Esculturas</b><small>Esparcimiento</small></span>
+            <em>482 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Sheraton</b><small>Deporte</small></span>
+            <em>493 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Cultura">
+            <span><b>Biblioteca Lo Contador</b><small>Cultura</small></span>
+            <em>120 m · 2 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Cancha Lo Contador</b><small>Deporte</small></span>
+            <em>55 m · 1 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Patio de la Virgen</b><small>Esparcimiento</small></span>
+            <em>63 m · 1 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Patio de los Naranjos</b><small>Esparcimiento</small></span>
+            <em>159 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Portal Lyon</b><small>Comercio</small></span>
+            <em>797 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Campus Lo Contador PUC</b><small>Educación</small></span>
+            <em>91 m · 2 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Sheraton San Cristobal</b><small>Esparcimiento</small></span>
+            <em>456 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Jardín Japonés de Santiago</b><small>Esparcimiento</small></span>
+            <em>638 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Capilla del Sagrado Corazón de Jesús</b><small>Culto</small></span>
+            <em>1201 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Cultura">
+            <span><b>Fundación Cultural de Providencia</b><small>Cultura</small></span>
+            <em>910 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Sanasalud</b><small>Salud</small></span>
+            <em>953 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Universidad Gabriela Mistral</b><small>Educación</small></span>
+            <em>1033 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Iglesia Esclavas del Sagrado Corazón de Jesus</b><small>Culto</small></span>
+            <em>1080 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica Europa</b><small>Salud</small></span>
+            <em>1231 m · 17 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1141 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Culto sin nombre</b><small>Culto</small></span>
+            <em>1005 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1101 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Liceo Nº 7 Luisa Saavedra de González</b><small>Educación</small></span>
+            <em>762 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Lider Express</b><small>Comercio</small></span>
+            <em>929 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>1129 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Cultura">
+            <span><b>Teatro Oriente</b><small>Cultura</small></span>
+            <em>655 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Universidad Autónoma de Chile</b><small>Educación</small></span>
+            <em>1170 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Iglesia Ortodoxa de la Santísima Virgen María</b><small>Culto</small></span>
+            <em>851 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica Traumatológica Los Conquistadores</b><small>Salud</small></span>
+            <em>1105 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Vitamina Pedro de Valdivia</b><small>Educación</small></span>
+            <em>764 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Cruz Verde</b><small>Salud</small></span>
+            <em>981 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco de Chile</b><small>Servicios</small></span>
+            <em>931 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Banco Santander</b><small>Servicios</small></span>
+            <em>923 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica Indisa - Centro Médico Los Españoles</b><small>Salud</small></span>
+            <em>317 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Social">
+            <span><b>Colectividad Armenia en Chile</b><small>Social</small></span>
+            <em>382 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Los Conquistadores</b><small>Educación</small></span>
+            <em>519 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Vitamina - Sala Cuna y Jardín infantil La Concepción</b><small>Educación</small></span>
+            <em>704 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Vida Integra</b><small>Salud</small></span>
+            <em>1041 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Emporio Santa Beatriz</b><small>Comercio</small></span>
+            <em>821 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>CTE Universidad del Desarrollo</b><small>Educación</small></span>
+            <em>854 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Parroquia la Sagrada Familia</b><small>Culto</small></span>
+            <em>364 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Cultura">
+            <span><b>Casa de la Cultura Anahuac</b><small>Cultura</small></span>
+            <em>588 m · 8 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Servicios sin nombre</b><small>Servicios</small></span>
+            <em>751 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1160 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Colegio Alemán Sankt Thomas Morus</b><small>Educación</small></span>
+            <em>1108 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Educación">
+            <span><b>Instituto de Humanidades Luis Campino</b><small>Educación</small></span>
+            <em>1056 m · 15 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Integramédica Barcelona</b><small>Salud</small></span>
+            <em>980 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica Indisa</b><small>Salud</small></span>
+            <em>310 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Cultura">
+            <span><b>Anfiteatro Los Canelos</b><small>Cultura</small></span>
+            <em>639 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plazuela Los Leones</b><small>Esparcimiento</small></span>
+            <em>1131 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plazuela Elias IV</b><small>Esparcimiento</small></span>
+            <em>869 m · 12 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Mutual de Seguridad</b><small>Salud</small></span>
+            <em>1186 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Integramédica Barcelona (Torre 2)</b><small>Salud</small></span>
+            <em>982 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica INDISA Centro Médico Los Conquistadores</b><small>Salud</small></span>
+            <em>198 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1156 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Seguridad">
+            <span><b>Tenencia Parque Metropolitano</b><small>Seguridad</small></span>
+            <em>382 m · 6 min</em>
+          </div>
+          
+          <div data-equipment-item="Social">
+            <span><b>Centro Integral de Desarrollo Social Los Misioneros</b><small>Social</small></span>
+            <em>335 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Instituto Médico Cardiovascular - IMEC</b><small>Salud</small></span>
+            <em>322 m · 5 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>647 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plaza Pintor Alberto Valenzuela Llanos</b><small>Esparcimiento</small></span>
+            <em>186 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Somedica</b><small>Salud</small></span>
+            <em>1144 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Comercio sin nombre</b><small>Comercio</small></span>
+            <em>608 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Culto">
+            <span><b>Pabellón Ceremonial Jardín Japonés</b><small>Culto</small></span>
+            <em>650 m · 9 min</em>
+          </div>
+          
+          <div data-equipment-item="Seguridad">
+            <span><b>Grupo de Adiestramiento Canino Carabineros de Chile</b><small>Seguridad</small></span>
+            <em>706 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Jardines FADEU</b><small>Esparcimiento</small></span>
+            <em>73 m · 1 min</em>
+          </div>
+          
+          <div data-equipment-item="Salud">
+            <span><b>Clínica Indisa Centro Médico de Diálisis</b><small>Salud</small></span>
+            <em>193 m · 3 min</em>
+          </div>
+          
+          <div data-equipment-item="Servicios">
+            <span><b>Itaú</b><small>Servicios</small></span>
+            <em>798 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Plazuela El Mayorazgo</b><small>Esparcimiento</small></span>
+            <em>107 m · 2 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+            <em>1044 m · 14 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>núcleo de restauración nativa</b><small>Esparcimiento</small></span>
+            <em>676 m · 10 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>vida nativa</b><small>Esparcimiento</small></span>
+            <em>463 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>bosque vivo</b><small>Esparcimiento</small></span>
+            <em>491 m · 7 min</em>
+          </div>
+          
+          <div data-equipment-item="Deporte">
+            <span><b>Deporte sin nombre</b><small>Deporte</small></span>
+            <em>1133 m · 16 min</em>
+          </div>
+          
+          <div data-equipment-item="Comercio">
+            <span><b>Centro Comercial Dos Caracoles</b><small>Comercio</small></span>
+            <em>809 m · 11 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Bandejón Central Avenida Santa María</b><small>Esparcimiento</small></span>
+            <em>939 m · 13 min</em>
+          </div>
+          
+          <div data-equipment-item="Esparcimiento">
+            <span><b>Parque Uruguay</b><small>Esparcimiento</small></span>
+            <em>914 m · 13 min</em>
+          </div>
+          
+        </div> 
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+      var map = L.map('map', {zoomControl: false}).setView([-33.4183652, -70.6178875], 14);
+      L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', { maxZoom: 18 }).addTo(map);
+      var customIcon = L.divIcon({
+          className: 'custom-pin',
+          html: "<div style='background-color:#ff4757; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></div>",
+          iconSize: [20, 20], iconAnchor: [10, 10]
+      });
+      L.marker([-33.4183652, -70.6178875], {icon: customIcon}).addTo(map);
+
+      var isocrona = [[-33.414845, -70.624476], [-33.417894, -70.626639], [-33.417994, -70.626653], [-33.422038, -70.626489], [-33.425039, -70.626138], [-33.425193, -70.626065], [-33.427225, -70.624918], [-33.42752, -70.623531], [-33.428059, -70.620768], [-33.428077, -70.614789], [-33.428283, -70.61356], [-33.42805, -70.61129], [-33.427996, -70.611077], [-33.426736, -70.609907], [-33.423235, -70.607149], [-33.417844, -70.6054], [-33.416985, -70.604965], [-33.416723, -70.604828], [-33.415124, -70.605165], [-33.413707, -70.605717], [-33.410942, -70.608984], [-33.410864, -70.614791], [-33.41093, -70.619153], [-33.410936, -70.619237], [-33.411124, -70.620111], [-33.412004, -70.624009], [-33.414845, -70.624476]];
+      if (isocrona && isocrona.length > 0) {
+          var polygon = L.polygon(isocrona, { color: '#3b82f6', weight: 3, fillColor: '#3b82f6', fillOpacity: 0.3 }).addTo(map);
+          map.fitBounds(polygon.getBounds());
+      }
+    </script>
+  </body>
+</html>

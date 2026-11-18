@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Nacimiento · Envejecer en el lugar correcto</title>
+<link href="../styless.css" rel="stylesheet"/>
+<!-- CSS del Mapa Automático -->
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+</head>
+<body class="paper-texture">
+<header class="navbar">
+<div class="nav-container" style="max-width: none; width: 100%; margin: 0; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; justify-content: space-between;">
+<div class="logo">
+<div>
+<strong>Condominios de Viviendas Tuteladas</strong>
+<span>Chile</span>
+</div>
+</div>
+<a class="primary-button" href="../index.html" style="text-decoration: none; padding: 8px 16px; font-size: 13px;">
+            ← Volver al inicio
+        </a>
+</div>
+</header>
+<main class="shell detail-page">
+<!-- HERO Y MAPA -->
+<section class="detail-hero" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+<div>
+<p class="eyebrow"><span></span> Ficha territorial · Nacimiento</p>
+<h1 style="font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #001f3f;">CVT Nacimiento</h1>
+<p class="address" style="color: #666; margin-bottom: 1.5rem;">Pablo Neruda 1211, Nacimiento</p>
+<p class="lead" style="font-size: 1.1rem; line-height: 1.6; text-align: justify; color: #4a4a4a;">
+            Conjuntos de viviendas pensadas para personas mayores de 60 años que valen por sí mismas. Su idea es ofrecer un lugar donde los adultos mayores puedan vivir con autonomía, conversar y tener actividades, pero manteniendo contacto con espacios que facilitan la vida de barrio.
+          </p>
+<div class="chips" style="margin-top: 2rem;">
+<span>En operación · 2018</span>
+<span>15 viviendas tuteladas</span>
+<span>Público</span>
+            <span>-</span>
+          </div>
+</div>
+<div class="summary-card map-container" style="background: #faf8f5; padding: 12px; border-radius: 24px; border: 1px solid #eaeaea;">
+<div class="card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;">
+<span style="font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: #888; text-transform: uppercase;">Resumen de proximidad</span>
+<span style="font-size: 0.75rem; background: #fff; padding: 4px 10px; border-radius: 12px; border: 1px solid #ddd; font-weight: bold;">15 MINUTOS</span>
+</div>
+<!-- Mapa dinámico Leaflet -->
+<div id="map" style="height: 380px; width: 100%; border-radius: 16px; z-index: 1;"></div>
+</div>
+</section>
+<section aria-label="Dimensiones de análisis" class="dimension-tabs" role="tablist">
+<span style="font-size: 0.85rem; letter-spacing: 2px; color: #888; text-transform: uppercase;">DIMENSIONES</span>
+</section>
+<!-- BOTONES DE PESTAÑAS (Métricas) -->
+<section class="metrics">
+<button class="metric" data-tab-target="profile">
+<span></span><small>Población</small><strong>26.140</strong><em>residentes</em>
+</button>
+<button class="metric active" data-tab-target="access">
+<span></span><small>Equipamiento</small><strong>254</strong><em>servicios cercanos</em>
+</button>
+<button class="metric" data-tab-target="transport">
+<span></span><small>Transporte público</small><strong>42</strong><em>paraderos en 15 min</em>
+</button>
+<button class="metric" data-tab-target="public-space">
+<span></span><small>Espacio público</small><strong>24</strong><em>áreas verdes cercanas</em>
+</button>
+<button class="metric" data-tab-target="socioeconomic">
+<span></span><small>Ingresos</small><strong>$$</strong><em>nivel municipal</em>
+</button>
+</section>
+<!-- PANELES DE CONTENIDO (Lectura del Entorno) -->
+<section class="analysis-grid">
+<article class="analysis-card">
+<p class="eyebrow" style="color: #ff4757; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Lectura del entorno</p>
+<h2 data-panel-title="">Una ciudad para quedarse</h2>
+<button class="method-link" data-action="methodology" type="button"></button>
+<!-- PANEL: EQUIPAMIENTOS (Automático por Python) -->
+<div class="tab-panel active" data-panel="access">
+<div class="big-score">100<span>/100</span></div>
+<p>El proyecto tiene un acceso <b>alto</b> a servicios cotidianos en un radio caminable de 15 minutos.</p>
+<ul class="nearby-list">
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Salud</span>
+<b>Hospital Comunitario y Familiar de Nacimiento / 594 m · 8 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Educación</span>
+<b>Escuela Canadá / 134 m · 2 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Cultura</span>
+<b>Casa de la Cultura y el Arte / 146 m · 2 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Deporte</span>
+<b>Deporte sin nombre / 163 m · 3 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Esparcimiento</span>
+<b>Plazoleta Rolando Arratia Hernandez / 147 m · 2 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Culto</span>
+<b>Iglesia Jesucristo Rey de Reyes / 61 m · 1 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Seguridad</span>
+<b>Tercera Compañía Bomberos Nacimiento / 386 m · 6 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Servicios</span>
+<b>Ilustre Municipalidad de Nacimiento / 711 m · 10 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Social</span>
+<b>Club de Cueca Trinar de Espuela / 18 m · 1 min</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: TRANSPORTE PÚBLICO -->
+<div class="tab-panel" data-panel="transport">
+<div class="big-score">42<span></span></div>
+<p>Se detectaron <b>42 paraderos</b> de transporte público en un radio de caminata de 15 minutos.</p>
+<ul class="nearby-list">
+<li>
+<span style="width: 250px; display: inline-block; color: #888;">Paraderos cercanos consolidados</span>
+<b>42 paraderos</b>
+</li>
+<li>
+<span style="width: 250px; display: inline-block; color: #888;">Estación de Metro/Tren más cercana</span>
+<b>Tren Coigüe · 9,6 km en línea recta</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: POBLACIÓN Y DEMOGRAFÍA -->
+<div class="tab-panel" data-panel="profile">
+<div class="bars">
+<div>
+<b>23%</b>
+<i style="height: 41.8%; background-color: #f39c12;"></i>
+<small>0–17 años</small>
+</div>
+<div>
+<b>55%</b>
+<i style="height: 100%; background-color: #f39c12;"></i>
+<small>18–59 años</small>
+</div>
+<div>
+<b>5.722 (22%)</b>
+<i style="height: 40%; background-color: #f39c12;"></i>
+<small>Personas de 60+ años</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Índice de envejecimiento</span>
+<b>94,7 mayores de 60 por cada 100 menores de 18</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Género</span>
+<b>51% F / 49% M</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Déficit habitacional comunal</span>
+<b>477 viviendas (déficit cuantitativo, Censo 2024; 5,2% de los 9.231 hogares)</b>
+</li>
+</ul>
+<p style="text-align: justify; margin-top: 15px; font-size: 0.85rem; color: #888;">
+    Esta información se obtuvo de la base de datos del Censo 2024 y corresponde al total de la comuna.
+  </p>
+</div>
+<!-- PANEL: ESPACIO PÚBLICO -->
+<div class="tab-panel" data-panel="public-space">
+<h2>Entorno y áreas verdes</h2>
+<div class="bars">
+<div>
+<b style="color: #e74c3c;">24</b>
+<i style="height: 100%; background-color: #e74c3c;"></i>
+<small>Parques y Áreas Verdes Totales</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Plazoleta</span>
+<b>Plazoleta Rolando Arratia Hernandez · 147 m · 2 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 158 m · 3 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 181 m · 3 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 330 m · 5 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 391 m · 6 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Parque</span>
+<b>Parque Alessandri · 395 m · 6 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 396 m · 6 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Plazoleta</span>
+<b>Plazoleta Pozas 3 · 405 m · 6 min</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: SOCIOECONÓMICO -->
+<div class="tab-panel" data-panel="socioeconomic">
+<div class="socio-container">
+<div class="socio-intro">
+<h2>Indicadores socioeconómicos municipales</h2>
+<p>
+        Ingresos, gastos y distribución de los recursos municipales para los años 2023, 2024 y 2025.
+        Las cifras monetarias se presentan sin factor de corrección monetaria.
+      </p>
+</div>
+<div class="socio-kpis">
+<div class="socio-kpi">
+<span>Disponibilidad presupuestaria por habitante · 2025</span>
+<strong>413 M$</strong>
+<small>Disponibilidad presupuestaria municipal</small>
+</div>
+<div class="socio-kpi">
+<span>Ingreso municipal total · 2025</span>
+<strong>11.566.751 M$</strong>
+<small>Ingreso total percibido</small>
+</div>
+<div class="socio-kpi">
+<span>Gasto municipal total · 2025</span>
+<strong>12.096.118 M$</strong>
+<small>Gasto total devengado</small>
+</div>
+<div class="socio-kpi">
+<span>Ingresos propios permanentes · 2025</span>
+<strong>3.383.212 M$</strong>
+<small>IPP</small>
+</div>
+</div>
+<section class="socio-section">
+<h3>1. Ingresos propios según fuente de ingreso</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disponibilidad Presupuestaria Municipal por Habitante (M$)</td>
+<td>333</td>
+<td>358</td>
+<td>413</td>
+</tr>
+<tr class="socio-highlight">
+<td>Ingresos Municipales (Ingreso Total Percibido) (M$)</td>
+<td>9.325.340</td>
+<td>10.023.275</td>
+<td>11.566.751</td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<section class="socio-section">
+<h3>2. Gastos municipales</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de gasto</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+
+
+<tr class="socio-highlight">
+<td>Gastos Municipales (Gastos Total Devengado) (M$)</td>
+<td>9.736.077</td>
+<td>11.011.053</td>
+<td>12.096.118</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Actividades Municipales (M$)</td>
+<td>227.209</td>
+<td>430.482</td>
+<td>490.088</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Interna (M$)</td>
+<td>4.978.672</td>
+<td>5.261.655</td>
+<td>5.664.885</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Programas Culturales (M$)</td>
+<td>194.468</td>
+<td>312.920</td>
+<td>270.050</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Programas Recreacionales (M$)</td>
+<td>167.643</td>
+<td>142.618</td>
+<td>333.336</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Programas Sociales (M$)</td>
+<td>737.489</td>
+<td>867.845</td>
+<td>854.235</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Servicios Comunitarios (M$)</td>
+<td>3.430.596</td>
+<td>3.891.632</td>
+<td>4.483.524</td>
+</tr>
+
+<tr>
+<td>Monto Transferido al Fondo Común Municipal (M$)</td>
+<td>660.775</td>
+<td>743.474</td>
+<td>748.856</td>
+</tr>
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<section class="socio-section">
+<h3>3. Distribución del ingreso municipal según origen</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participación de Ingresos Propios Permanentes (IPP) en el Ingreso Total (%)</td>
+<td>27,4</td>
+<td>28,7</td>
+<td>29,3</td>
+</tr>
+<tr>
+<td>Participación del Fondo Común Municipal en el Ingreso Total (%)</td>
+<td>52,7</td>
+<td>55,4</td>
+<td>56,9</td>
+</tr>
+<tr>
+<td>Participación de Ingresos por Transferencias en el Ingreso Total (%)</td>
+<td>11,1</td>
+<td>6,1</td>
+<td>5,5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<a class="socio-source" href="https://www.bcn.cl/siit/reportescomunales/comunal.html?unidad=Comunales&amp;anno=2026" rel="noopener noreferrer" target="_blank">
+<strong>↗ Consultar fuente oficial: Reportes Comunales BCN</strong>
+<span>
+        Biblioteca del Congreso Nacional de Chile · Indicadores comunales,
+        ingresos y gastos municipales.
+      </span>
+<span>Haz clic aquí para consultar el reporte original.</span>
+</a>
+</div>
+</div>
+</article>
+</section>
+<!-- INVENTARIO COMPLETO (Interactivo con app.js) -->
+<section class="inventory">
+<div class="inventory-heading">
+<div>
+<p class="eyebrow">Inventario de proximidad</p>
+<h2>Dentro del área caminable en 15 minutos</h2>
+</div>
+<!-- Filtros controlados por app.js -->
+<div class="filter-list compact" id="equipment-filters">
+<button class="filter active" data-equipment="Todos">Todos</button>
+<button class="filter" data-equipment="Salud">Salud</button>
+<button class="filter" data-equipment="Comercio">Comercio</button>
+<!-- Nota: Python exporta "Esparcimiento", pero el botón dice Plaza. -->
+<button class="filter" data-equipment="Esparcimiento">Plaza/Parque</button>
+<button class="filter" data-equipment="Cultura">Cultura</button>
+<button class="filter" data-equipment="Transporte">Transporte</button>
+</div>
+</div>
+<div class="inventory-list">
+<!-- Python inyectará la lista con data-equipment-item para que app.js la filtre -->
+<div data-equipment-item="Servicios">
+<span><b>Chilexpress</b><small>Servicios</small></span>
+<em>847 m · 12 min</em>
+</div>
+<div data-equipment-item="Cultura">
+<span><b>Biblioteca Marta Brunet</b><small>Cultura</small></span>
+<em>642 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>297 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>398 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>346 m · 5 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>184 m · 3 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Coinac</b><small>Transporte</small></span>
+<em>301 m · 5 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Coinac</b><small>Transporte</small></span>
+<em>317 m · 5 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Ñuble</b><small>Transporte</small></span>
+<em>483 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>416 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Copa</b><small>Transporte</small></span>
+<em>600 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>254 m · 4 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Supermercado Ñuble</b><small>Comercio</small></span>
+<em>532 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>345 m · 5 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones y Carnicería Santa María</b><small>Comercio</small></span>
+<em>1050 m · 14 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Mercado</b><small>Transporte</small></span>
+<em>797 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones Nico</b><small>Comercio</small></span>
+<em>804 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>545 m · 8 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Templo Evangélico Pentecostes "El Amanecer Glorioso"</b><small>Culto</small></span>
+<em>665 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Ñuble</b><small>Transporte</small></span>
+<em>528 m · 8 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Escuela Especial Ampalu</b><small>Educación</small></span>
+<em>518 m · 7 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>841 m · 12 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Panadería y Pastelería Danny</b><small>Comercio</small></span>
+<em>847 m · 12 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Farmacias Mi Botica</b><small>Salud</small></span>
+<em>890 m · 12 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Pandería Margarita</b><small>Comercio</small></span>
+<em>795 m · 11 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Junta de Vecinos Coinac N°5</b><small>Social</small></span>
+<em>479 m · 7 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Clínica Dental Nacimiento</b><small>Salud</small></span>
+<em>719 m · 10 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Supermercado Gladys</b><small>Comercio</small></span>
+<em>477 m · 7 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Panadería Superplaza</b><small>Comercio</small></span>
+<em>475 m · 7 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Supermercado El Carmen</b><small>Comercio</small></span>
+<em>820 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones El Nico</b><small>Comercio</small></span>
+<em>796 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Las Pozas Express</b><small>Comercio</small></span>
+<em>501 m · 7 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Confitería Yiro</b><small>Comercio</small></span>
+<em>900 m · 12 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Farmacias del Dr. Simi</b><small>Salud</small></span>
+<em>882 m · 12 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Culto sin nombre</b><small>Culto</small></span>
+<em>711 m · 10 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Culto sin nombre</b><small>Culto</small></span>
+<em>734 m · 10 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Evangélica Pentecostal</b><small>Culto</small></span>
+<em>402 m · 6 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Panadería El Pinar</b><small>Comercio</small></span>
+<em>544 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>615 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>718 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>1114 m · 15 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Social sin nombre</b><small>Social</small></span>
+<em>518 m · 7 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>570 m · 8 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones Angelina</b><small>Comercio</small></span>
+<em>497 m · 7 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Panadería y Pastelería Las Pozas</b><small>Comercio</small></span>
+<em>307 m · 5 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones Vifran</b><small>Comercio</small></span>
+<em>236 m · 4 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Templo Bautista</b><small>Culto</small></span>
+<em>252 m · 4 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Sala Cuna La Cruz</b><small>Educación</small></span>
+<em>592 m · 8 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Rokavi</b><small>Comercio</small></span>
+<em>725 m · 10 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Frutería y Provisiones Monse &amp; Anto</b><small>Comercio</small></span>
+<em>899 m · 12 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones N&amp;N</b><small>Comercio</small></span>
+<em>704 m · 10 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Shalom</b><small>Comercio</small></span>
+<em>694 m · 10 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>El Arca</b><small>Comercio</small></span>
+<em>566 m · 8 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones Raquel</b><small>Comercio</small></span>
+<em>527 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Hospital</b><small>Transporte</small></span>
+<em>706 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Agencia</b><small>Transporte</small></span>
+<em>673 m · 9 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Junta de Vecinos El Pinar</b><small>Social</small></span>
+<em>629 m · 9 min</em>
+</div>
+<div data-equipment-item="Seguridad">
+<span><b>Tercera Compañía Bomberos Nacimiento</b><small>Seguridad</small></span>
+<em>386 m · 6 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Punto Cugat</b><small>Comercio</small></span>
+<em>1010 m · 14 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>690 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Hospital</b><small>Transporte</small></span>
+<em>675 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Panadería La Unión</b><small>Comercio</small></span>
+<em>510 m · 7 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Bet el</b><small>Comercio</small></span>
+<em>420 m · 6 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Centro de Bendición Cristiano</b><small>Culto</small></span>
+<em>542 m · 8 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Club Adulto Mayor Amanecer</b><small>Social</small></span>
+<em>638 m · 9 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Evangélica Pentecostal Internacional</b><small>Culto</small></span>
+<em>1065 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>814 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>798 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones Los Quilos</b><small>Comercio</small></span>
+<em>761 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>650 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Librería Yannet</b><small>Comercio</small></span>
+<em>666 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>625 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>642 m · 9 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Culto sin nombre</b><small>Culto</small></span>
+<em>641 m · 9 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Logos</b><small>Deporte</small></span>
+<em>652 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>286 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>842 m · 12 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Templo Evangélico Columna y Apoyo de la Verdad</b><small>Culto</small></span>
+<em>759 m · 11 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Salón del Reino de los Testigos de Jehová</b><small>Culto</small></span>
+<em>951 m · 13 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Alianza Cristiana y Misionera</b><small>Culto</small></span>
+<em>653 m · 9 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Templo Adventista del Séptimo Día</b><small>Culto</small></span>
+<em>709 m · 10 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Evangélica Pentecostal</b><small>Culto</small></span>
+<em>839 m · 12 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Culto sin nombre</b><small>Culto</small></span>
+<em>704 m · 10 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Pentecostal</b><small>Culto</small></span>
+<em>612 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Supermercado Jimena</b><small>Comercio</small></span>
+<em>814 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Hospital</b><small>Transporte</small></span>
+<em>629 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Panadería Pezo</b><small>Comercio</small></span>
+<em>653 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Gonzalez</b><small>Comercio</small></span>
+<em>623 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>El Emporio</b><small>Comercio</small></span>
+<em>766 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>626 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Vega</b><small>Transporte</small></span>
+<em>678 m · 10 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>417 m · 6 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>El Calidad</b><small>Comercio</small></span>
+<em>226 m · 4 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Carnicería Bizama</b><small>Comercio</small></span>
+<em>832 m · 12 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Karusso</b><small>Comercio</small></span>
+<em>848 m · 12 min</em>
+</div>
+<div data-equipment-item="Servicios">
+<span><b>Instituto de Capacitación de Conductores ICCEN</b><small>Servicios</small></span>
+<em>728 m · 10 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>601 m · 9 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Club Adulto Mayor Rayito de Sol</b><small>Social</small></span>
+<em>726 m · 10 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Redfarma</b><small>Salud</small></span>
+<em>876 m · 12 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>859 m · 12 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Minimarket Venecia</b><small>Comercio</small></span>
+<em>735 m · 10 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Supermercado La Maravilla de Don Jere</b><small>Comercio</small></span>
+<em>853 m · 12 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Panadería Kofken</b><small>Comercio</small></span>
+<em>700 m · 10 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>El Verita</b><small>Comercio</small></span>
+<em>77 m · 2 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Consulta Médica Doctor Novoa</b><small>Salud</small></span>
+<em>817 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones Don Manolo</b><small>Comercio</small></span>
+<em>790 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>261 m · 4 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>699 m · 10 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>936 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>938 m · 13 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Corporación Templo Evangélico Misionero</b><small>Culto</small></span>
+<em>660 m · 9 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia de Dios Pentecostal</b><small>Culto</small></span>
+<em>305 m · 5 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Misión Evangélica Cristiana Apostólica</b><small>Culto</small></span>
+<em>308 m · 5 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>810 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones Willy</b><small>Comercio</small></span>
+<em>801 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Minimercado Los Notros</b><small>Comercio</small></span>
+<em>785 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones La Esquina</b><small>Comercio</small></span>
+<em>755 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>707 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>807 m · 11 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>727 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>857 m · 12 min</em>
+</div>
+<div data-equipment-item="Servicios">
+<span><b>Correos de Chile</b><small>Servicios</small></span>
+<em>865 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>603 m · 9 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Social sin nombre</b><small>Social</small></span>
+<em>539 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>506 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>502 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>307 m · 5 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>752 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones Tía Xime</b><small>Comercio</small></span>
+<em>128 m · 2 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Social sin nombre</b><small>Social</small></span>
+<em>82 m · 2 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>804 m · 11 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Culto sin nombre</b><small>Culto</small></span>
+<em>1026 m · 14 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Social sin nombre</b><small>Social</small></span>
+<em>924 m · 13 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Social sin nombre</b><small>Social</small></span>
+<em>751 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones x Menor</b><small>Comercio</small></span>
+<em>447 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>822 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>750 m · 10 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Junta de Vecinos María Roa Bizama</b><small>Social</small></span>
+<em>913 m · 13 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Misión Evangélica San Pablo</b><small>Culto</small></span>
+<em>955 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>607 m · 9 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Junta de Vecinos El Palqui</b><small>Social</small></span>
+<em>643 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>684 m · 10 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>El Esfuerzo</b><small>Culto</small></span>
+<em>799 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones R&amp;N</b><small>Comercio</small></span>
+<em>942 m · 13 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>925 m · 13 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>902 m · 13 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>887 m · 12 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>212 m · 3 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Don Ramón</b><small>Comercio</small></span>
+<em>741 m · 10 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Panadería Buen Gusto</b><small>Comercio</small></span>
+<em>864 m · 12 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Culto sin nombre</b><small>Culto</small></span>
+<em>823 m · 11 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>425 m · 6 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones Don Juan</b><small>Comercio</small></span>
+<em>1092 m · 15 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Unida Metodista Pentecostal</b><small>Culto</small></span>
+<em>870 m · 12 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Sede Social Bernardo O'Higgins</b><small>Social</small></span>
+<em>935 m · 13 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>893 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>878 m · 12 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Lumident</b><small>Salud</small></span>
+<em>793 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Panadería Margarita</b><small>Comercio</small></span>
+<em>901 m · 13 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Panadería Coinac</b><small>Comercio</small></span>
+<em>407 m · 6 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>852 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>888 m · 12 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>830 m · 12 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Culto sin nombre</b><small>Culto</small></span>
+<em>1043 m · 14 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Minimercado Elías</b><small>Comercio</small></span>
+<em>1064 m · 15 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Estadio Forestal</b><small>Deporte</small></span>
+<em>614 m · 9 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>1013 m · 14 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Estadio Municipal Nacimiento</b><small>Deporte</small></span>
+<em>1064 m · 15 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Colegio Teresiano Padre Enrique</b><small>Educación</small></span>
+<em>733 m · 10 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Escuela Canadá</b><small>Educación</small></span>
+<em>134 m · 2 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Leoncio Gallegos</b><small>Esparcimiento</small></span>
+<em>462 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plazoleta Los Notros</b><small>Esparcimiento</small></span>
+<em>556 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plazoleta Clementina</b><small>Esparcimiento</small></span>
+<em>469 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plazoleta Rolando Arratia Hernandez</b><small>Esparcimiento</small></span>
+<em>147 m · 2 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Coinac</b><small>Deporte</small></span>
+<em>181 m · 3 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Liceo Municipal Nacimiento</b><small>Educación</small></span>
+<em>1003 m · 14 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Escuela El Saber</b><small>Educación</small></span>
+<em>936 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Leighton</b><small>Esparcimiento</small></span>
+<em>843 m · 12 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Liceo Tecnico Nacimiento</b><small>Educación</small></span>
+<em>576 m · 8 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>La Iglesia de Jesucristo de los Santos de los Últimos Días</b><small>Culto</small></span>
+<em>659 m · 9 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Gimnasio La Tortuga</b><small>Deporte</small></span>
+<em>578 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>396 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Los Jardines</b><small>Esparcimiento</small></span>
+<em>1084 m · 15 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parque Alessandri</b><small>Esparcimiento</small></span>
+<em>395 m · 6 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>595 m · 8 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>928 m · 13 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Unimarc</b><small>Comercio</small></span>
+<em>842 m · 12 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Cristo Nuestro Divino Salvador</b><small>Culto</small></span>
+<em>887 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>745 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>728 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>856 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Pozas 5</b><small>Esparcimiento</small></span>
+<em>525 m · 7 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Hospital Comunitario y Familiar de Nacimiento</b><small>Salud</small></span>
+<em>594 m · 8 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Colegio San Juan de Dios</b><small>Educación</small></span>
+<em>695 m · 10 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Culto sin nombre</b><small>Culto</small></span>
+<em>755 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parque Nahuelbuta</b><small>Esparcimiento</small></span>
+<em>1177 m · 16 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Bautista Nacimiento</b><small>Culto</small></span>
+<em>1014 m · 14 min</em>
+</div>
+<div data-equipment-item="Servicios">
+<span><b>Ilustre Municipalidad de Nacimiento</b><small>Servicios</small></span>
+<em>711 m · 10 min</em>
+</div>
+<div data-equipment-item="Cultura">
+<span><b>Casa de la Cultura y el Arte</b><small>Cultura</small></span>
+<em>146 m · 2 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Escuela Óscar Guerrero Quinsac</b><small>Educación</small></span>
+<em>969 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>914 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plazoleta Pozas 3</b><small>Esparcimiento</small></span>
+<em>405 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>617 m · 9 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>617 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>405 m · 6 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Minimarket Marcela</b><small>Comercio</small></span>
+<em>503 m · 7 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>595 m · 8 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>589 m · 8 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Capilla Inmaculada Concepción</b><small>Culto</small></span>
+<em>523 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Los Castaños</b><small>Esparcimiento</small></span>
+<em>614 m · 9 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Cancha J. Montt</b><small>Deporte</small></span>
+<em>1160 m · 16 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>CECOSF Julio Hemmelmann</b><small>Salud</small></span>
+<em>738 m · 10 min</em>
+</div>
+<div data-equipment-item="Cultura">
+<span><b>Cultura sin nombre</b><small>Cultura</small></span>
+<em>366 m · 5 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Club de Cueca Trinar de Espuela</b><small>Social</small></span>
+<em>18 m · 1 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Jesucristo Rey de Reyes</b><small>Culto</small></span>
+<em>61 m · 1 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Escuela de Lenguaje Pequeñas Palabras</b><small>Educación</small></span>
+<em>232 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>181 m · 3 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Piscina Municipal</b><small>Deporte</small></span>
+<em>244 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>391 m · 6 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>472 m · 7 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>206 m · 3 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>223 m · 3 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>239 m · 4 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Club de Rayuela Las Pozas</b><small>Deporte</small></span>
+<em>513 m · 7 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Multicancha Las Pozas 5</b><small>Deporte</small></span>
+<em>514 m · 7 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Energym</b><small>Deporte</small></span>
+<em>328 m · 5 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>610 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1005 m · 14 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Policlinico Nacimiento</b><small>Salud</small></span>
+<em>618 m · 9 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Junta de Vecinos Gabriela Mistral</b><small>Social</small></span>
+<em>460 m · 7 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Jardín Infantil Freire</b><small>Educación</small></span>
+<em>888 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>158 m · 3 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>687 m · 10 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Social sin nombre</b><small>Social</small></span>
+<em>726 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>722 m · 10 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Social sin nombre</b><small>Social</small></span>
+<em>880 m · 12 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>646 m · 9 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Escuela de Lenguaje Jesús Maestro</b><small>Educación</small></span>
+<em>444 m · 6 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Sala Cuna y Jardín Infantil Doctora Lucy Kojchen</b><small>Educación</small></span>
+<em>441 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>330 m · 5 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Centros Comunitarios de Cuidados Nacimiento</b><small>Social</small></span>
+<em>39 m · 1 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>236 m · 4 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Sur Padel Center</b><small>Deporte</small></span>
+<em>170 m · 3 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Club José Erpel Rubio</b><small>Social</small></span>
+<em>111 m · 2 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Club Deportivo Maestranza</b><small>Social</small></span>
+<em>108 m · 2 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Evangélica de Nacimiento</b><small>Culto</small></span>
+<em>783 m · 11 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Escuela Especial de Lenguaje Princesita Misín</b><small>Educación</small></span>
+<em>775 m · 11 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Social sin nombre</b><small>Social</small></span>
+<em>883 m · 12 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Adventista de la Promes</b><small>Culto</small></span>
+<em>347 m · 5 min</em>
+</div>
+<div data-equipment-item="Seguridad">
+<span><b>Bomba Chile - España</b><small>Seguridad</small></span>
+<em>926 m · 13 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>163 m · 3 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>168 m · 3 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Turgi</b><small>Comercio</small></span>
+<em>949 m · 13 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Skate Park Nacimiento</b><small>Deporte</small></span>
+<em>196 m · 3 min</em>
+</div>
+</div>
+</section>
+</main>
+<!-- 1. Script de la lógica interactiva de pestañas -->
+<script src="../app.js"></script>
+<!-- 2. Scripts del Mapa Automático de Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+      var map = L.map('map', {zoomControl: false}).setView([-37.504015, -72.682059], 14);
+      
+      // Capa base híbrida satelital
+      L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+          attribution: '&copy; Google',
+          maxZoom: 18
+      }).addTo(map);
+
+      // Marcador central
+      var customIcon = L.divIcon({
+          className: 'custom-pin',
+          html: "<div style='background-color:#ff4757; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></div>",
+          iconSize: [20, 20],
+          iconAnchor: [10, 10]
+      });
+      L.marker([-37.504015, -72.682059], {icon: customIcon}).addTo(map);
+
+      // Isócrona peatonal azul (15 min)
+      var isocrona = [[-37.495963, -72.689902], [-37.496186, -72.689959], [-37.496714, -72.69008], [-37.498587, -72.690558], [-37.500256, -72.691133], [-37.504295, -72.694192], [-37.50537, -72.694259], [-37.505716, -72.694161], [-37.510171, -72.690257], [-37.5104, -72.68998], [-37.511352, -72.688369], [-37.511595, -72.68742], [-37.511899, -72.682837], [-37.511855, -72.682649], [-37.511811, -72.682461], [-37.511728, -72.682232], [-37.511652, -72.682023], [-37.511441, -72.681535], [-37.511235, -72.681056], [-37.510991, -72.680431], [-37.510736, -72.674972], [-37.510572, -72.674652], [-37.508906, -72.672701], [-37.505892, -72.668912], [-37.505557, -72.668781], [-37.50228, -72.670711], [-37.499409, -72.673095], [-37.497793, -72.674604], [-37.496528, -72.676102], [-37.49494, -72.680651], [-37.494922, -72.684102], [-37.495525, -72.689427], [-37.495644, -72.689596], [-37.495885, -72.689864], [-37.495963, -72.689902]];
+      if (isocrona && isocrona.length > 0) {
+          var polygon = L.polygon(isocrona, {
+              color: '#3b82f6',
+              weight: 3,
+              fillColor: '#3b82f6',
+              fillOpacity: 0.3
+          }).addTo(map);
+          
+          // Encuadrar el mapa al polígono
+          map.fitBounds(polygon.getBounds());
+      }
+    </script>
+</body>
+</html>

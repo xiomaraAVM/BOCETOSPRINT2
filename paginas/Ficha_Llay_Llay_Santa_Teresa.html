@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Llay Llay · Envejecer en el lugar correcto</title>
+<link href="../styless.css" rel="stylesheet"/>
+<!-- CSS del Mapa Automático -->
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+</head>
+<body class="paper-texture">
+<header class="navbar">
+<div class="nav-container" style="max-width: none; width: 100%; margin: 0; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; justify-content: space-between;">
+<div class="logo">
+<div>
+<strong>Condominios de Viviendas Tuteladas</strong>
+<span>Chile</span>
+</div>
+</div>
+<a class="primary-button" href="../index.html" style="text-decoration: none; padding: 8px 16px; font-size: 13px;">
+            ← Volver al inicio
+        </a>
+</div>
+</header>
+<main class="shell detail-page">
+<!-- HERO Y MAPA -->
+<section class="detail-hero" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+<div>
+<p class="eyebrow"><span></span> Ficha territorial · Llay Llay</p>
+<h1 style="font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #001f3f;">Santa Teresa</h1>
+<p class="address" style="color: #666; margin-bottom: 1.5rem;">Sin dirección registrada, Llay Llay</p>
+<p class="lead" style="font-size: 1.1rem; line-height: 1.6; text-align: justify; color: #4a4a4a;">
+            Conjuntos de viviendas pensadas para personas mayores de 60 años que valen por sí mismas. Su idea es ofrecer un lugar donde los adultos mayores puedan vivir con autonomía, conversar y tener actividades, pero manteniendo contacto con espacios que facilitan la vida de barrio.
+          </p>
+<div class="chips" style="margin-top: 2rem;">
+<span>En operación · 2012</span>
+<span>15 viviendas tuteladas</span>
+<span>Público</span>
+            <span>periferia residencial</span>
+          </div>
+</div>
+<div class="summary-card map-container" style="background: #faf8f5; padding: 12px; border-radius: 24px; border: 1px solid #eaeaea;">
+<div class="card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;">
+<span style="font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: #888; text-transform: uppercase;">Resumen de proximidad</span>
+<span style="font-size: 0.75rem; background: #fff; padding: 4px 10px; border-radius: 12px; border: 1px solid #ddd; font-weight: bold;">15 MINUTOS</span>
+</div>
+<!-- Mapa dinámico Leaflet -->
+<div id="map" style="height: 380px; width: 100%; border-radius: 16px; z-index: 1;"></div>
+</div>
+</section>
+<section aria-label="Dimensiones de análisis" class="dimension-tabs" role="tablist">
+<span style="font-size: 0.85rem; letter-spacing: 2px; color: #888; text-transform: uppercase;">DIMENSIONES</span>
+</section>
+<!-- BOTONES DE PESTAÑAS (Métricas) -->
+<section class="metrics">
+<button class="metric" data-tab-target="profile">
+<span></span><small>Población</small><strong>25.484</strong><em>residentes</em>
+</button>
+<button class="metric active" data-tab-target="access">
+<span></span><small>Equipamiento</small><strong>13</strong><em>servicios cercanos</em>
+</button>
+<button class="metric" data-tab-target="transport">
+<span></span><small>Transporte público</small><strong>0</strong><em>paraderos en 15 min</em>
+</button>
+<button class="metric" data-tab-target="public-space">
+<span></span><small>Espacio público</small><strong>4</strong><em>áreas verdes cercanas</em>
+</button>
+<button class="metric" data-tab-target="socioeconomic">
+<span></span><small>Ingresos</small><strong>$$</strong><em>nivel municipal</em>
+</button>
+</section>
+<!-- PANELES DE CONTENIDO (Lectura del Entorno) -->
+<section class="analysis-grid">
+<article class="analysis-card">
+<p class="eyebrow" style="color: #ff4757; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Lectura del entorno</p>
+<h2 data-panel-title="">Una ciudad para quedarse</h2>
+<button class="method-link" data-action="methodology" type="button"></button>
+<!-- PANEL: EQUIPAMIENTOS (Automático por Python) -->
+<div class="tab-panel active" data-panel="access">
+<div class="big-score">44<span>/100</span></div>
+<p>El proyecto tiene un acceso <b>medio</b> a servicios cotidianos en un radio caminable de 15 minutos.</p>
+<ul class="nearby-list">
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Salud</span>
+<b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Educación</span>
+<b>Escuela Básica Naciones Unidas / 280 m · 4 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Cultura</span>
+<b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Deporte</span>
+<b>Deporte sin nombre / 55 m · 1 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Esparcimiento</span>
+<b>Área Verde / Plaza / 629 m · 9 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Culto</span>
+<b>Llay-Llay Centro / 938 m · 13 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Seguridad</span>
+<b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Servicios</span>
+<b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Social</span>
+<b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: TRANSPORTE PÚBLICO -->
+<div class="tab-panel" data-panel="transport">
+<div class="big-score">0<span></span></div>
+<p>Se detectaron <b>0 paraderos</b> de transporte público en un radio de caminata de 15 minutos.</p>
+<ul class="nearby-list">
+<li>
+<span style="width: 250px; display: inline-block; color: #888;">Paraderos cercanos consolidados</span>
+<b>0 paraderos</b>
+</li>
+<li>
+<span style="width: 250px; display: inline-block; color: #888;">Estación de Metro/Tren más cercana</span>
+<b>Tren Llay Llay · 1,2 km en línea recta</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: POBLACIÓN Y DEMOGRAFÍA -->
+<div class="tab-panel" data-panel="profile">
+<div class="bars">
+<div>
+<b>23%</b>
+<i style="height: 41.1%; background-color: #f39c12;"></i>
+<small>0–17 años</small>
+</div>
+<div>
+<b>56%</b>
+<i style="height: 100%; background-color: #f39c12;"></i>
+<small>18–59 años</small>
+</div>
+<div>
+<b>5.435 (21%)</b>
+<i style="height: 37.5%; background-color: #f39c12;"></i>
+<small>Personas de 60+ años</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Índice de envejecimiento</span>
+<b>90,9 mayores de 60 por cada 100 menores de 18</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Género</span>
+<b>51% F / 49% M</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Déficit habitacional comunal</span>
+<b>541 viviendas (déficit cuantitativo, Censo 2024; 6,1% de los 8.913 hogares)</b>
+</li>
+</ul>
+<p style="text-align: justify; margin-top: 15px; font-size: 0.85rem; color: #888;">
+    Esta información se obtuvo de base de datos del Censo 2024 y corresponde al total de la comuna.
+  </p>
+</div>
+<!-- PANEL: ESPACIO PÚBLICO -->
+<div class="tab-panel" data-panel="public-space">
+<h2>Entorno y áreas verdes</h2>
+<div class="bars">
+<div>
+<b style="color: #e74c3c;">4</b>
+<i style="height: 36.4%; background-color: #e74c3c;"></i>
+<small>Parques y Áreas Verdes Totales</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 629 m · 9 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Parque</span>
+<b>Parque El Escorial · 693 m · 10 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 720 m · 10 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 803 m · 11 min</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: SOCIOECONÓMICO -->
+<div class="tab-panel" data-panel="socioeconomic">
+<div class="socio-container">
+<!-- ENCABEZADO -->
+<div class="socio-intro">
+<h2>Indicadores socioeconómicos municipales</h2>
+<p>
+        Ingresos, gastos y distribución de los recursos municipales para los años
+        2023, 2024 y 2025. Las cifras monetarias se presentan sin factor de
+        corrección monetaria.
+      </p>
+</div>
+<!-- INDICADORES DESTACADOS -->
+<div class="socio-kpis">
+<div class="socio-kpi">
+<span>Disponibilidad presupuestaria por habitante · 2025</span>
+<strong>349 M$</strong>
+<small>Según la unidad reportada por la BCN</small>
+</div>
+<div class="socio-kpi">
+<span>Ingreso municipal total · 2025</span>
+<strong>9.581.181 M$</strong>
+<small>Ingreso total percibido</small>
+</div>
+<div class="socio-kpi">
+<span>Gasto municipal total · 2025</span>
+<strong>9.397.880 M$</strong>
+<small>Gasto total devengado</small>
+</div>
+<div class="socio-kpi">
+<span>Ingresos propios permanentes · 2025</span>
+<strong>2.239.868 M$</strong>
+<small>IPP</small>
+</div>
+</div>
+<!-- INGRESOS MUNICIPALES -->
+<section class="socio-section">
+<h3>1. Ingresos propios según fuente de ingreso</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disponibilidad Presupuestaria Municipal por Habitante (M$)</td>
+<td>278</td>
+<td>351</td>
+<td>349</td>
+</tr>
+<tr class="socio-highlight">
+<td>Ingresos Municipales (Ingreso Total Percibido) (M$)</td>
+<td>7.549.993</td>
+<td>9.567.364</td>
+<td>9.581.181</td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<!-- GASTOS MUNICIPALES -->
+<section class="socio-section">
+<h3>2. Gastos municipales</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de gasto</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+
+
+<tr class="socio-highlight">
+<td>Gastos Municipales (Gastos Total Devengado) (M$)</td>
+<td>8.574.375</td>
+<td>10.038.195</td>
+<td>9.397.880</td>
+</tr>
+<tr>
+<td>Área de Gestión: Actividades Municipales (M$)</td>
+<td>179.724</td>
+<td>302.838</td>
+<td>118.010</td>
+</tr>
+<tr>
+<td>Área de Gestión: Interna (M$)</td>
+<td>5.037.378</td>
+<td>5.715.102</td>
+<td>5.929.450</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Culturales (M$)</td>
+<td>31.067</td>
+<td>13.459</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Recreacionales (M$)</td>
+<td>56.400</td>
+<td>21.235</td>
+<td>110.787</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Sociales (M$)</td>
+<td>474.557</td>
+<td>782.110</td>
+<td>567.950</td>
+</tr>
+<tr>
+<td>Área de Gestión: Servicios Comunitarios (M$)</td>
+<td>2.795.249</td>
+<td>3.139.927</td>
+<td>2.671.683</td>
+</tr>
+
+<tr>
+<td>Monto Transferido al Fondo Común Municipal (M$)</td>
+<td>537.065</td>
+<td>639.954</td>
+<td>674.895</td>
+</tr>
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<!-- DISTRIBUCIÓN DEL INGRESO -->
+<section class="socio-section">
+<h3>3. Distribución del ingreso municipal según origen</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participación de Ingresos Propios Permanentes (IPP) en el Ingreso Total (%)</td>
+<td>25,0</td>
+<td>23,2</td>
+<td>23,4</td>
+</tr>
+<tr>
+<td>Participación del Fondo Común Municipal en el Ingreso Total (%)</td>
+<td>57,1</td>
+<td>51,9</td>
+<td>56,5</td>
+</tr>
+<tr>
+<td>Participación de Ingresos por Transferencias en el Ingreso Total (%)</td>
+<td>6,8</td>
+<td>13,6</td>
+<td>7,9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- FUENTE OFICIAL -->
+<a class="socio-source" href="https://www.bcn.cl/siit/reportescomunales/comunal.html?unidad=Comunales&amp;anno=2026" rel="noopener noreferrer" target="_blank">
+<strong>↗ Consultar fuente oficial: Reportes Comunales BCN</strong>
+<span>
+        Biblioteca del Congreso Nacional de Chile · Indicadores comunales,
+        ingresos y gastos municipales.
+      </span>
+<span>Haz clic aquí para consultar el reporte original.</span>
+</a>
+</div>
+</div>
+</article>
+</section>
+<!-- INVENTARIO COMPLETO (Interactivo con app.js) -->
+<section class="inventory">
+<div class="inventory-heading">
+<div>
+<p class="eyebrow">Inventario de proximidad</p>
+<h2>Dentro del área caminable en 15 minutos</h2>
+</div>
+<!-- Filtros controlados por app.js -->
+<div class="filter-list compact" id="equipment-filters">
+<button class="filter active" data-equipment="Todos">Todos</button>
+<button class="filter" data-equipment="Salud">Salud</button>
+<button class="filter" data-equipment="Comercio">Comercio</button>
+<!-- Nota: Python exporta "Esparcimiento", pero el botón dice Plaza. -->
+<button class="filter" data-equipment="Esparcimiento">Plaza/Parque</button>
+<button class="filter" data-equipment="Cultura">Cultura</button>
+<button class="filter" data-equipment="Transporte">Transporte</button>
+</div>
+</div>
+<div class="inventory-list">
+<!-- Python inyectará la lista con data-equipment-item para que app.js la filtre -->
+<div data-equipment-item="Deporte">
+<span><b>Ex Fortín Ferroviario</b><small>Deporte</small></span>
+<em>830 m · 12 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Colegio Verdoyham</b><small>Educación</small></span>
+<em>711 m · 10 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Estadio Municipal de Llay Llay</b><small>Deporte</small></span>
+<em>801 m · 11 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Los Capullitos</b><small>Educación</small></span>
+<em>341 m · 5 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Escuela Básica Naciones Unidas</b><small>Educación</small></span>
+<em>280 m · 4 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Liceo Menesiano Sagrado Corazón</b><small>Educación</small></span>
+<em>919 m · 13 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Llay-Llay Centro</b><small>Culto</small></span>
+<em>938 m · 13 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>832 m · 12 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>55 m · 1 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>803 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>629 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>720 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parque El Escorial</b><small>Esparcimiento</small></span>
+<em>693 m · 10 min</em>
+</div>
+</div>
+</section>
+</main>
+<!-- 1. Script de la lógica interactiva de pestañas -->
+<script src="../app.js"></script>
+<!-- 2. Scripts del Mapa Automático de Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+      var map = L.map('map', {zoomControl: false}).setView([-32.841713, -70.940395], 14);
+      
+      // Capa base híbrida satelital
+      L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+          attribution: '&copy; Google',
+          maxZoom: 18
+      }).addTo(map);
+
+      // Marcador central
+      var customIcon = L.divIcon({
+          className: 'custom-pin',
+          html: "<div style='background-color:#ff4757; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></div>",
+          iconSize: [20, 20],
+          iconAnchor: [10, 10]
+      });
+      L.marker([-32.841713, -70.940395], {icon: customIcon}).addTo(map);
+
+      // Isócrona peatonal azul (15 min)
+      var isocrona = [[-32.834209, -70.948044], [-32.835682, -70.94814], [-32.836733, -70.947789], [-32.841911, -70.94978], [-32.842548, -70.950388], [-32.842907, -70.950405], [-32.845381, -70.945668], [-32.845752, -70.944878], [-32.846699, -70.942797], [-32.844482, -70.938029], [-32.844541, -70.936877], [-32.844546, -70.936552], [-32.84455, -70.936233], [-32.844537, -70.935966], [-32.844606, -70.930405], [-32.844277, -70.930259], [-32.842318, -70.931871], [-32.842059, -70.932121], [-32.842038, -70.936838], [-32.841385, -70.938276], [-32.841137, -70.939725], [-32.840485, -70.941181], [-32.835995, -70.942867], [-32.835329, -70.942748], [-32.835169, -70.942742], [-32.833411, -70.942559], [-32.832791, -70.942516], [-32.832567, -70.94269], [-32.833854, -70.947786], [-32.833893, -70.947871], [-32.834209, -70.948044]];
+      if (isocrona && isocrona.length > 0) {
+          var polygon = L.polygon(isocrona, {
+              color: '#3b82f6',
+              weight: 3,
+              fillColor: '#3b82f6',
+              fillOpacity: 0.3
+          }).addTo(map);
+          
+          // Encuadrar el mapa al polígono
+          map.fitBounds(polygon.getBounds());
+      }
+    </script>
+</body>
+</html>

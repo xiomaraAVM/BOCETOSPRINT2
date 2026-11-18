@@ -1,0 +1,2031 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>La Pintana · Envejecer en el lugar correcto</title>
+<link href="../styless.css" rel="stylesheet"/>
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+</head>
+<body class="paper-texture">
+<header class="navbar">
+<div class="nav-container" style="max-width: none; width: 100%; margin: 0; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; justify-content: space-between;">
+<div class="logo">
+<div>
+<strong>Condominios de Viviendas Tuteladas</strong>
+<span>Chile</span>
+</div>
+</div>
+<a class="primary-button" href="../index.html" style="text-decoration: none; padding: 8px 16px; font-size: 13px;">
+            ← Volver al inicio
+        </a>
+</div>
+</header>
+<main class="shell detail-page">
+<!-- HERO Y MAPA -->
+<section class="detail-hero" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+<div>
+<p class="eyebrow"><span></span> Ficha territorial · La Pintana</p>
+<h1 style="font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #001f3f;">Villa La Primavera</h1>
+<p class="address" style="color: #666; margin-bottom: 1.5rem;">Pasaje El Ombu # 3406, La Pintana</p>
+<p class="lead" style="font-size: 1.1rem; line-height: 1.6; text-align: justify; color: #4a4a4a;">
+</p>
+<div class="chips" style="margin-top: 2rem;">
+<span>En operación · 1999</span>
+<span>46 viviendas tuteladas</span>
+<span>Privado</span>
+            <span>periferia residencial</span>
+          </div>
+</div>
+<div class="summary-card map-container" style="background: #faf8f5; padding: 12px; border-radius: 24px; border: 1px solid #eaeaea;">
+<div class="card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;">
+<span style="font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: #888; text-transform: uppercase;">Resumen de proximidad</span>
+<span style="font-size: 0.75rem; background: #fff; padding: 4px 10px; border-radius: 12px; border: 1px solid #ddd; font-weight: bold;">15 MINUTOS</span>
+</div>
+<!-- Mapa dinámico Leaflet -->
+<div id="map" style="height: 380px; width: 100%; border-radius: 16px; z-index: 1;"></div>
+</div>
+</section>
+<section aria-label="Dimensiones de análisis" class="dimension-tabs" role="tablist">
+<span style="font-size: 0.85rem; letter-spacing: 2px; color: #888; text-transform: uppercase;">DIMENSIONES</span>
+</section>
+<!-- BOTONES DE PESTAÑAS (Métricas) -->
+<section class="metrics">
+<button class="metric" data-tab-target="profile">
+<span></span><small>Población</small><strong>175.421</strong><em>residentes</em>
+</button>
+<button class="metric active" data-tab-target="access">
+<span></span><small>Equipamiento</small><strong>162</strong><em>servicios cercanos</em>
+</button>
+<button class="metric" data-tab-target="transport">
+<span></span><small>Transporte público</small><strong>53</strong><em>paraderos en 15 min</em>
+</button>
+<button class="metric" data-tab-target="public-space">
+<span></span><small>Espacio público</small><strong>32</strong><em>áreas verdes cercanas</em>
+</button>
+<button class="metric" data-tab-target="socioeconomic">
+<span></span><small>Ingresos</small><strong>$$</strong><em>nivel municipal</em>
+</button>
+</section>
+<!-- PANELES DE CONTENIDO (Lectura del Entorno) -->
+<section class="analysis-grid">
+<article class="analysis-card">
+<p class="eyebrow" style="color: #ff4757; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Lectura del entorno</p>
+<h2 data-panel-title="">Una ciudad para quedarse</h2>
+<button class="method-link" data-action="methodology" type="button"></button>
+<!-- PANEL: EQUIPAMIENTOS (Automático por Python) -->
+<div class="tab-panel active" data-panel="access">
+<div class="big-score">66<span>/100</span></div>
+<p>El proyecto tiene un acceso <b>medio</b> a servicios cotidianos en un radio caminable de 15 minutos.</p>
+<ul class="nearby-list">
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Salud</span>
+<b>CESFAM / SAPU Santiago de la Nueva Extremadura / 750 m · 10 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Educación</span>
+<b>Escuela de Lenguaje Árbol de Colores / 137 m · 2 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Cultura</span>
+<b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Deporte</span>
+<b>Deporte sin nombre / 181 m · 3 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Esparcimiento</span>
+<b>Plaza Villa La Primavera / 75 m · 1 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Culto</span>
+<b>Iglesia San José / 415 m · 6 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Seguridad</span>
+<b>Tenencia El Castillo / 284 m · 4 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Servicios</span>
+<b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Social</span>
+<b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: TRANSPORTE PÚBLICO (Mixto: Automático + Manual) -->
+<div class="tab-panel" data-panel="transport">
+<div class="big-score">53<span></span></div>
+<p>Se detectaron <b>53 paraderos</b> de transporte público en un radio de caminata de 15 minutos.</p>
+<ul class="nearby-list">
+<li><span style="width: 250px; display: inline-block; color: #888;">Paraderos cercanos consolidados</span><b>53 paraderos</b></li>
+<li><span style="width: 250px; display: inline-block; color: #888;">Estación de Metro/Tren más cercana</span><b>Sin estación de metro/tren a menos de 30 km (según OpenStreetMap)</b></li>
+</ul>
+</div>
+<!-- PANEL: POBLACIÓN Y DEMOGRAFÍA (Mixto: Automático + Manual) -->
+<div class="tab-panel" data-panel="profile">
+<div class="bars">
+<div>
+<b>25%</b>
+<i style="height: 25%;background-color: #f39c12;"></i>
+<small>0–17 años</small>
+</div>
+<div>
+<b>57%</b>
+<i style="height: 57%;background-color: #f39c12;"></i>
+<small>18–59 años</small>
+</div>
+<div>
+<b>18%</b>
+<i style="height: 18%; background-color: #f39c12;"></i>
+<small>Personas de 60+ años</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">
+      Índice de envejecimiento
+    </span>
+<b>72,9 mayores de 60 por cada 100 menores de 18</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">
+      Género
+    </span>
+<b>51% F / 49% M</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">
+      Déficit habitacional comunal
+    </span>
+<b>6.796 viviendas (12,6% de 53.951 hogares; Censo 2024)</b>
+</li>
+</ul>
+<p style="text-align: justify; margin-top: 15px; font-size: 0.85rem; color: #888;">
+              Esta información se obtuvo de base de datos del Censo 2024.
+            </p>
+</div>
+<!-- PANEL: ESPACIO PÚBLICO (Automático por Python) -->
+<div class="tab-panel" data-panel="public-space">
+<h2>Entorno y áreas verdes</h2>
+<div class="bars">
+<div>
+<b style="color: #2ecc71;">32</b>
+<i style="height: 100%; background-color: #2ecc71;"></i>
+<small>Parques y Áreas Verdes Totales</small>
+</div>
+</div>
+</div>
+<!-- PANEL: SOCIOECONÓMICO -->
+<div class="tab-panel" data-panel="socioeconomic">
+<div class="socio-container">
+<!-- ENCABEZADO -->
+<div class="socio-intro">
+<h2>Indicadores socioeconómicos municipales</h2>
+<p>
+        Ingresos, gastos y distribución de los recursos municipales para los años
+        2023, 2024 y 2025. Las cifras monetarias se presentan sin factor de
+        corrección monetaria.
+      </p>
+</div>
+<!-- INDICADORES DESTACADOS -->
+<div class="socio-kpis">
+<div class="socio-kpi">
+<span>Disponibilidad presupuestaria por habitante · 2025</span>
+<strong>266 M$</strong>
+<small>Según la unidad reportada por la BCN</small>
+</div>
+<div class="socio-kpi">
+<span>Ingreso municipal total · 2025</span>
+<strong>50.219.253 M$</strong>
+<small>Ingreso total percibido</small>
+</div>
+<div class="socio-kpi">
+<span>Gasto municipal total · 2025</span>
+<strong>52.669.458 M$</strong>
+<small>Gasto total devengado</small>
+</div>
+<div class="socio-kpi">
+<span>Ingresos propios permanentes · 2025</span>
+<strong>8.020.488 M$</strong>
+<small>IPP</small>
+</div>
+</div>
+<!-- INGRESOS MUNICIPALES -->
+<section class="socio-section">
+<h3>1. Ingresos propios según fuente de ingreso</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disponibilidad Presupuestaria Municipal por Habitante (M$)</td>
+<td>223</td>
+<td>238</td>
+<td>266</td>
+</tr>
+<tr class="socio-highlight">
+<td>Ingresos Municipales (Ingreso Total Percibido) (M$)</td>
+<td>42.199.812</td>
+<td>44.902.239</td>
+<td>50.219.253</td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<!-- GASTOS MUNICIPALES -->
+<section class="socio-section">
+<h3>2. Gastos municipales</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de gasto</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+
+
+<tr class="socio-highlight">
+<td>Gastos Municipales (Gastos Total Devengado) (M$)</td>
+<td>37.052.907</td>
+<td>46.585.777</td>
+<td>52.669.458</td>
+</tr>
+<tr>
+<td>Área de Gestión: Actividades Municipales (M$)</td>
+<td>276.809</td>
+<td>406.610</td>
+<td>210.610</td>
+</tr>
+<tr>
+<td>Área de Gestión: Interna (M$)</td>
+<td>19.545.898</td>
+<td>25.673.726</td>
+<td>26.557.045</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Culturales (M$)</td>
+<td>611.700</td>
+<td>650.000</td>
+<td>612.244</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Recreacionales (M$)</td>
+<td>1.328.200</td>
+<td>1.535.728</td>
+<td>1.445.386</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Sociales (M$)</td>
+<td>1.414.869</td>
+<td>1.533.802</td>
+<td>1.957.413</td>
+</tr>
+<tr>
+<td>Área de Gestión: Servicios Comunitarios (M$)</td>
+<td>13.875.431</td>
+<td>16.785.911</td>
+<td>21.886.760</td>
+</tr>
+
+<tr>
+<td>Monto Transferido al Fondo Común Municipal (M$)</td>
+<td>1.629.927</td>
+<td>1.729.561</td>
+<td>1.655.248</td>
+</tr>
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<!-- DISTRIBUCIÓN DEL INGRESO -->
+<section class="socio-section">
+<h3>3. Distribución del ingreso municipal según origen</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participación de Ingresos Propios Permanentes (IPP) en el Ingreso Total (%)</td>
+<td>14,5%</td>
+<td>15,0%</td>
+<td>16,0%</td>
+</tr>
+<tr>
+<td>Participación del Fondo Común Municipal en el Ingreso Total (%)</td>
+<td>71,3%</td>
+<td>72,9%</td>
+<td>69,0%</td>
+</tr>
+<tr>
+<td>Participación de Ingresos por Transferencias en el Ingreso Total (%)</td>
+<td>5,4%</td>
+<td>5,6%</td>
+<td>8,3%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- FUENTE OFICIAL -->
+<a class="socio-source" href="https://www.bcn.cl/siit/reportescomunales/comunal.html?unidad=Comunales&amp;anno=2026" rel="noopener noreferrer" target="_blank">
+<strong>↗ Consultar fuente oficial: Reportes Comunales BCN</strong>
+<span>
+        Biblioteca del Congreso Nacional de Chile · Indicadores comunales,
+        ingresos y gastos municipales.
+      </span>
+<span>Haz clic aquí para consultar el reporte original.</span>
+</a>
+</div>
+</div>
+</article>
+</section>
+<!-- INVENTARIO COMPLETO (Interactivo con app.js) -->
+<section class="inventory">
+<div class="inventory-heading">
+<div>
+<p class="eyebrow">Inventario de proximidad</p>
+<h2>Dentro del área caminable en 15 minutos</h2>
+</div>
+<!-- Filtros controlados por app.js -->
+<div class="filter-list compact" id="equipment-filters">
+<button class="filter active" data-equipment="Todos">Todos</button>
+<button class="filter" data-equipment="Salud">Salud</button>
+<button class="filter" data-equipment="Comercio">Comercio</button>
+<!-- Nota: Python exporta "Esparcimiento", pero el botón dice Plaza. -->
+<button class="filter" data-equipment="Esparcimiento">Plaza/Parque</button>
+<button class="filter" data-equipment="Cultura">Cultura</button>
+<button class="filter" data-equipment="Transporte">Transporte</button>
+</div>
+</div>
+<div class="inventory-list">
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>El Fundador / El Ombu</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>73 m</span>
+<small>1 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Plaza Villa La Primavera</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>75 m</span>
+<small>1 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>El Fundador / esq. El Ombú</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>89 m</span>
+<small>2 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Escuela de Lenguaje Arbol de Colores</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>137 m</span>
+<small>2 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>169 m</span>
+<small>3 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>181 m</span>
+<small>3 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>185 m</span>
+<small>3 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>191 m</span>
+<small>3 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Sexto de Linea / El Ombu</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>196 m</span>
+<small>3 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>203 m</span>
+<small>3 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Jardín Infantil Centro Infantil Comunitario</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>204 m</span>
+<small>3 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>206 m</span>
+<small>3 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Sexto de Linea / El Ombu</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>234 m</span>
+<small>4 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Calle 6 / esq. La Primavera</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>246 m</span>
+<small>4 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>246 m</span>
+<small>4 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>El Ombú / esq. Lago del Toro</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>268 m</span>
+<small>4 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>276 m</span>
+<small>4 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Plaza Población Jorge Alessandri 2</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>280 m</span>
+<small>4 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Seguridad">
+<div>
+<strong>Tenencia El Castillo</strong>
+<small>Seguridad</small>
+</div>
+<div>
+<span>284 m</span>
+<small>4 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Colegio Tecnico Profesional Nocedal</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>312 m</span>
+<small>5 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>332 m</span>
+<small>5 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>361 m</span>
+<small>5 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>378 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Jardín Infantil Millaray</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>386 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Multicancha Galpón Verde</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>399 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Soldado Martínez / Batallón Chacabuco</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>405 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>El Fundador / esq. B. Chacabuco</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>407 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>El Fundador / Batallón Chacabuco</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>413 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Culto">
+<div>
+<strong>Iglesia San José</strong>
+<small>Culto</small>
+</div>
+<div>
+<span>415 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>429 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Soldado Martínez / Batallón Chacabuco</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>432 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Plaza Villa La Primavera</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>434 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Cancha Fútbol El Lingue</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>437 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Comercio">
+<div>
+<strong>Carniceria Pipé</strong>
+<small>Comercio</small>
+</div>
+<div>
+<span>440 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Avenida Juanita / El Ombu</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>442 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Los Alcaldes / Batallón Chacabuco</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>442 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Plaza Batallón Chacabuco</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>448 m</span>
+<small>6 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Centro Nutricional</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>454 m</span>
+<small>7 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Plaza Sexto de Línea</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>457 m</span>
+<small>7 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Jardín Infantil Arca de Noé</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>460 m</span>
+<small>7 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>462 m</span>
+<small>7 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Avenida Juanita / esq. El Ombú</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>484 m</span>
+<small>7 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Avenida Juanita / El Ombu</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>489 m</span>
+<small>7 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Escuela El Castillo</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>490 m</span>
+<small>7 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Escuela Especial Sn Miguel De Nva Extrem</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>491 m</span>
+<small>7 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Soldado Lira / Batallón Chacabuco</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>496 m</span>
+<small>7 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Batallón Chacabuco / Soldado Lira</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>505 m</span>
+<small>7 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Plaza Acceso Sur</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>521 m</span>
+<small>7 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>522 m</span>
+<small>7 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Plaza Acceso Sur 2</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>524 m</span>
+<small>7 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>4 Oriente / esq. Río Serrano</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>527 m</span>
+<small>8 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Avenida Juanita / esq. El Lingue</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>531 m</span>
+<small>8 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Plaza Acceso Sur 3</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>534 m</span>
+<small>8 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Acceso Sur Calet.-Poniente / esq. Desiderio Ilabaca</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>546 m</span>
+<small>8 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Plaza Acceso Sur 4</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>546 m</span>
+<small>8 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Dr. Amador Neghme / esq. Calle 6</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>559 m</span>
+<small>8 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>572 m</span>
+<small>8 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>El Sagrario / Batallón Chacabuco</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>578 m</span>
+<small>8 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>El Sagrario / Batallón Chacabuco</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>588 m</span>
+<small>8 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>El Castillo</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>597 m</span>
+<small>8 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>La Serena / esq. Mauvidanche</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>598 m</span>
+<small>8 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Avenida Juanita / Batallón Chacabuco</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>599 m</span>
+<small>8 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Cancha Colegio Marista Marcelino Champagnat</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>604 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>615 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Avenida Juanita / Batallón Chacabuco</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>617 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>620 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>La Primavera / esq. La Serena</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>621 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>624 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>630 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Batallón Chacabuco / Juanita</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>638 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>642 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Complejo Educacional Santa Rita de Casia - Anexo 2</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>652 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Jardín Infantil Santiago Nueva Extremadura</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>654 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Colegio Marista Marcelino Champagnat</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>657 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Acceso Sur Calet.-Poniente / esq. L. Matte Larraín</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>659 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>665 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>665 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>668 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Culto">
+<div>
+<strong>Parroquia</strong>
+<small>Culto</small>
+</div>
+<div>
+<span>673 m</span>
+<small>9 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>676 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>685 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Colegio Polivalente Almendral De La Pintana</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>687 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Acceso Sur Calet.-Oriente / esq. L. Matte Larraín</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>688 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>710 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Acceso Sur Calet.-Poniente / esq. Dr. A. Neghme</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>713 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Los Canales</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>713 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Jardin Infantil</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>715 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>La Primavera / esq. Triwe</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>722 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>722 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>723 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>725 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>El Belloto / El Ombu</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>729 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>729 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>729 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>733 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>735 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>La Primavera / esq. Pasaje Lolén</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>741 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>742 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>747 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>749 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Salud">
+<div>
+<strong>CESFAM/ SAPU Santiago de la Nueva Extremadura</strong>
+<small>Salud</small>
+</div>
+<div>
+<span>750 m</span>
+<small>10 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Sala Cuna y Jardín Infantil San Rafael</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>753 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>El Haulle / El Ombu</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>756 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Escuela Básica Antonio Bórquez Solar</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>760 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Millancura / Juanita</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>770 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>773 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Isla Condor / Juanita</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>776 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Salud">
+<div>
+<strong>CESFAM Juan Pablo II</strong>
+<small>Salud</small>
+</div>
+<div>
+<span>789 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Acceso Sur Calet.-Oriente / esq. Islas Canarias</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>795 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>795 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>797 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Plaza Avenida Juanita</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>798 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Luis Matte Larraín / esq. Valle del Elqui</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>802 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Luis Matte Larraín / esq. La Serena</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>804 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>810 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>La Primavera / esq. Psje. Pto. Aysén</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>819 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>819 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>822 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Villa Lautaro Oriente</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>825 m</span>
+<small>11 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Plaza de Armas / Capitán Andrés Layseca</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>826 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>834 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>852 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Escuela Básica Juan De Dios Aldea</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>855 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Culto">
+<div>
+<strong>Iglesia del Evangelio Cuadrangular</strong>
+<small>Culto</small>
+</div>
+<div>
+<span>861 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Soldado Ortega / Batallón Chacabuco</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>865 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>871 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Comercio">
+<div>
+<strong>Don Santiago</strong>
+<small>Comercio</small>
+</div>
+<div>
+<span>876 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>881 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>881 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>882 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Comercio">
+<div>
+<strong>Mini Market</strong>
+<small>Comercio</small>
+</div>
+<div>
+<span>885 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Batallón Chacabuco / Capitán Andrés Layseca</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>888 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Escuela Básica Óscar Salinas</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>900 m</span>
+<small>12 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Acceso Sur Calet.-Norte / esq. Miguel Angel</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>909 m</span>
+<small>13 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Escuela Básica Forjadores Del Futuro</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>914 m</span>
+<small>13 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Batallón Chacabuco / esq. Andrés Layseca</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>920 m</span>
+<small>13 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>946 m</span>
+<small>13 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Escuela Básica y Especial Lautraru</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>949 m</span>
+<small>13 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>958 m</span>
+<small>13 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>La Primavera / esq. Pasaje Chadi</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>959 m</span>
+<small>13 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>La Primavera / esq. Llongol</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>960 m</span>
+<small>13 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Luis Matte Larraín / esq. La Fragua</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>972 m</span>
+<small>13 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>975 m</span>
+<small>13 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Luis Matte Larraín / esq. Blanca</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>987 m</span>
+<small>14 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>997 m</span>
+<small>14 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>El Ciruelillo / El Ombu</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>1001 m</span>
+<small>14 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>1005 m</span>
+<small>14 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Comercio">
+<div>
+<strong>Mini Market Canela</strong>
+<small>Comercio</small>
+</div>
+<div>
+<span>1017 m</span>
+<small>14 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>El Ciruelillo / El Ombu</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>1025 m</span>
+<small>14 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>1026 m</span>
+<small>14 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Padre Hurtado</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>1038 m</span>
+<small>14 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Deporte sin nombre</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>1043 m</span>
+<small>14 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>La Primavera / esq. Charwa</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>1057 m</span>
+<small>15 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Escuela Básica Padre Hurtado</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>1076 m</span>
+<small>15 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Complejo Deportivo Las Rosas</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>1086 m</span>
+<small>15 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Deporte">
+<div>
+<strong>Cancha de Fútbol Padre Hurtado</strong>
+<small>Deporte</small>
+</div>
+<div>
+<span>1094 m</span>
+<small>15 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Educación">
+<div>
+<strong>Escuela Básica Nuevo Horizonte</strong>
+<small>Educación</small>
+</div>
+<div>
+<span>1099 m</span>
+<small>15 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Esparcimiento">
+<div>
+<strong>Área Verde / Plaza</strong>
+<small>Esparcimiento</small>
+</div>
+<div>
+<span>1105 m</span>
+<small>15 min</small>
+</div>
+</div>
+<div class="inventory-card" data-equipment-item="Transporte">
+<div>
+<strong>Mauvidanche / esq. Palo de Rosa</strong>
+<small>Transporte</small>
+</div>
+<div>
+<span>1107 m</span>
+<small>15 min</small>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- 1. Script de la lógica interactiva de pestañas -->
+<script src="../app.js"></script>
+<!-- 2. Scripts del Mapa Automático de Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+      var map = L.map('map', {zoomControl: false}).setView([-33.594176, -70.613492], 14);
+      
+      // Capa base híbrida satelital
+      L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+          attribution: '&copy; Google',
+          maxZoom: 18
+      }).addTo(map);
+
+      // Marcador central
+      var customIcon = L.divIcon({
+          className: 'custom-pin',
+          html: "<div style='background-color:#ff4757; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></div>",
+          iconSize: [20, 20],
+          iconAnchor: [10, 10]
+      });
+      L.marker([-33.594176, -70.613492], {icon: customIcon}).addTo(map);
+
+      // Isócrona peatonal azul (15 min)
+      var isocrona = [[-33.595263, -70.626934], [-33.596482, -70.625911], [-33.596439, -70.625495], [-33.596395, -70.625079], [-33.596083, -70.623878], [-33.59604, -70.623472], [-33.595996, -70.623073], [-33.599549, -70.618402], [-33.59939, -70.61718], [-33.599232, -70.615957], [-33.598952, -70.613507], [-33.598693, -70.61091], [-33.600916, -70.606154], [-33.601112, -70.605363], [-33.600971, -70.605032], [-33.597904, -70.60448], [-33.594171, -70.601511], [-33.593542, -70.601122], [-33.593533, -70.601123], [-33.591484, -70.601697], [-33.588637, -70.605118], [-33.587988, -70.606176], [-33.58769, -70.606668], [-33.585256, -70.610895], [-33.585282, -70.611081], [-33.585936, -70.615809], [-33.587491, -70.619321], [-33.58753, -70.619377], [-33.591324, -70.623253], [-33.594903, -70.626926], [-33.595263, -70.626934]];
+      if (isocrona && isocrona.length > 0) {
+          var polygon = L.polygon(isocrona, {
+              color: '#3b82f6',
+              weight: 3,
+              fillColor: '#3b82f6',
+              fillOpacity: 0.3
+          }).addTo(map);
+          
+          // Encuadrar el mapa al polígono
+          map.fitBounds(polygon.getBounds());
+      }
+    </script>
+</body>
+</html>

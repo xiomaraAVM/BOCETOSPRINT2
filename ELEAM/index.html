@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Consulte establecimientos de larga estadía para personas mayores por comuna. Encuentre dirección, teléfono y datos registrados disponibles."
+    />
+    <meta property="og:title" content="Directorio Nacional de ELEAM" />
+    <meta
+      property="og:description"
+      content="Consulta territorial de establecimientos de larga estadía para personas mayores."
+    />
+    <meta property="og:type" content="website" />
+    <title>Directorio Nacional de ELEAM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="stylesheet" href="./styles.css" />
+    <!-- Scripts modificados para modo local -->
+    <script src="./data/data.js"></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="masthead">
+        <div class="masthead-inner">
+          <div class="seal" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6M8 10h.01M12 10h.01M16 10h.01" />
+            </svg>
+          </div>
+          <div class="brand-copy">
+            <span class="brand-eyebrow">Información territorial</span>
+            <span class="brand-name">Directorio Nacional de ELEAM</span>
+          </div>
+          <div class="topline">
+            Establecimientos de larga estadía para personas mayores
+          </div>
+        </div>
+      </header>
+
+      <main class="main-wrap">
+        <nav class="back-nav" aria-label="Navegación de retorno">
+          <a href="../index.html" class="btn-back">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M19 12H5M12 19l-7-7 7-7" />
+            </svg>
+            <span>Volver al inicio</span>
+          </a>
+        </nav>
+        <section class="intro" aria-labelledby="page-title">
+          <div>
+            <p class="intro-kicker">Consulta de establecimientos</p>
+            <h1 id="page-title">
+              Encuentre un ELEAM<br class="desktop-break" /> en su comuna
+            </h1>
+            <p class="intro-text">
+              Consulte información de contacto y datos registrados de
+              establecimientos de larga estadía para personas mayores.
+            </p>
+          </div>
+          <div class="total-mark" id="directory-summary">
+            <span class="total-num" id="total-records">—</span>
+            <span class="total-label" id="total-label">cargando registros</span>
+          </div>
+        </section>
+
+        <div class="workspace">
+          <aside class="search-panel" aria-label="Filtros del directorio">
+            <div class="control-group">
+              <label class="panel-label" for="commune-select">
+                1. Seleccione una comuna
+              </label>
+              <div class="select-wrap">
+                <select
+                  id="commune-select"
+                  aria-describedby="commune-help"
+                  data-testid="select-comuna"
+                  disabled
+                >
+                  <option value="">Cargando comunas...</option>
+                </select>
+                <svg
+                  class="select-chevron"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+              <p class="helper-copy" id="commune-help">
+                Los resultados corresponden a la comuna seleccionada.
+              </p>
+            </div>
+
+            <hr class="panel-rule" />
+
+            <div class="control-group">
+              <label class="lookup-label" for="record-search">
+                2. Buscar en los resultados
+              </label>
+              <div class="search-input-wrap">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m20 20-4-4" />
+                </svg>
+                <input
+                  id="record-search"
+                  class="search-input"
+                  type="search"
+                  placeholder="Primero seleccione una comuna"
+                  aria-label="Buscar por nombre, dirección, teléfono o identificador"
+                  data-testid="input-busqueda"
+                  disabled
+                />
+              </div>
+              <p class="helper-copy">
+                La búsqueda se realiza localmente dentro de la comuna
+                seleccionada.
+              </p>
+            </div>
+
+            <div class="data-note">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+              <span>
+                Se muestran únicamente los datos disponibles en el registro.
+                Los campos vacíos se indican como no informados.
+              </span>
+            </div>
+          </aside>
+
+          <section
+            class="results-panel"
+            aria-labelledby="results-title"
+            aria-live="polite"
+          >
+            <div class="results-head">
+              <div>
+                <h2 class="results-title" id="results-title">
+                  Directorio por comuna
+                </h2>
+                <p class="results-sub" id="results-sub">
+                  Seleccione una comuna para consultar sus establecimientos
+                </p>
+              </div>
+              <span class="count-badge" id="results-count" hidden>
+                0 resultados
+              </span>
+            </div>
+
+            <div class="empty-state" id="empty-state">
+              <div class="empty-icon" id="empty-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="4" y="3" width="16" height="18" rx="2" />
+                  <path d="M9 21v-4h6v4M8 7h.01M12 7h.01M16 7h.01M8 11h.01M12 11h.01M16 11h.01" />
+                </svg>
+              </div>
+              <h3 id="empty-title">Comience por elegir una comuna</h3>
+              <p id="empty-description">
+                Use el selector para consultar los establecimientos y la
+                información disponible en cada registro.
+              </p>
+            </div>
+
+            <!-- NUEVO BLOQUE DEMOGRÁFICO -->
+            <div id="demographics-panel" class="demographics-panel" hidden>
+              <h3 class="demo-title">Lectura del entorno: Indicadores demográficos de la población</h3>
+              
+              <div class="demo-grid">
+                <div class="demo-card demo-total">
+                  <span class="demo-label">POBLACIÓN</span>
+                  <span class="demo-value">170.043 <small>residentes</small></span>
+                </div>
+                
+                <div class="demo-ages">
+                  <div class="age-group">
+                    <span class="age-num">30.960</span>
+                    <div class="age-bar" style="background-color: #f1df29; height: 30%;"></div>
+                    <span class="age-label">0-14 años</span>
+                  </div>
+                  <div class="age-group">
+                    <span class="age-num">120.270</span>
+                    <div class="age-bar" style="background-color: #f39c12; height: 80%;"></div>
+                    <span class="age-label">15-64 años</span>
+                  </div>
+                  <div class="age-group">
+                    <span class="age-num">18.813</span>
+                    <div class="age-bar" style="background-color: #3bcef2; height: 20%;"></div>
+                    <span class="age-label">65+ años</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="demo-list">
+                <div class="demo-list-item">
+                  <span>Índice de Envejecimiento</span>
+                  <strong>88,0</strong>
+                </div>
+                <div class="demo-list-item">
+                  <span>Género</span>
+                  <strong>51,98 % F (88.383) / 48,02 % M (81.660)</strong>
+                </div>
+                <div class="demo-list-item">
+                  <span>Personas con discapacidad (Región)</span>
+                  <strong>13,8 %</strong>
+                </div>
+                <div class="demo-list-item">
+                  <span>Personas inmigrantes</span>
+                  <strong>5.084</strong>
+                </div>
+                <div class="demo-list-item">
+                  <span>Déficit habitacional comunal</span>
+                  <strong>3.434</strong>
+                </div>
+              </div>
+            </div>
+            <!-- FIN NUEVO BLOQUE DEMOGRÁFICO -->
+
+            <div class="records" id="records" data-testid="list-establecimientos" hidden></div>
+          </section>
+        </div>
+
+        <footer class="footer-note">
+          <span>
+            Directorio Nacional de Establecimientos de Larga Estadía para
+            Adultos Mayores
+          </span>
+          <span class="footer-mark">
+            Consulta informativa · Datos según registro disponible
+          </span>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

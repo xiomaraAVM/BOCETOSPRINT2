@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Maipú · Envejecer en el lugar correcto</title>
+<link href="../styless.css" rel="stylesheet"/>
+<!-- CSS del Mapa Automático -->
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+</head>
+<body class="paper-texture">
+<header class="navbar">
+<div class="nav-container" style="max-width: none; width: 100%; margin: 0; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; justify-content: space-between;">
+<div class="logo">
+<div>
+<strong>Condominios de Viviendas Tuteladas</strong>
+<span>Chile</span>
+</div>
+</div>
+<a class="primary-button" href="../index.html" style="text-decoration: none; padding: 8px 16px; font-size: 13px;">
+            ← Volver al inicio
+        </a>
+</div>
+</header>
+<main class="shell detail-page">
+<!-- HERO Y MAPA -->
+<section class="detail-hero" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+<div>
+<p class="eyebrow"><span></span> Ficha territorial · Maipú</p>
+<h1 style="font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #001f3f;">Santa Teresita de Los Andes</h1>
+<p class="address" style="color: #666; margin-bottom: 1.5rem;">Pasaje Seminario # 3030, Maipú</p>
+<p class="lead" style="font-size: 1.1rem; line-height: 1.6; text-align: justify; color: #4a4a4a;">
+            Conjuntos de viviendas pensadas para personas mayores de 60 años que valen por sí mismas. Su idea es ofrecer un lugar donde los adultos mayores puedan vivir con autonomía, conversar y tener actividades, pero manteniendo contacto con espacios que facilitan la vida de barrio.
+          </p>
+<div class="chips" style="margin-top: 2rem;">
+<span>En operación · --</span>
+<span>16 viviendas tuteladas</span>
+<span>Público</span>
+            <span>-</span>
+          </div>
+</div>
+<div class="summary-card map-container" style="background: #faf8f5; padding: 12px; border-radius: 24px; border: 1px solid #eaeaea;">
+<div class="card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;">
+<span style="font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: #888; text-transform: uppercase;">Resumen de proximidad</span>
+<span style="font-size: 0.75rem; background: #fff; padding: 4px 10px; border-radius: 12px; border: 1px solid #ddd; font-weight: bold;">15 MINUTOS</span>
+</div>
+<!-- Mapa dinámico Leaflet -->
+<div id="map" style="height: 380px; width: 100%; border-radius: 16px; z-index: 1;"></div>
+</div>
+</section>
+<section aria-label="Dimensiones de análisis" class="dimension-tabs" role="tablist">
+<span style="font-size: 0.85rem; letter-spacing: 2px; color: #888; text-transform: uppercase;">DIMENSIONES</span>
+</section>
+<!-- BOTONES DE PESTAÑAS (Métricas) -->
+<section class="metrics">
+<button class="metric" data-tab-target="profile">
+<span></span><small>Población</small><strong>503.635</strong><em>residentes</em>
+</button>
+<button class="metric active" data-tab-target="access">
+<span></span><small>Equipamiento</small><strong>224</strong><em>servicios cercanos</em>
+</button>
+<button class="metric" data-tab-target="transport">
+<span></span><small>Transporte público</small><strong>83</strong><em>paraderos en 15 min</em>
+</button>
+<button class="metric" data-tab-target="public-space">
+<span></span><small>Espacio público</small><strong>46</strong><em>áreas verdes cercanas</em>
+</button>
+<button class="metric" data-tab-target="socioeconomic">
+<span></span><small>Ingresos</small><strong>$$</strong><em>nivel municipal</em>
+</button>
+</section>
+<!-- PANELES DE CONTENIDO (Lectura del Entorno) -->
+<section class="analysis-grid">
+<article class="analysis-card">
+<p class="eyebrow" style="color: #ff4757; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Lectura del entorno</p>
+<h2 data-panel-title="">Una ciudad para quedarse</h2>
+<button class="method-link" data-action="methodology" type="button"></button>
+<!-- PANEL: EQUIPAMIENTOS (Automático por Python) -->
+<div class="tab-panel active" data-panel="access">
+<div class="big-score">88<span>/100</span></div>
+<p>El proyecto tiene un acceso <b>alto</b> a servicios cotidianos en un radio caminable de 15 minutos.</p>
+<ul class="nearby-list">
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Salud</span>
+<b>Cesfam Doctora Ana María Juricic / 160 m · 3 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Educación</span>
+<b>Jardín Infantil Los Peques / 120 m · 2 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Cultura</span>
+<b>Biblioteca Municipal / 653 m · 9 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Deporte</span>
+<b>Deporte sin nombre / 137 m · 2 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Esparcimiento</span>
+<b>Seminario Oriente / 37 m · 1 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Culto</span>
+<b>Culto sin nombre / 309 m · 5 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Seguridad</span>
+<b>Octava Compañía del Cuerpo de Bomberos de Maipú / 648 m · 9 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Servicios</span>
+<b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Social</span>
+<b>Sede Comunitaria / 1144 m · 16 min</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: TRANSPORTE PÚBLICO -->
+<div class="tab-panel" data-panel="transport">
+<div class="big-score">83<span></span></div>
+<p>Se detectaron <b>83 paraderos</b> de transporte público en un radio de caminata de 15 minutos.</p>
+<ul class="nearby-list">
+<li>
+<span style="width: 250px; display: inline-block; color: #888;">Paraderos cercanos consolidados</span>
+<b>83 paraderos</b>
+</li>
+<li>
+<span style="width: 250px; display: inline-block; color: #888;">Estación de Metro/Tren más cercana</span>
+<b>Metro Plaza de Maipú · 3,8 km en línea recta</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: POBLACIÓN Y DEMOGRAFÍA -->
+<div class="tab-panel" data-panel="profile">
+<div class="bars">
+<div>
+<b>20%</b>
+<i style="height: 33.9%; background-color: #f39c12;"></i>
+<small>0–17 años</small>
+</div>
+<div>
+<b>59%</b>
+<i style="height: 100%; background-color: #f39c12;"></i>
+<small>18–59 años</small>
+</div>
+<div>
+<b>107.216 (21%)</b>
+<i style="height: 35.6%; background-color: #f39c12;"></i>
+<small>Personas de 60+ años</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Índice de envejecimiento</span>
+<b>106,5 mayores de 60 por cada 100 menores de 18</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Género</span>
+<b>52% F / 48% M</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Déficit habitacional comunal</span>
+<b>10.724 viviendas (déficit cuantitativo, Censo 2024; 6,4% de los 167.383 hogares)</b>
+</li>
+</ul>
+<p style="text-align: justify; margin-top: 15px; font-size: 0.85rem; color: #888;">
+    Esta información se obtuvo de base de datos del Censo 2024 y corresponde al total de la comuna.
+  </p>
+</div>
+<!-- PANEL: ESPACIO PÚBLICO -->
+<div class="tab-panel" data-panel="public-space">
+<h2>Entorno y áreas verdes</h2>
+<div class="bars">
+<div>
+<b style="color: #e74c3c;">46</b>
+<i style="height: 100%; background-color: #e74c3c;"></i>
+<small>Parques y Áreas Verdes Totales</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Seminario Oriente · 37 m · 1 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 80 m · 2 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 284 m · 4 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 301 m · 5 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 340 m · 5 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Plaza</span>
+<b>Plaza Villa Los Portales · 383 m · 6 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 424 m · 6 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 468 m · 7 min</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: SOCIOECONÓMICO -->
+<div class="tab-panel" data-panel="socioeconomic">
+<div class="socio-container">
+<!-- ENCABEZADO -->
+<div class="socio-intro">
+<h2>Indicadores socioeconómicos municipales</h2>
+<p>
+        Ingresos, gastos y distribución de los recursos municipales para los años
+        2023, 2024 y 2025. Las cifras monetarias se presentan sin factor de
+        corrección monetaria.
+      </p>
+</div>
+<!-- INDICADORES DESTACADOS -->
+<div class="socio-kpis">
+<div class="socio-kpi">
+<span>Disponibilidad presupuestaria por habitante · 2025</span>
+<strong>309 M$</strong>
+<small>Según la unidad reportada por la BCN</small>
+</div>
+<div class="socio-kpi">
+<span>Ingreso municipal total · 2025</span>
+<strong>181.385.385 M$</strong>
+<small>Ingreso total percibido</small>
+</div>
+<div class="socio-kpi">
+<span>Gasto municipal total · 2025</span>
+<strong>198.513.830 M$</strong>
+<small>Gasto total devengado</small>
+</div>
+<div class="socio-kpi">
+<span>Ingresos propios permanentes · 2025</span>
+<strong>47.961.112 M$</strong>
+<small>IPP</small>
+</div>
+</div>
+<!-- INGRESOS MUNICIPALES -->
+<section class="socio-section">
+<h3>1. Ingresos propios según fuente de ingreso</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disponibilidad Presupuestaria Municipal por Habitante (M$)</td>
+<td>283</td>
+<td>297</td>
+<td>309</td>
+</tr>
+<tr class="socio-highlight">
+<td>Ingresos Municipales (Ingreso Total Percibido) (M$)</td>
+<td>166.098.706</td>
+<td>174.556.626</td>
+<td>181.385.385</td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<!-- GASTOS MUNICIPALES -->
+<section class="socio-section">
+<h3>2. Gastos municipales</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de gasto</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+
+
+<tr class="socio-highlight">
+<td>Gastos Municipales (Gastos Total Devengado) (M$)</td>
+<td>181.703.057</td>
+<td>200.616.361</td>
+<td>198.513.830</td>
+</tr>
+<tr>
+<td>Área de Gestión: Actividades Municipales (M$)</td>
+<td>487.053</td>
+<td>346.573</td>
+<td>215.304</td>
+</tr>
+<tr>
+<td>Área de Gestión: Interna (M$)</td>
+<td>101.980.736</td>
+<td>106.290.724</td>
+<td>107.052.670</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Culturales (M$)</td>
+<td>335.503</td>
+<td>1.063.843</td>
+<td>1.086.663</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Recreacionales (M$)</td>
+<td>43.698</td>
+<td>240.654</td>
+<td>293.447</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Sociales (M$)</td>
+<td>3.454.414</td>
+<td>4.201.295</td>
+<td>4.677.628</td>
+</tr>
+<tr>
+<td>Área de Gestión: Servicios Comunitarios (M$)</td>
+<td>75.401.653</td>
+<td>88.473.272</td>
+<td>85.188.118</td>
+</tr>
+
+<tr>
+<td>Monto Transferido al Fondo Común Municipal (M$)</td>
+<td>10.303.290</td>
+<td>11.108.150</td>
+<td>11.046.176</td>
+</tr>
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<!-- DISTRIBUCIÓN DEL INGRESO -->
+<section class="socio-section">
+<h3>3. Distribución del ingreso municipal según origen</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participación de Ingresos Propios Permanentes (IPP) en el Ingreso Total (%)</td>
+<td>24,0</td>
+<td>26,5</td>
+<td>26,4</td>
+</tr>
+<tr>
+<td>Participación del Fondo Común Municipal en el Ingreso Total (%)</td>
+<td>40,8</td>
+<td>40,0</td>
+<td>41,3</td>
+</tr>
+<tr>
+<td>Participación de Ingresos por Transferencias en el Ingreso Total (%)</td>
+<td>3,3</td>
+<td>2,6</td>
+<td>1,9</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- FUENTE OFICIAL -->
+<a class="socio-source" href="https://www.bcn.cl/siit/reportescomunales/comunal.html?unidad=Comunales&amp;anno=2026" rel="noopener noreferrer" target="_blank">
+<strong>↗ Consultar fuente oficial: Reportes Comunales BCN</strong>
+<span>
+        Biblioteca del Congreso Nacional de Chile · Indicadores comunales,
+        ingresos y gastos municipales.
+      </span>
+<span>Haz clic aquí para consultar el reporte original.</span>
+</a>
+</div>
+</div>
+</article>
+</section>
+<!-- INVENTARIO COMPLETO (Interactivo con app.js) -->
+<section class="inventory">
+<div class="inventory-heading">
+<div>
+<p class="eyebrow">Inventario de proximidad</p>
+<h2>Dentro del área caminable en 15 minutos</h2>
+</div>
+<!-- Filtros controlados por app.js -->
+<div class="filter-list compact" id="equipment-filters">
+<button class="filter active" data-equipment="Todos">Todos</button>
+<button class="filter" data-equipment="Salud">Salud</button>
+<button class="filter" data-equipment="Comercio">Comercio</button>
+<!-- Nota: Python exporta "Esparcimiento", pero el botón dice Plaza. -->
+<button class="filter" data-equipment="Esparcimiento">Plaza/Parque</button>
+<button class="filter" data-equipment="Cultura">Cultura</button>
+<button class="filter" data-equipment="Transporte">Transporte</button>
+</div>
+</div>
+<div class="inventory-list">
+<!-- Python inyectará la lista con data-equipment-item para que app.js la filtre -->
+<div data-equipment-item="Educación">
+<span><b>Escuela de Párvulos San Juan Leonardi</b><small>Educación</small></span>
+<em>459 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Nudo Rinconada</b><small>Transporte</small></span>
+<em>944 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Camino a Rinconada / esq. Williams R. Durán</b><small>Transporte</small></span>
+<em>1072 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Nudo Rinconada</b><small>Transporte</small></span>
+<em>894 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Camino a Rinconada / esq. Mayor José M. Soto</b><small>Transporte</small></span>
+<em>968 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Camino a Rinconada / esq. Cap. Elías Casas</b><small>Transporte</small></span>
+<em>1121 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. El Conquistador / esq. Regto. Maturana</b><small>Transporte</small></span>
+<em>573 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>CESFAM Dra.Ana María Juricic</b><small>Transporte</small></span>
+<em>233 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. El Conquistador / esq. Las Tinajas</b><small>Transporte</small></span>
+<em>59 m · 1 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. El Conquistador / esq. San José</b><small>Transporte</small></span>
+<em>253 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. El Conquistador / esq. Avenida Portales</b><small>Transporte</small></span>
+<em>481 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. El Conquistador / Esq. Nueva San Martín</b><small>Transporte</small></span>
+<em>1027 m · 14 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. El Conquistador / esq. José M. Borgoño</b><small>Transporte</small></span>
+<em>586 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>CESFAM Dra.Ana María Juricic</b><small>Transporte</small></span>
+<em>135 m · 2 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. El Conquistador / esq. Las Tinajas</b><small>Transporte</small></span>
+<em>135 m · 2 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Nudo Rinconada</b><small>Transporte</small></span>
+<em>839 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. El Conquistador / esq. Nueva San Martín</b><small>Transporte</small></span>
+<em>1083 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>CESFAM Dr. Carlos Godoy</b><small>Transporte</small></span>
+<em>1370 m · 19 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Liceo Nacional Maipú</b><small>Transporte</small></span>
+<em>678 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida 4 Poniente / esq. Inca de Oro</b><small>Transporte</small></span>
+<em>705 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida 4 Poniente / esq. La Candelaria</b><small>Transporte</small></span>
+<em>816 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida 4 Poniente / esq. San José</b><small>Transporte</small></span>
+<em>587 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida 4 Poniente / esq. Agua Santa</b><small>Transporte</small></span>
+<em>658 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida 4 Poniente / esq. Pasaje Chungará</b><small>Transporte</small></span>
+<em>822 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida 4 Poniente / esq. San José</b><small>Transporte</small></span>
+<em>620 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>La Galaxia / esq. Agua Santa</b><small>Transporte</small></span>
+<em>325 m · 5 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>José Manuel Borgoño / esq. Antofagasta</b><small>Transporte</small></span>
+<em>667 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>José Manuel Borgoño / esq. Avenida 4 Poniente</b><small>Transporte</small></span>
+<em>1009 m · 14 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>José Manuel Borgoño / esq. Quinta Vergara</b><small>Transporte</small></span>
+<em>1104 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>José Manuel Borgoño / esq. Av. El Conquistador</b><small>Transporte</small></span>
+<em>616 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>La Galaxia / esq. José M. Borgoño</b><small>Transporte</small></span>
+<em>684 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>La Galaxia /  Esq. María De La Cruz</b><small>Transporte</small></span>
+<em>610 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>La Galaxia / esq. Agua Santa</b><small>Transporte</small></span>
+<em>394 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>La Galaxia / esq. Las Tinajas</b><small>Transporte</small></span>
+<em>268 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>La Galaxia / esq. Tte. Sofanor Parra</b><small>Transporte</small></span>
+<em>853 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>La Galaxia / esq. Tte. Sofanor Parra</b><small>Transporte</small></span>
+<em>730 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>La Galaxia / esq. Sen. María de La Cruz</b><small>Transporte</small></span>
+<em>574 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Las Naciones / esq. San José</b><small>Transporte</small></span>
+<em>1088 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Las Naciones / esq. Avenida Portales</b><small>Transporte</small></span>
+<em>1102 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Las Naciones / esq. Las Tinajas</b><small>Transporte</small></span>
+<em>1113 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Las Tinajas / esq. Narciso</b><small>Transporte</small></span>
+<em>624 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Las Tinajas / esq. Santa Elvira</b><small>Transporte</small></span>
+<em>791 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Las Tinajas / esq. La Galaxia</b><small>Transporte</small></span>
+<em>292 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Las Tinajas / esq. La Galaxia</b><small>Transporte</small></span>
+<em>266 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Las Tinajas / esq. Avenida 4 Poniente</b><small>Transporte</small></span>
+<em>546 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Las Tinajas / esq. San Gregorio</b><small>Transporte</small></span>
+<em>887 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Las Tinajas / esq. Av. Las Naciones</b><small>Transporte</small></span>
+<em>1071 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Portales / esq. La Galaxia</b><small>Transporte</small></span>
+<em>543 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Liceo Nacional Maipú</b><small>Transporte</small></span>
+<em>718 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Portales / esq. Quinta Vergara</b><small>Transporte</small></span>
+<em>868 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Portales / esq. Av. El Conquistador</b><small>Transporte</small></span>
+<em>496 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Liceo Nacional Maipú</b><small>Transporte</small></span>
+<em>676 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Portales / esq. Quinta Vergara</b><small>Transporte</small></span>
+<em>852 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Portales / esq. Av. Las Naciones</b><small>Transporte</small></span>
+<em>1089 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Sur / esq. Av. El Conquistador</b><small>Transporte</small></span>
+<em>762 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Sur / esq. Avenida 4 Poniente</b><small>Transporte</small></span>
+<em>931 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Sur / esq. La Galaxia</b><small>Transporte</small></span>
+<em>811 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Sur / esq. Avenida 4 Poniente</b><small>Transporte</small></span>
+<em>908 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Sur / esq. La Galaxia</b><small>Transporte</small></span>
+<em>809 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Las Naciones / esq. Pasaje Perquenco</b><small>Transporte</small></span>
+<em>1159 m · 16 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Las Naciones / esq. Las Tinajas</b><small>Transporte</small></span>
+<em>1096 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. Nueva San Martín / Esq. Av. El Conquistador</b><small>Transporte</small></span>
+<em>1048 m · 14 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Portales / esq. La Galaxia</b><small>Transporte</small></span>
+<em>537 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida 4 Poniente / esq. José M. Borgoño</b><small>Transporte</small></span>
+<em>976 m · 14 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. El Conquistador / esq. Avenida Portales</b><small>Transporte</small></span>
+<em>562 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. El Conquistador / esq. Avenida Sur</b><small>Transporte</small></span>
+<em>803 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>La Galaxia / esq. Nueva San Martín</b><small>Transporte</small></span>
+<em>1045 m · 14 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>La Galaxia / esq. Avenida Sur</b><small>Transporte</small></span>
+<em>754 m · 11 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Salud sin nombre</b><small>Salud</small></span>
+<em>570 m · 8 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>1100 m · 15 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>1041 m · 14 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>984 m · 14 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Almacen</b><small>Comercio</small></span>
+<em>1074 m · 15 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Almacén Los Vecinos</b><small>Comercio</small></span>
+<em>861 m · 12 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>648 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>802 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>870 m · 12 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Los Solcitos</b><small>Educación</small></span>
+<em>1307 m · 18 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Villa Pehuén</b><small>Educación</small></span>
+<em>771 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>1072 m · 15 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Los Tíos</b><small>Comercio</small></span>
+<em>1092 m · 15 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>1200 m · 16 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>1070 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>427 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>401 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Camino a Rinconada / esq. La Galaxia</b><small>Transporte</small></span>
+<em>989 m · 14 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. El Conquistador / esq. Himno Patrio</b><small>Transporte</small></span>
+<em>847 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>José Manuel Borgoño / esq. Antofagasta</b><small>Transporte</small></span>
+<em>642 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>José Manuel Borgoño / esq. Blanca Estela</b><small>Transporte</small></span>
+<em>781 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>José Manuel Borgoño / esq. Avenida 4 Poniente</b><small>Transporte</small></span>
+<em>969 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida 4 Poniente / esq. Pasaje Vicaría</b><small>Transporte</small></span>
+<em>1068 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida 4 Poniente / esq. El Huaso</b><small>Transporte</small></span>
+<em>588 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. El Conquistador / esq. Sen. María de La Cruz</b><small>Transporte</small></span>
+<em>402 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida 4 Poniente / esq. El Huaso</b><small>Transporte</small></span>
+<em>599 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Terminal Las Acacias</b><small>Transporte</small></span>
+<em>689 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Avenida Portales / esq. Fray Andrés</b><small>Transporte</small></span>
+<em>515 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Terminal Las Acacias</b><small>Transporte</small></span>
+<em>706 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. El Conquistador / esq. La Castellana</b><small>Transporte</small></span>
+<em>783 m · 11 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Cesfam Doctora Ana María Juricic</b><small>Salud</small></span>
+<em>160 m · 3 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Instituto para Adultos Jacques Cousteau</b><small>Educación</small></span>
+<em>1054 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>El Conquistador / Avenida Portales</b><small>Transporte</small></span>
+<em>562 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>920 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>974 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1057 m · 15 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parque Puerta de Hierro</b><small>Esparcimiento</small></span>
+<em>1447 m · 20 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>850 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>657 m · 9 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>688 m · 10 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Emanuel</b><small>Educación</small></span>
+<em>643 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Bernardo O'Higgins</b><small>Esparcimiento</small></span>
+<em>666 m · 9 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Liceo Municipal Nacional de Maipú</b><small>Educación</small></span>
+<em>566 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parque Municipal de Maipú</b><small>Esparcimiento</small></span>
+<em>1071 m · 15 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>583 m · 8 min</em>
+</div>
+<div data-equipment-item="Cultura">
+<span><b>Biblioteca Municipal</b><small>Cultura</small></span>
+<em>653 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Campanario / Conquistador</b><small>Esparcimiento</small></span>
+<em>628 m · 9 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Jardín Infantil Pequeños Exploradores</b><small>Educación</small></span>
+<em>592 m · 8 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>887 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Villa Pehuén III</b><small>Esparcimiento</small></span>
+<em>894 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Villa Isabel Riquelme</b><small>Esparcimiento</small></span>
+<em>924 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Villa Javiera Carrera</b><small>Esparcimiento</small></span>
+<em>486 m · 7 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Cancha Santa Ana</b><small>Deporte</small></span>
+<em>632 m · 9 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>El Faro</b><small>Culto</small></span>
+<em>683 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>562 m · 8 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Culto sin nombre</b><small>Culto</small></span>
+<em>824 m · 11 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Madre de los Apostoles</b><small>Culto</small></span>
+<em>756 m · 11 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Culto sin nombre</b><small>Culto</small></span>
+<em>1074 m · 15 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Mall Chino</b><small>Comercio</small></span>
+<em>1003 m · 14 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Culto sin nombre</b><small>Culto</small></span>
+<em>958 m · 13 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>930 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>500 m · 7 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Colegio Jacques Cousteau</b><small>Educación</small></span>
+<em>1012 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>970 m · 13 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>537 m · 8 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>540 m · 8 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Ralun</b><small>Comercio</small></span>
+<em>1072 m · 15 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>1005 m · 14 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Colegio Jacques Cousteau</b><small>Deporte</small></span>
+<em>955 m · 13 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Canchas Ralún</b><small>Deporte</small></span>
+<em>982 m · 14 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Colegio Cardenal Carlos Oviedo Cavada</b><small>Educación</small></span>
+<em>237 m · 4 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Escuela Básica Municipal N° 1543 “San Luis”</b><small>Educación</small></span>
+<em>1185 m · 16 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Colegio Polivalente Diego Portales</b><small>Educación</small></span>
+<em>953 m · 13 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Escuela Básica Cristiano Los Héroes</b><small>Educación</small></span>
+<em>1026 m · 14 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Parroquia María Misionera Maipú</b><small>Culto</small></span>
+<em>1150 m · 16 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Minimarket Choly</b><small>Comercio</small></span>
+<em>824 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Minimarket El Ricky</b><small>Comercio</small></span>
+<em>696 m · 10 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Carnicerías Donde Miguel</b><small>Comercio</small></span>
+<em>1143 m · 16 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>892 m · 12 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Susaron</b><small>Comercio</small></span>
+<em>1013 m · 14 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Minimarket Macarena</b><small>Comercio</small></span>
+<em>486 m · 7 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>248 m · 4 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Jardín Infantil Los Peques</b><small>Educación</small></span>
+<em>120 m · 2 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Almacén Amasadería</b><small>Comercio</small></span>
+<em>1024 m · 14 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>La Oferta</b><small>Comercio</small></span>
+<em>980 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parque Valle de los Reyes</b><small>Esparcimiento</small></span>
+<em>1299 m · 18 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>935 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>468 m · 7 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>1079 m · 15 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1151 m · 16 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1081 m · 15 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Complejo Educacional Maipú Anexo Rinconada</b><small>Educación</small></span>
+<em>965 m · 13 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>1110 m · 15 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>1042 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1161 m · 16 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1096 m · 15 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>SAPU Doctora Ana María Juricic</b><small>Salud</small></span>
+<em>175 m · 3 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>80 m · 2 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Villa Los Portales</b><small>Esparcimiento</small></span>
+<em>383 m · 6 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Cancha Villa Los Portales</b><small>Deporte</small></span>
+<em>357 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>301 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>284 m · 4 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>911 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>896 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>858 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>949 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>989 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>741 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>679 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>702 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>629 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>6-020</b><small>Esparcimiento</small></span>
+<em>568 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>629 m · 9 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>346 m · 5 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>424 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>424 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>340 m · 5 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>509 m · 7 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>602 m · 9 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>1112 m · 15 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1082 m · 15 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Canchas Ralún</b><small>Deporte</small></span>
+<em>1020 m · 14 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>288 m · 4 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>486 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>778 m · 11 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>232 m · 4 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>330 m · 5 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>338 m · 5 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Divina Providencia</b><small>Educación</small></span>
+<em>240 m · 4 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Capilla María Madre Del Jardín</b><small>Culto</small></span>
+<em>774 m · 11 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Colegio San Sebastián de La Rinconada</b><small>Educación</small></span>
+<em>753 m · 11 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>586 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>597 m · 8 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>993 m · 14 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Sede Comunitaria</b><small>Social</small></span>
+<em>1144 m · 16 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Cristiana El Conquistador</b><small>Culto</small></span>
+<em>810 m · 11 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Bautista FE</b><small>Culto</small></span>
+<em>694 m · 10 min</em>
+</div>
+<div data-equipment-item="Seguridad">
+<span><b>52 Comisaria Rinconada de Maipú</b><small>Seguridad</small></span>
+<em>742 m · 10 min</em>
+</div>
+<div data-equipment-item="Seguridad">
+<span><b>Octava Compañía del Cuerpo de Bomberos de Maipú</b><small>Seguridad</small></span>
+<em>648 m · 9 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Cesfam Carlos Godoy</b><small>Salud</small></span>
+<em>1379 m · 19 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Jardín Infantil</b><small>Educación</small></span>
+<em>1165 m · 16 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Escuela de Párvulos Cemar</b><small>Educación</small></span>
+<em>814 m · 11 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>956 m · 13 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Colegio San Juan Diego De Guadalupe</b><small>Educación</small></span>
+<em>375 m · 5 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>1208 m · 17 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Seminario Oriente</b><small>Esparcimiento</small></span>
+<em>37 m · 1 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>830 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1101 m · 15 min</em>
+</div>
+<div data-equipment-item="Social">
+<span><b>Sede Vecinal Villa San luis</b><small>Social</small></span>
+<em>1148 m · 16 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Regimiento Buín</b><small>Esparcimiento</small></span>
+<em>499 m · 7 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Culto sin nombre</b><small>Culto</small></span>
+<em>309 m · 5 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>269 m · 4 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>211 m · 3 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>922 m · 13 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Jardín Infantil Valle de los Reyes</b><small>Educación</small></span>
+<em>158 m · 3 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>137 m · 2 min</em>
+</div>
+</div>
+</section>
+</main>
+<!-- 1. Script de la lógica interactiva de pestañas -->
+<script src="../app.js"></script>
+<!-- 2. Scripts del Mapa Automático de Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+      var map = L.map('map', {zoomControl: false}).setView([-33.515416, -70.797368], 14);
+      
+      // Capa base híbrida satelital
+      L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+          attribution: '&copy; Google',
+          maxZoom: 18
+      }).addTo(map);
+
+      // Marcador central
+      var customIcon = L.divIcon({
+          className: 'custom-pin',
+          html: "<div style='background-color:#ff4757; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></div>",
+          iconSize: [20, 20],
+          iconAnchor: [10, 10]
+      });
+      L.marker([-33.515416, -70.797368], {icon: customIcon}).addTo(map);
+
+      // Isócrona peatonal azul (15 min)
+      var isocrona = [[-33.511711, -70.801385], [-33.51648, -70.798804], [-33.519499, -70.800013], [-33.52034, -70.800861], [-33.520578, -70.801071], [-33.522079, -70.802118], [-33.522496, -70.802368], [-33.524569, -70.801699], [-33.525998, -70.800102], [-33.527975, -70.796999], [-33.527974, -70.796949], [-33.526158, -70.794677], [-33.523966, -70.792013], [-33.522095, -70.789981], [-33.518869, -70.786355], [-33.516223, -70.783685], [-33.515791, -70.783614], [-33.513094, -70.784624], [-33.511116, -70.786379], [-33.506936, -70.79009], [-33.506459, -70.790499], [-33.505834, -70.791314], [-33.504728, -70.795864], [-33.504408, -70.798743], [-33.506284, -70.801055], [-33.511711, -70.801385]];
+      if (isocrona && isocrona.length > 0) {
+          var polygon = L.polygon(isocrona, {
+              color: '#3b82f6',
+              weight: 3,
+              fillColor: '#3b82f6',
+              fillOpacity: 0.3
+          }).addTo(map);
+          
+          // Encuadrar el mapa al polígono
+          map.fitBounds(polygon.getBounds());
+      }
+    </script>
+</body>
+</html>

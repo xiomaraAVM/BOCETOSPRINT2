@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Puente Alto · Envejecer en el lugar correcto</title>
+<link href="../styless.css" rel="stylesheet"/>
+<!-- CSS del Mapa Automático -->
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+</head>
+<body class="paper-texture">
+<header class="navbar">
+<div class="nav-container" style="max-width: none; width: 100%; margin: 0; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; justify-content: space-between;">
+<div class="logo">
+<div>
+<strong>Condominios de Viviendas Tuteladas</strong>
+<span>Chile</span>
+</div>
+</div>
+<a class="primary-button" href="../index.html" style="text-decoration: none; padding: 8px 16px; font-size: 13px;">
+            ← Volver al inicio
+        </a>
+</div>
+</header>
+<main class="shell detail-page">
+<!-- HERO Y MAPA -->
+<section class="detail-hero" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+<div>
+<p class="eyebrow"><span></span> Ficha territorial · Puente Alto</p>
+<h1 style="font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #001f3f;">El Nocedal</h1>
+<p class="address" style="color: #666; margin-bottom: 1.5rem;">C. Valle Central 1050, Puente Alto</p>
+<p class="lead" style="font-size: 1.1rem; line-height: 1.6; text-align: justify; color: #4a4a4a;">
+            Conjuntos de viviendas pensadas para personas mayores de 60 años que valen por sí mismas. Su idea es ofrecer un lugar donde los adultos mayores puedan vivir con autonomía, conversar y tener actividades, pero manteniendo contacto con espacios que facilitan la vida de barrio.
+          </p>
+<div class="chips" style="margin-top: 2rem;">
+<span>En operación · 2005</span>
+<span>16 viviendas tuteladas</span>
+<span>Público</span>
+            <span>periferia residencial/conjunto</span>
+          </div>
+</div>
+<div class="summary-card map-container" style="background: #faf8f5; padding: 12px; border-radius: 24px; border: 1px solid #eaeaea;">
+<div class="card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;">
+<span style="font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: #888; text-transform: uppercase;">Resumen de proximidad</span>
+<span style="font-size: 0.75rem; background: #fff; padding: 4px 10px; border-radius: 12px; border: 1px solid #ddd; font-weight: bold;">15 MINUTOS</span>
+</div>
+<!-- Mapa dinámico Leaflet -->
+<div id="map" style="height: 380px; width: 100%; border-radius: 16px; z-index: 1;"></div>
+</div>
+</section>
+<section aria-label="Dimensiones de análisis" class="dimension-tabs" role="tablist">
+<span style="font-size: 0.85rem; letter-spacing: 2px; color: #888; text-transform: uppercase;">DIMENSIONES</span>
+</section>
+<!-- BOTONES DE PESTAÑAS (Métricas) -->
+<section class="metrics">
+<button class="metric" data-tab-target="profile">
+<span></span><small>Población</small><strong>568.086</strong><em>residentes</em>
+</button>
+<button class="metric active" data-tab-target="access">
+<span></span><small>Equipamiento</small><strong>140</strong><em>servicios cercanos</em>
+</button>
+<button class="metric" data-tab-target="transport">
+<span></span><small>Transporte público</small><strong>48</strong><em>paraderos en 15 min</em>
+</button>
+<button class="metric" data-tab-target="public-space">
+<span></span><small>Espacio público</small><strong>30</strong><em>áreas verdes cercanas</em>
+</button>
+<button class="metric" data-tab-target="socioeconomic">
+<span></span><small>Ingresos</small><strong>$$</strong><em>nivel municipal</em>
+</button>
+</section>
+<!-- PANELES DE CONTENIDO (Lectura del Entorno) -->
+<section class="analysis-grid">
+<article class="analysis-card">
+<p class="eyebrow" style="color: #ff4757; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Lectura del entorno</p>
+<h2 data-panel-title="">Una ciudad para quedarse</h2>
+<!-- PANEL: EQUIPAMIENTOS (Automático por Python) -->
+<div class="tab-panel active" data-panel="access">
+<div class="big-score">66<span>/100</span></div>
+<p>El proyecto tiene un acceso <b>medio</b> a servicios cotidianos en un radio caminable de 15 minutos.</p>
+<ul class="nearby-list">
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Salud</span>
+<b>Farmacias Netfarma / 408 m · 6 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Educación</span>
+<b>Jardín Infantil Nocedal III / 95 m · 2 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Cultura</span>
+<b>Sin servicios consolidados a 15 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Deporte</span>
+<b>Deporte sin nombre / 75 m · 1 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Esparcimiento</span>
+<b>Parque Villa Nocedal / 123 m · 2 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Culto</span>
+<b>Culto sin nombre / 397 m · 6 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Seguridad</span>
+<b>62 Comisaría San Gerónimo / 723 m · 10 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Servicios</span>
+<b>Sin servicios consolidados a 15 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Social</span>
+<b>Sin servicios consolidados a 15 min</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: TRANSPORTE PÚBLICO (Mixto: Automático + Manual) -->
+<div class="tab-panel" data-panel="transport">
+<div class="big-score">48<span></span></div>
+<p>Se detectaron <b>48 paraderos</b> de transporte público en un radio de caminata de 15 minutos.</p>
+<ul class="nearby-list">
+<li><span style="width: 250px; display: inline-block; color: #888;">Paraderos cercanos consolidados</span><b>48 paraderos</b></li>
+<li><span style="width: 250px; display: inline-block; color: #888;">Estación de Metro/Tren más cercana</span><b>Metro Plaza de Puente Alto · 2,6 km en línea recta</b></li>
+</ul>
+</div>
+<!-- PANEL: POBLACIÓN Y DEMOGRAFÍA (Mixto: Automático + Manual) -->
+<div class="tab-panel" data-panel="profile">
+<div class="bars">
+<div>
+<b>23%</b>
+<i style="height: 39%;background-color: #f39c12;"></i>
+<small>0–17 años</small>
+</div>
+<div>
+<b>59%</b>
+<i style="height: 100%;background-color: #f39c12;"></i>
+<small>18–59 años</small>
+</div>
+<div>
+<b>103.760 (18%)</b>
+<i style="height: 30.5%; background-color: #f39c12;"></i>
+<small>Personas de 60+ años</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li><span style="width: 200px; display: inline-block; color: #888;">Índice de envejecimiento</span><b>80,5 mayores de 60 por cada 100 menores de 18</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Género</span><b>52% F / 48% M</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Déficit habitacional comunal</span><b>12.480 viviendas (déficit cuantitativo, Censo 2024; 6,8% de los 182.855 hogares)</b></li>
+</ul>
+<p style="text-align: justify; margin-top: 15px; font-size: 0.85rem; color: #888;">
+              Esta información se obtuvo de base de datos del Censo 2024 y corresponde al total de la comuna.
+            </p>
+</div>
+<!-- PANEL: ESPACIO PÚBLICO (Automático por Python) -->
+<div class="tab-panel" data-panel="public-space">
+<h2>Entorno y áreas verdes</h2>
+<div class="bars">
+<div>
+<b style="color: #e74c3c;">30</b>
+<i style="height: 100%; background-color: #e74c3c;"></i>
+<small>Parques y Áreas Verdes Totales</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde más cercana</span><b>Parque Villa Nocedal · 123 m · 2 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 282 m · 4 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Parque</span><b>Parque Nocedal · 320 m · 5 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 374 m · 5 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 379 m · 6 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 387 m · 6 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 407 m · 6 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 433 m · 6 min</b></li>
+</ul>
+</div>
+<!-- PANEL: SOCIOECONÓMICO -->
+<div class="tab-panel" data-panel="socioeconomic">
+<div class="socio-container">
+<!-- ENCABEZADO -->
+<div class="socio-intro">
+<h2>Indicadores socioeconómicos municipales</h2>
+<p>
+        Ingresos, gastos y distribución de los recursos municipales para los años
+        2023, 2024 y 2025. Las cifras monetarias se presentan sin factor de
+        corrección monetaria.
+      </p>
+</div>
+<!-- INDICADORES DESTACADOS -->
+<div class="socio-kpis">
+<div class="socio-kpi">
+<span>Disponibilidad presupuestaria por habitante · 2025</span>
+<strong>214 M$</strong>
+<small>Según la unidad reportada por la BCN</small>
+</div>
+<div class="socio-kpi">
+<span>Ingreso municipal total · 2025</span>
+<strong>143.954.318 M$</strong>
+<small>Ingreso total percibido</small>
+</div>
+<div class="socio-kpi">
+<span>Gasto municipal total · 2025</span>
+<strong>148.486.897 M$</strong>
+<small>Gasto total devengado</small>
+</div>
+<div class="socio-kpi">
+<span>Ingresos propios permanentes · 2025</span>
+<strong>32.904.761 M$</strong>
+<small>IPP</small>
+</div>
+</div>
+<!-- INGRESOS MUNICIPALES -->
+<section class="socio-section">
+<h3>1. Ingresos propios según fuente de ingreso</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disponibilidad Presupuestaria Municipal por Habitante (M$)</td>
+<td>192</td>
+<td>205</td>
+<td>214</td>
+</tr>
+<tr class="socio-highlight">
+<td>Ingresos Municipales (Ingreso Total Percibido) (M$)</td>
+<td>127.416.955</td>
+<td>137.016.072</td>
+<td>143.954.318</td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<!-- GASTOS MUNICIPALES -->
+<section class="socio-section">
+<h3>2. Gastos municipales</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de gasto</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+
+
+<tr class="socio-highlight">
+<td>Gastos Municipales (Gastos Total Devengado) (M$)</td>
+<td>124.563.333</td>
+<td>148.987.606</td>
+<td>148.486.897</td>
+</tr>
+<tr>
+<td>Área de Gestión: Actividades Municipales (M$)</td>
+<td>3.372.959</td>
+<td>110.726</td>
+<td>307.957</td>
+</tr>
+<tr>
+<td>Área de Gestión: Interna (M$)</td>
+<td>51.136.760</td>
+<td>58.041.180</td>
+<td>58.190.670</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Culturales (M$)</td>
+<td>520.000</td>
+<td>2.137.286</td>
+<td>2.403.054</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Recreacionales (M$)</td>
+<td>4.156.178</td>
+<td>6.161.727</td>
+<td>6.632.831</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Sociales (M$)</td>
+<td>11.159.441</td>
+<td>8.081.113</td>
+<td>7.323.396</td>
+</tr>
+<tr>
+<td>Área de Gestión: Servicios Comunitarios (M$)</td>
+<td>54.217.995</td>
+<td>74.455.574</td>
+<td>73.628.989</td>
+</tr>
+
+<tr>
+<td>Monto Transferido al Fondo Común Municipal (M$)</td>
+<td>10.097.630</td>
+<td>10.678.748</td>
+<td>9.802.109</td>
+</tr>
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<!-- DISTRIBUCIÓN DEL INGRESO -->
+<section class="socio-section">
+<h3>3. Distribución del ingreso municipal según origen</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participación de Ingresos Propios Permanentes (IPP) en el Ingreso Total (%)</td>
+<td>21,8%</td>
+<td>22,5%</td>
+<td>22,9%</td>
+</tr>
+<tr>
+<td>Participación del Fondo Común Municipal en el Ingreso Total (%)</td>
+<td>64,7%</td>
+<td>64,6%</td>
+<td>65,0%</td>
+</tr>
+<tr>
+<td>Participación de Ingresos por Transferencias en el Ingreso Total (%)</td>
+<td>1,9%</td>
+<td>1,9%</td>
+<td>1,9%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- ENLACE A LA FUENTE OFICIAL -->
+<a class="socio-source" href="https://www.bcn.cl/siit/reportescomunales/comunal.html?unidad=Comunales&amp;anno=2026" rel="noopener noreferrer" target="_blank">
+<strong>↗ Consultar fuente oficial: Reportes Comunales BCN</strong>
+<span>
+        Biblioteca del Congreso Nacional de Chile · Indicadores comunales,
+        ingresos y gastos municipales.
+      </span>
+<span>Haz clic aquí para consultar el reporte original.</span>
+</a>
+</div>
+</div>
+</article>
+</section>
+<!-- INVENTARIO COMPLETO (Interactivo con app.js) -->
+<section class="inventory">
+<div class="inventory-heading">
+<div>
+<p class="eyebrow">Inventario de proximidad</p>
+<h2>Dentro del área caminable en 15 minutos</h2>
+</div>
+<!-- Filtros controlados por app.js -->
+<div class="filter-list compact" id="equipment-filters">
+<button class="filter active" data-equipment="Todos">Todos</button>
+<button class="filter" data-equipment="Salud">Salud</button>
+<button class="filter" data-equipment="Comercio">Comercio</button>
+<!-- Nota: Python exporta "Esparcimiento", pero el botón dice Plaza. -->
+<button class="filter" data-equipment="Esparcimiento">Plaza/Parque</button>
+<button class="filter" data-equipment="Cultura">Cultura</button>
+<button class="filter" data-equipment="Transporte">Transporte</button>
+</div>
+</div>
+<div class="inventory-list">
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>75 m · 1 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Jardín Infantil Nocedal III</b><small>Esparcimiento</small></span>
+<em>95 m · 2 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>97 m · 2 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>115 m · 2 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parque Villa Nocedal</b><small>Esparcimiento</small></span>
+<em>123 m · 2 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Nocedal / esq. Sócrates</b><small>Transporte</small></span>
+<em>129 m · 2 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Nocedal / esq. El Tronco</b><small>Transporte</small></span>
+<em>138 m · 2 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>153 m · 3 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>157 m · 3 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Mini Market El Caiman</b><small>Comercio</small></span>
+<em>168 m · 3 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>174 m · 3 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Canchas Villa Nocedal</b><small>Esparcimiento</small></span>
+<em>178 m · 3 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Nocedal / esq. Las Achiras</b><small>Transporte</small></span>
+<em>187 m · 3 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>192 m · 3 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Las Achiras / esq. Nocedal</b><small>Transporte</small></span>
+<em>211 m · 3 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>4 Oriente / esq. Pasaje Las Hojas</b><small>Transporte</small></span>
+<em>237 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Nocedal / esq. Las Achiras</b><small>Transporte</small></span>
+<em>238 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>4 Oriente / esq. Pasaje La Pepita</b><small>Transporte</small></span>
+<em>245 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>4 Oriente / esq. Pasaje El Polen</b><small>Transporte</small></span>
+<em>253 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>4 Oriente / esq. Pasaje Las Hojas</b><small>Transporte</small></span>
+<em>255 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>282 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>289 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Colegio Pedro Apóstol</b><small>Esparcimiento</small></span>
+<em>303 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parque Nocedal</b><small>Esparcimiento</small></span>
+<em>320 m · 5 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Nocedal / esq. San Pedro</b><small>Transporte</small></span>
+<em>331 m · 5 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>San Pedro / esq. Nocedal</b><small>Transporte</small></span>
+<em>340 m · 5 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>San Pedro / esq. Valle Central</b><small>Transporte</small></span>
+<em>359 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>374 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>376 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>379 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Valle Central / esq. San Pedro</b><small>Transporte</small></span>
+<em>383 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>387 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Culto sin nombre</b><small>Esparcimiento</small></span>
+<em>397 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>399 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>404 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>407 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>407 m · 6 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Farmacias Netfarma</b><small>Salud</small></span>
+<em>408 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>411 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Las Achiras / esq. Ejército Libertador</b><small>Transporte</small></span>
+<em>419 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. Ejército Libertador / esq. La Reconquista</b><small>Transporte</small></span>
+<em>429 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Camino Internacional / esq. 4 Oriente</b><small>Transporte</small></span>
+<em>429 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>433 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. Ejército Libertador / esq. Las Achiras</b><small>Transporte</small></span>
+<em>436 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>436 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>446 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>449 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>449 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. Ejército Libertador / esq. Los Heraldos</b><small>Transporte</small></span>
+<em>457 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>459 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>4 Oriente / esq. Cerro Yaretas</b><small>Transporte</small></span>
+<em>462 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Camino Internacional / esq. Valle Central</b><small>Transporte</small></span>
+<em>468 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>476 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. Ejército Libertador / esq. Las Achiras</b><small>Transporte</small></span>
+<em>479 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Camino Internacional / esq. Nocedal</b><small>Transporte</small></span>
+<em>484 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>490 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Santa Cruz College</b><small>Esparcimiento</small></span>
+<em>494 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>497 m · 7 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Los Vidales</b><small>Comercio</small></span>
+<em>509 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. Ejército Libertador / esq. Quebrada Honda</b><small>Transporte</small></span>
+<em>511 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>San Pedro / esq. Acceso Sur Calet.-Norte</b><small>Transporte</small></span>
+<em>524 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>549 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>557 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. Ejército Libertador / esq. San Pedro</b><small>Transporte</small></span>
+<em>561 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>564 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Capilla Inmaculada Concepción de María</b><small>Esparcimiento</small></span>
+<em>566 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza El Relato</b><small>Esparcimiento</small></span>
+<em>569 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Villa Blancas Cumbres</b><small>Esparcimiento</small></span>
+<em>573 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>575 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>576 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>576 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Valle Central / esq. Punta de Damas</b><small>Transporte</small></span>
+<em>579 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>579 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. Ejército Libertador / esq. Conquistadores</b><small>Transporte</small></span>
+<em>583 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>San Pedro / esq. Cole Cole</b><small>Transporte</small></span>
+<em>590 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>San Pedro / esq. Cole Cole</b><small>Transporte</small></span>
+<em>592 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>602 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>603 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>606 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>609 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>611 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>615 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Iglesia de La Transfiguración del Señor</b><small>Esparcimiento</small></span>
+<em>620 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. Ejército Libertador / esq. Cam. Internacional</b><small>Transporte</small></span>
+<em>628 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>628 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Valle Central / esq. Punta de Damas</b><small>Transporte</small></span>
+<em>629 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Colegio Centro Educ Y Familiar Puente</b><small>Esparcimiento</small></span>
+<em>636 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Camino El Rodeo / esq. El Relato</b><small>Transporte</small></span>
+<em>638 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Camino El Rodeo / esq. Weber</b><small>Transporte</small></span>
+<em>644 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Camino Internacional / esq. Ejército Libertador</b><small>Transporte</small></span>
+<em>645 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Yuly</b><small>Comercio</small></span>
+<em>646 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. Ejército Libertador / esq. Real Audiencia</b><small>Transporte</small></span>
+<em>651 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>654 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. Ejército Libertador / esq. Real Audiencia</b><small>Transporte</small></span>
+<em>668 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>687 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>La Palmerita</b><small>Esparcimiento</small></span>
+<em>691 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>712 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>721 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>CESFAM San Gerónimo</b><small>Transporte</small></span>
+<em>723 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>62 Comisaría San Gerónimo</b><small>Esparcimiento</small></span>
+<em>723 m · 10 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Consultorio San Gerónimo</b><small>Salud</small></span>
+<em>728 m · 10 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>SAPU San Gerónimo</b><small>Salud</small></span>
+<em>732 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Óscar Bonilla</b><small>Esparcimiento</small></span>
+<em>740 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Liceo San Geronimo</b><small>Esparcimiento</small></span>
+<em>746 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>CESFAM San Gerónimo</b><small>Transporte</small></span>
+<em>763 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>767 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parroquia San Gerónimo</b><small>Esparcimiento</small></span>
+<em>779 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>4 Oriente / esq. Cerro Mármoles</b><small>Transporte</small></span>
+<em>783 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Av. Ejército Libertador / esq. Los Comendadores</b><small>Transporte</small></span>
+<em>786 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>791 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>792 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>806 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Valle Central / esq. Cerro Hornilla</b><small>Transporte</small></span>
+<em>807 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>812 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Donde Marco</b><small>Comercio</small></span>
+<em>817 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>834 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Jardín Infantil Cordillera</b><small>Esparcimiento</small></span>
+<em>861 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Valle Central / esq. Sargento Menadier</b><small>Transporte</small></span>
+<em>870 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>880 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>4 Oriente / esq. Sargento Menadier</b><small>Transporte</small></span>
+<em>881 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Alto Mawida</b><small>Esparcimiento</small></span>
+<em>889 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>San Pedro / esq. Las Frambuesas</b><small>Transporte</small></span>
+<em>891 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Sargento Menadier / esq. Valle Central</b><small>Transporte</small></span>
+<em>892 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Especial la Villette</b><small>Esparcimiento</small></span>
+<em>899 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>899 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>903 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>904 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Especial La Villette</b><small>Esparcimiento</small></span>
+<em>909 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>909 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Sargento Menadier / esq. Oscar Bonilla</b><small>Transporte</small></span>
+<em>922 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>944 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Sargento Menadier / esq. Rapel</b><small>Transporte</small></span>
+<em>957 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Óscar Bonilla / esq. Sargento Menadier</b><small>Transporte</small></span>
+<em>961 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>978 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>980 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>994 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>1022 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1048 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>1069 m · 15 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>1106 m · 15 min</em>
+</div>
+</div>
+</section>
+</main>
+<!-- 1. Script de la lógica interactiva de pestañas -->
+<script src="../app.js"></script>
+<!-- 2. Scripts del Mapa Automático de Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+      var map = L.map('map', {zoomControl: false}).setView([-33.627404, -70.594508], 14);
+      
+      // Capa base híbrida satelital
+      L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+          attribution: '&copy; Google',
+          maxZoom: 18
+      }).addTo(map);
+
+      // Marcador central
+      var customIcon = L.divIcon({
+          className: 'custom-pin',
+          html: "<div style='background-color:#ff4757; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></div>",
+          iconSize: [20, 20],
+          iconAnchor: [10, 10]
+      });
+      L.marker([-33.627404, -70.594508], {icon: customIcon}).addTo(map);
+
+      // Isócrona peatonal azul (15 min)
+      var isocrona = [[-33.618229, -70.59923], [-33.619093, -70.59964], [-33.624261, -70.601045], [-33.625342, -70.60136], [-33.625701, -70.601332], [-33.626021, -70.601275], [-33.631416, -70.603558], [-33.631548, -70.604039], [-33.631895, -70.603945], [-33.631991, -70.60384], [-33.633622, -70.600592], [-33.633968, -70.59527], [-33.632375, -70.58951], [-33.630533, -70.587198], [-33.629236, -70.584149], [-33.629167, -70.584017], [-33.628851, -70.583593], [-33.627431, -70.583231], [-33.627107, -70.583388], [-33.625942, -70.584179], [-33.623371, -70.585983], [-33.620494, -70.589436], [-33.619956, -70.590416], [-33.617245, -70.595236], [-33.616666, -70.597503], [-33.616736, -70.597856], [-33.618229, -70.59923]];
+      if (isocrona && isocrona.length > 0) {
+          var polygon = L.polygon(isocrona, {
+              color: '#3b82f6',
+              weight: 3,
+              fillColor: '#3b82f6',
+              fillOpacity: 0.3
+          }).addTo(map);
+          
+          // Encuadrar el mapa al polígono
+          map.fitBounds(polygon.getBounds());
+      }
+    </script>
+</body>
+</html>

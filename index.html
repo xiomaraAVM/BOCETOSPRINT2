@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    <title>Envejecimiento en Comunidad</title>
+
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    >
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header class="navbar">
+    <div class="nav-container" style="max-width: none; width: 100%; margin: 0; padding-left: 16px; padding-right: 16px;">
+        
+
+        <div class="header-credits">
+                
+            <img src="img/logo-ANID.png" alt="Logo ANID" class="header-logo logo-anid">
+            <img src="img/logo-udp.png" alt="Logo Universidad Diego Portales" class="header-logo">
+            <p class="header-credits-text">
+            
+                Iniciativa enmarcada en el proyecto <strong>ANID Fondecyt Iniciación 11250701
+                “Envejecer en Comunidad”</strong>. Investigadora responsable:
+                <strong>Luz María Vergara</strong><br>
+                Facultad de Arquitectura, Arte y Diseño · Facultad de Ingeniería y Ciencias,
+                Universidad Diego Portales
+            </p>
+
+        </div>
+    </div>
+</header>
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h1>
+                    Plataforma de análisis
+                    <span>urbano y territorial</span>
+                </h1>
+
+                <p>
+                    Explora las condiciones territoriales de los Condominios de Vivienda Tutelada (CVT) y los Establecimiento de Larga Estadía para Personas Mayores (Eleam).
+                </p>
+
+                <div class="hero-buttons">
+                    <button class="primary-button" type="button" onclick="scrollToMap()">
+                        Explorar los CVT
+                        <span>→</span>
+                    </button>
+
+                    <button class="primary-button" type="button"">
+                        <a href="../ELEAM/index.html" class="primary-button">
+    Explorar los ELEAM
+    <span>→</span>
+</a>
+                    </button>
+
+                    <a href="#plataforma" class="secondary-button">
+                        Conocer la plataforma
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <strong>61</strong>
+                        <span>Conjuntos CVT</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>14</strong>
+                        <span>Regiones</span>
+                    </div>
+                    <div class="stat">
+                        <strong>499</strong>
+                        <span>ELEAM en RM</span>
+                    </div>
+
+                    <div class="stat">
+                        <strong>15 min</strong>
+                        <span>Radio de análisis</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="plataforma" class="section introduction">
+            <div class="section-title center">
+                <div class="title-label">SOBRE LA PLATAFORMA</div>
+
+                <h2>
+                    Conocer el entorno para
+                    <span>mejorar la calidad de vida</span>
+                </h2>
+            </div>
+
+            <div class="intro-grid" style="display: block; width: 100%; max-width: 1100px; margin: 0 auto;">
+                <div class="intro-text" style="text-align: center; max-width: 100%; font-family: inherit; font-size: 1.15rem; line-height: 1.8;">
+                    <p>
+    Esta plataforma identifica y analiza los atributos
+    barriales y urbanos asociados a los
+    <strong>Condominios de Vivienda Tutelada (CVT)</strong>
+    construidos a lo largo de Chile. El programa contempla
+    61 conjuntos residenciales ubicados en 14 regiones del
+    país, destinados a favorecer un envejecimiento activo,
+    saludable y seguro. Además, presenta la ubicación de los
+    <strong>Establecimientos de Larga Estadía para Personas Mayores
+    (ELEAM)</strong> de la Región Metropolitana. Mediante el enfoque de
+    <strong>Ciudad en 15 minutos</strong>, modelo de
+    planificación urbana donde los habitantes pueden
+    acceder a sus necesidades básicas y servicios esenciales,
+    como salud, educación, comercio y ocio, en un máximo
+    de 15 minutos a pie o en bicicleta desde sus hogares.
+</p>
+
+<p class="data-source" style="font-size: 0.9rem; font-style: italic; opacity: 0.85;">
+    La información territorial y sociodemográfica presentada en esta
+    plataforma proviene del <strong>Censo 2024</strong> y puede
+    consultarse en su fuente original a través de este
+    <a
+        href="https://censo2024.ine.gob.cl/"
+        target="_blank"
+        rel="noopener noreferrer"
+    ><strong>enlace</strong></a>.
+    El listado de ELEAM de la Región Metropolitana proviene de la
+    <strong>SEREMI de Salud de la Región Metropolitana</strong> y puede
+    consultarse en este
+    <a
+        href="https://seremi13.redsalud.gob.cl/material-de-apoyo/listados/"
+        target="_blank"
+        rel="noopener noreferrer"
+    ><strong>enlace</strong></a>.
+</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="indicadores" class="section indicators-section">
+            <div class="section-title center">
+                <div class="title-label">¿QUÉ ANALIZAMOS?</div>
+
+                <h2>
+                    Cinco dimensiones del
+                    <span>entorno urbano</span>
+                </h2>
+
+                <p>
+                    La plataforma permite visualizar diferentes
+                    características del entorno de cada conjunto residencial.
+                </p>
+            </div>
+
+            <div class="indicators-grid">
+                <article class="indicator-card">
+                    <div class="indicator-icon">⌂</div>
+                    <h3>Equipamiento y servicios</h3>
+                    <p>
+                        Acceso a servicios esenciales, comercio, salud,
+                        transporte y otros equipamientos.
+                    </p>
+                </article>
+
+                <article class="indicator-card">
+                    <div class="indicator-icon">↗</div>
+                    <h3>Desplazamiento y caminata</h3>
+                    <p>
+                        Condiciones de calles, veredas y recorridos
+                        para facilitar el desplazamiento peatonal.
+                    </p>
+                </article>
+
+                <article class="indicator-card">
+                    <div class="indicator-icon">♧</div>
+                    <h3>Áreas verdes</h3>
+                    <p>
+                        Disponibilidad y proximidad de plazas,
+                        parques y espacios naturales.
+                    </p>
+                </article>
+
+                <article class="indicator-card">
+                    <div class="indicator-icon">♣</div>
+                    <h3>Vegetación y arborización</h3>
+                    <p>
+                        Presencia de árboles y cobertura vegetal
+                        en el entorno urbano.
+                    </p>
+                </article>
+
+                <article class="indicator-card">
+                    <div class="indicator-icon">☀</div>
+                    <h3>Rutas frente a olas de calor</h3>
+                    <p>
+                        Identificación de recorridos que permitan
+                        desplazamientos más seguros ante temperaturas extremas.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section id="mapa" class="map-section section">
+            <div class="section-header">
+                <span class="section-tag">EXPLORADOR TERRITORIAL</span>
+
+                <h2>Explora los CVT a lo largo de Chile</h2>
+
+                <p>
+                    Busca un condominio por nombre, comuna o región y
+                    selecciona un punto para conocer sus principales
+                    características.
+                </p>
+            </div>
+
+            <div class="map-container">
+                <div class="search-container">
+                    <div class="search-box">
+                        <span class="search-icon">⌕</span>
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Buscar CVT, comuna o región..."
+                            autocomplete="off"
+                        >
+
+                        <button
+                            id="clearSearch"
+                            class="clear-search"
+                            type="button"
+                            aria-label="Limpiar búsqueda"
+                        >
+                            ×
+                        </button>
+                    </div>
+
+                    <div id="searchResults" class="search-results"></div>
+                </div>
+
+                <div class="large-map-wrapper">
+                    <div id="largeMap" style="height: 500px; width: 100%;"></div>
+
+                    <div class="map-info">
+                        <div class="info-image">
+                            <img
+                                id="infoImage"
+                                src=""
+                                alt="Fotografía del CVT"
+                                style="display: none;"
+                            >
+
+                            <div id="noImage" class="no-image">
+                                Foto del CVT
+                            </div>
+                        </div>
+
+                        <div class="info-content">
+                            <div class="info-title">
+                                CONDOMINIO SELECCIONADO
+                            </div>
+
+                            <h3 id="selectedName">Selecciona un CVT</h3>
+
+                            <p id="selectedRegion">
+                                Haz clic sobre un punto del mapa para
+                                obtener información.
+                            </p>
+
+                            <div class="info-details">
+                                <div>
+                                    <span>Región</span>
+                                    <strong id="infoRegion">—</strong>
+                                </div>
+
+                                <div>
+                                    <span>Comuna</span>
+                                    <strong id="infoComuna">—</strong>
+                                </div>
+
+                                <div>
+                                    <span>Viviendas</span>
+                                    <strong id="infoViviendas">—</strong>
+                                </div>
+
+                                <div>
+                                    <span>Inauguración</span>
+                                    <strong id="infoYear">—</strong>
+                                </div>
+                            </div>
+
+                            <a
+                                id="infoLink"
+                                class="info-link"
+                                href="#"
+                                style="display: none;"
+                            >
+                                Ver información completa →
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div>
+                <strong>CVT Chile</strong>
+                <p>
+                    Exploración territorial para un envejecimiento activo
+                    y saludable.
+                </p>
+            </div>
+
+            <div class="footer-right">
+                Plataforma territorial · Chile
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+    <script src="mapa-index.js"></script>
+</body>
+</html>

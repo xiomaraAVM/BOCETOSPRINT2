@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Paine · Envejecer en el lugar correcto</title>
+<link href="../styless.css" rel="stylesheet"/>
+<!-- CSS del Mapa Automático -->
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+</head>
+<body class="paper-texture">
+<header class="navbar">
+<div class="nav-container" style="max-width: none; width: 100%; margin: 0; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; justify-content: space-between;">
+<div class="logo">
+<div>
+<strong>Condominios de Viviendas Tuteladas</strong>
+<span>Chile</span>
+</div>
+</div>
+<a class="primary-button" href="../index.html" style="text-decoration: none; padding: 8px 16px; font-size: 13px;">
+            ← Volver al inicio
+        </a>
+</div>
+</header>
+<main class="shell detail-page">
+<!-- HERO Y MAPA -->
+<section class="detail-hero" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+<div>
+<p class="eyebrow"><span></span> Ficha territorial · Paine</p>
+<h1 style="font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #001f3f;">18 de septiembre</h1>
+<p class="address" style="color: #666; margin-bottom: 1.5rem;">Av. Bernardo O'Higgins 126, Paine</p>
+<p class="lead" style="font-size: 1.1rem; line-height: 1.6; text-align: justify; color: #4a4a4a;">
+            Conjuntos de viviendas pensadas para personas mayores de 60 años que valen por sí mismas. Su idea es ofrecer un lugar donde los adultos mayores puedan vivir con autonomía, conversar y tener actividades, pero manteniendo contacto con espacios que facilitan la vida de barrio.
+          </p>
+<div class="chips" style="margin-top: 2rem;">
+<span>En operación · 2011</span>
+<span>10 viviendas tuteladas</span>
+<span>-</span>
+            <span>-</span>
+          </div>
+</div>
+<div class="summary-card map-container" style="background: #faf8f5; padding: 12px; border-radius: 24px; border: 1px solid #eaeaea;">
+<div class="card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;">
+<span style="font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: #888; text-transform: uppercase;">Resumen de proximidad</span>
+<span style="font-size: 0.75rem; background: #fff; padding: 4px 10px; border-radius: 12px; border: 1px solid #ddd; font-weight: bold;">15 MINUTOS</span>
+</div>
+<!-- Mapa dinámico Leaflet -->
+<div id="map" style="height: 380px; width: 100%; border-radius: 16px; z-index: 1;"></div>
+</div>
+</section>
+<section aria-label="Dimensiones de análisis" class="dimension-tabs" role="tablist">
+<span style="font-size: 0.85rem; letter-spacing: 2px; color: #888; text-transform: uppercase;">DIMENSIONES</span>
+</section>
+<!-- BOTONES DE PESTAÑAS (Métricas) -->
+<section class="metrics">
+<button class="metric" data-tab-target="profile">
+<span></span><small>Población</small><strong>78.828</strong><em>residentes</em>
+</button>
+<button class="metric active" data-tab-target="access">
+<span></span><small>Equipamiento</small><strong>120</strong><em>servicios cercanos</em>
+</button>
+<button class="metric" data-tab-target="transport">
+<span></span><small>Transporte público</small><strong>11</strong><em>paraderos en 15 min</em>
+</button>
+<button class="metric" data-tab-target="public-space">
+<span></span><small>Espacio público</small><strong>33</strong><em>áreas verdes cercanas</em>
+</button>
+<button class="metric" data-tab-target="socioeconomic">
+<span></span><small>Ingresos</small><strong>$$</strong><em>nivel municipal</em>
+</button>
+</section>
+<!-- PANELES DE CONTENIDO (Lectura del Entorno) -->
+<section class="analysis-grid">
+<article class="analysis-card">
+<p class="eyebrow" style="color: #ff4757; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Lectura del entorno</p>
+<h2 data-panel-title="">Una ciudad para quedarse</h2>
+<!-- PANEL: EQUIPAMIENTOS (Automático por Python) -->
+<div class="tab-panel active" data-panel="access">
+<div class="big-score">100<span>/100</span></div>
+<p>El proyecto tiene un acceso <b>alto</b> a servicios cotidianos en un radio caminable de 15 minutos.</p>
+<ul class="nearby-list">
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Salud</span>
+<b>Salud Alternativa / 309 m · 5 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Educación</span>
+<b>Escuela Básica San Pedro Apóstol de Paine / 186 m · 3 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Cultura</span>
+<b>Biblioteca Municipal / 452 m · 7 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Deporte</span>
+<b>Deporte sin nombre / 92 m · 2 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Esparcimiento</span>
+<b>Área Verde / Plaza / 158 m · 3 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Culto</span>
+<b>Culto sin nombre / 283 m · 4 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Seguridad</span>
+<b>Cuartel General del Cuerpo Bomberos de Paine / 355 m · 5 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Servicios</span>
+<b>Ilustre Municipalidad de Paine / 462 m · 7 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Social</span>
+<b>sede vecinal / 411 m · 6 min</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: TRANSPORTE PÚBLICO (Mixto: Automático + Manual) -->
+<div class="tab-panel" data-panel="transport">
+<div class="big-score">11<span></span></div>
+<p>Se detectaron <b>11 paraderos</b> de transporte público en un radio de caminata de 15 minutos.</p>
+<ul class="nearby-list">
+<li><span style="width: 250px; display: inline-block; color: #888;">Paraderos cercanos consolidados</span><b>11 paraderos</b></li>
+<li><span style="width: 250px; display: inline-block; color: #888;">Estación de Metro/Tren más cercana</span><b>Metro Paine · 1,3 km en línea recta</b></li>
+</ul>
+</div>
+<!-- PANEL: POBLACIÓN Y DEMOGRAFÍA (Mixto: Automático + Manual) -->
+<div class="tab-panel" data-panel="profile">
+<div class="bars">
+<div>
+<b>24%</b>
+<i style="height: 41.4%;background-color: #f39c12;"></i>
+<small>0–17 años</small>
+</div>
+<div>
+<b>58%</b>
+<i style="height: 100%;background-color: #f39c12;"></i>
+<small>18–59 años</small>
+</div>
+<div>
+<b>14.576 (18%)</b>
+<i style="height: 31%; background-color: #f39c12;"></i>
+<small>Personas de 60+ años</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li><span style="width: 200px; display: inline-block; color: #888;">Índice de envejecimiento</span><b>77,9 mayores de 60 por cada 100 menores de 18</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Género</span><b>51% F / 49% M</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Déficit habitacional comunal</span><b>2.139 viviendas (déficit cuantitativo, Censo 2024; 8,3% de los 25.871 hogares)</b></li>
+</ul>
+<p style="text-align: justify; margin-top: 15px; font-size: 0.85rem; color: #888;">
+              Esta información se obtuvo de base de datos del Censo 2024 y corresponde al total de la comuna.
+            </p>
+</div>
+<!-- PANEL: ESPACIO PÚBLICO (Automático por Python) -->
+<div class="tab-panel" data-panel="public-space">
+<h2>Entorno y áreas verdes</h2>
+<div class="bars">
+<div>
+<b style="color: #e74c3c;">33</b>
+<i style="height: 100%; background-color: #e74c3c;"></i>
+<small>Parques y Áreas Verdes Totales</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde más cercana</span><b>Área Verde / Plaza · 158 m · 3 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 249 m · 4 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 261 m · 4 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 285 m · 4 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 295 m · 4 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 321 m · 5 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Plaza</span><b>Plaza Paula Jaraquemada · 346 m · 5 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 383 m · 6 min</b></li>
+</ul>
+</div>
+<!-- PANEL: SOCIOECONÓMICO -->
+<div class="tab-panel" data-panel="socioeconomic">
+<div class="socio-container">
+<div class="socio-intro">
+<h2>Indicadores socioeconómicos municipales</h2>
+<p>
+        Ingresos, gastos y distribución de los recursos municipales para los años 2023, 2024 y 2025.
+        Las cifras monetarias se presentan sin factor de corrección monetaria.
+      </p>
+</div>
+<div class="socio-kpis">
+<div class="socio-kpi">
+<span>Disponibilidad presupuestaria por habitante · 2025</span>
+<strong>325 M$</strong>
+<small>Disponibilidad presupuestaria municipal</small>
+</div>
+<div class="socio-kpi">
+<span>Ingreso municipal total · 2025</span>
+<strong>29.086.848 M$</strong>
+<small>Ingreso total percibido</small>
+</div>
+<div class="socio-kpi">
+<span>Gasto municipal total · 2025</span>
+<strong>31.504.922 M$</strong>
+<small>Gasto total devengado</small>
+</div>
+<div class="socio-kpi">
+<span>Ingresos propios permanentes · 2025</span>
+<strong>13.536.238 M$</strong>
+<small>IPP</small>
+</div>
+</div>
+<section class="socio-section">
+<h3>1. Ingresos propios según fuente de ingreso</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disponibilidad Presupuestaria Municipal por Habitante (M$)</td>
+<td>246</td>
+<td>283</td>
+<td>325</td>
+</tr>
+<tr class="socio-highlight">
+<td>Ingresos Municipales (Ingreso Total Percibido) (M$)</td>
+<td>21.431.603</td>
+<td>24.972.407</td>
+<td>29.086.848</td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<section class="socio-section">
+<h3>2. Gastos municipales</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de gasto</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+
+
+<tr class="socio-highlight">
+<td>Gastos Municipales (Gastos Total Devengado) (M$)</td>
+<td>22.847.431</td>
+<td>29.587.607</td>
+<td>31.504.922</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Actividades Municipales (M$)</td>
+<td>1.495.661</td>
+<td>2.008.629</td>
+<td>1.919.063</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Interna (M$)</td>
+<td>12.145.620</td>
+<td>14.527.300</td>
+<td>14.864.458</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Programas Culturales (M$)</td>
+<td>200.000</td>
+<td>251.000</td>
+<td>210.000</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Programas Recreacionales (M$)</td>
+<td>178.673</td>
+<td>147.807</td>
+<td>290.878</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Programas Sociales (M$)</td>
+<td>2.320.537</td>
+<td>4.775.986</td>
+<td>5.828.768</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Servicios Comunitarios (M$)</td>
+<td>6.506.940</td>
+<td>7.770.547</td>
+<td>8.391.755</td>
+</tr>
+
+<tr>
+<td>Monto Transferido al Fondo Común Municipal (M$)</td>
+<td>2.616.344</td>
+<td>2.845.673</td>
+<td>2.847.998</td>
+</tr>
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<section class="socio-section">
+<h3>3. Distribución del ingreso municipal según origen</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participación de Ingresos Propios Permanentes (IPP) en el Ingreso Total (%)</td>
+<td>50,0</td>
+<td>44,3</td>
+<td>46,5</td>
+</tr>
+<tr>
+<td>Participación del Fondo Común Municipal en el Ingreso Total (%)</td>
+<td>24,5</td>
+<td>22,7</td>
+<td>20,7</td>
+</tr>
+<tr>
+<td>Participación de Ingresos por Transferencias en el Ingreso Total (%)</td>
+<td>3,6</td>
+<td>4,2</td>
+<td>3,4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<a class="socio-source" href="https://www.bcn.cl/siit/reportescomunales/comunal.html?unidad=Comunales&amp;anno=2026" rel="noopener noreferrer" target="_blank">
+<strong>↗ Consultar fuente oficial: Reportes Comunales BCN</strong>
+<span>
+        Biblioteca del Congreso Nacional de Chile · Indicadores comunales,
+        ingresos y gastos municipales.
+      </span>
+<span>Haz clic aquí para consultar el reporte original.</span>
+</a>
+</div>
+</div>
+</article>
+</section>
+<!-- INVENTARIO COMPLETO (Interactivo con app.js) -->
+<section class="inventory">
+<div class="inventory-heading">
+<div>
+<p class="eyebrow">Inventario de proximidad</p>
+<h2>Dentro del área caminable en 15 minutos</h2>
+</div>
+<!-- Filtros controlados por app.js -->
+<div class="filter-list compact" id="equipment-filters">
+<button class="filter active" data-equipment="Todos">Todos</button>
+<button class="filter" data-equipment="Salud">Salud</button>
+<button class="filter" data-equipment="Comercio">Comercio</button>
+<button class="filter" data-equipment="Esparcimiento">Plaza/Parque</button>
+<button class="filter" data-equipment="Cultura">Cultura</button>
+<button class="filter" data-equipment="Transporte">Transporte</button>
+</div>
+</div>
+<div class="inventory-list">
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>92 m · 2 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>158 m · 3 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Básica San Pedro Apóstol de Paine</b><small>Esparcimiento</small></span>
+<em>186 m · 3 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>211 m · 3 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Supermercado ACuenta</b><small>Comercio</small></span>
+<em>229 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Parada Virgen de Cantillana</b><small>Transporte</small></span>
+<em>232 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>240 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>249 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>252 m · 4 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Carniceria La Buena Carne</b><small>Comercio</small></span>
+<em>258 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>261 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Culto sin nombre</b><small>Esparcimiento</small></span>
+<em>283 m · 4 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Stripes</b><small>Comercio</small></span>
+<em>284 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>285 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>285 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>289 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>295 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>308 m · 5 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Salud Alternativa</b><small>Salud</small></span>
+<em>309 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Especial Jardín del Arcos Iris</b><small>Esparcimiento</small></span>
+<em>315 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>321 m · 5 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Parada Villa Gran Avenida</b><small>Transporte</small></span>
+<em>337 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>341 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Paula Jaraquemada</b><small>Esparcimiento</small></span>
+<em>346 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Estadio Municipal de Paine</b><small>Esparcimiento</small></span>
+<em>353 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Cuartel General del Cuerpo Bomberos de Paine</b><small>Esparcimiento</small></span>
+<em>355 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Estadio Municipal de Paine</b><small>Esparcimiento</small></span>
+<em>356 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>357 m · 5 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>381 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>383 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>387 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parroquia Santa María</b><small>Esparcimiento</small></span>
+<em>394 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Colegio Particular María Ana Mogas</b><small>Esparcimiento</small></span>
+<em>406 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>sede vecinal</b><small>Esparcimiento</small></span>
+<em>411 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Colegio Santa María de Paine</b><small>Esparcimiento</small></span>
+<em>417 m · 6 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>CESFAM Doctor Miguel Solar</b><small>Salud</small></span>
+<em>431 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Jardín Infantil Candes</b><small>Esparcimiento</small></span>
+<em>432 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Centro Educacional Enrique Bernstein Carabante</b><small>Esparcimiento</small></span>
+<em>432 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parque Cantillana</b><small>Esparcimiento</small></span>
+<em>437 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Salón del Reino de los Testigos de Jehová</b><small>Esparcimiento</small></span>
+<em>439 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Quinta Compañía del Cuerpo de Bomberos de Paine</b><small>Esparcimiento</small></span>
+<em>445 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Sala Cuna Baquedano</b><small>Esparcimiento</small></span>
+<em>448 m · 6 min</em>
+</div>
+<div data-equipment-item="Cultura">
+<span><b>Biblioteca Municipal</b><small>Cultura</small></span>
+<em>452 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Gimnasio Municipal</b><small>Esparcimiento</small></span>
+<em>458 m · 7 min</em>
+</div>
+<div data-equipment-item="Cultura">
+<span><b>Teatro Municipal de Paine</b><small>Cultura</small></span>
+<em>461 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Ilustre Municipalidad de Paine</b><small>Esparcimiento</small></span>
+<em>462 m · 7 min</em>
+</div>
+<div data-equipment-item="Cultura">
+<span><b>Centro cultural de Paine</b><small>Cultura</small></span>
+<em>466 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Culto sin nombre</b><small>Esparcimiento</small></span>
+<em>467 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>471 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Sala Cuna</b><small>Esparcimiento</small></span>
+<em>471 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>skate park</b><small>Esparcimiento</small></span>
+<em>483 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Capilla San Roberto Belarmino</b><small>Esparcimiento</small></span>
+<em>485 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Básica PauLa Jaraquemada Alquiza</b><small>Esparcimiento</small></span>
+<em>493 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>64 Comisaría Paine</b><small>Esparcimiento</small></span>
+<em>496 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza de Armas de Paine</b><small>Esparcimiento</small></span>
+<em>503 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Basica Paula Jaraquemada Alquiza</b><small>Esparcimiento</small></span>
+<em>504 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Culto sin nombre</b><small>Esparcimiento</small></span>
+<em>520 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>531 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>540 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>542 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>544 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>544 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Banco Estado</b><small>Esparcimiento</small></span>
+<em>547 m · 8 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Santa Isabel</b><small>Comercio</small></span>
+<em>557 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Cancha La Portada</b><small>Esparcimiento</small></span>
+<em>561 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza La Portada</b><small>Esparcimiento</small></span>
+<em>566 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>567 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>573 m · 8 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>SalcoBrand</b><small>Salud</small></span>
+<em>583 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Libertad</b><small>Esparcimiento</small></span>
+<em>603 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Cancha Gabriela Mistral</b><small>Esparcimiento</small></span>
+<em>637 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parque El Sauce</b><small>Esparcimiento</small></span>
+<em>642 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parque Alfalfal</b><small>Esparcimiento</small></span>
+<em>651 m · 9 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Mutual de Seguridad</b><small>Salud</small></span>
+<em>661 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Jardín Infantil Paso a Paso</b><small>Esparcimiento</small></span>
+<em>680 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Gabriela Mistral</b><small>Esparcimiento</small></span>
+<em>726 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>733 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parque O'Higgins</b><small>Esparcimiento</small></span>
+<em>738 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela de Párvulos Los Cariñositos</b><small>Esparcimiento</small></span>
+<em>751 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>área verde Puelmapu</b><small>Esparcimiento</small></span>
+<em>758 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Gabriela Mistral</b><small>Esparcimiento</small></span>
+<em>759 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>821 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Alemania</b><small>Esparcimiento</small></span>
+<em>827 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Los Héroes</b><small>Esparcimiento</small></span>
+<em>829 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Cancha Los Héroes</b><small>Esparcimiento</small></span>
+<em>833 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>840 m · 12 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Santa Catalina</b><small>Salud</small></span>
+<em>859 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>área verde Picunche</b><small>Esparcimiento</small></span>
+<em>868 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>870 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Banco de Chile</b><small>Esparcimiento</small></span>
+<em>877 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>áre verde Huentén</b><small>Esparcimiento</small></span>
+<em>908 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>914 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Colegio San Gennaro</b><small>Esparcimiento</small></span>
+<em>942 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde Antilef 1</b><small>Esparcimiento</small></span>
+<em>952 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Los Ositos Cariñositos</b><small>Esparcimiento</small></span>
+<em>955 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Liceo Municipal Adultos Miguel Campino Larraín</b><small>Esparcimiento</small></span>
+<em>967 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Especial Antiray</b><small>Esparcimiento</small></span>
+<em>972 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde Antilef 2</b><small>Esparcimiento</small></span>
+<em>976 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>977 m · 14 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Cruz Verde</b><small>Salud</small></span>
+<em>982 m · 14 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Comercio sin nombre</b><small>Comercio</small></span>
+<em>991 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Correos de Chile</b><small>Esparcimiento</small></span>
+<em>1002 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Cancha San Pablo</b><small>Esparcimiento</small></span>
+<em>1005 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Especial de Capacitacion Laboral de Paine</b><small>Esparcimiento</small></span>
+<em>1010 m · 14 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Panadería Nacimiento</b><small>Comercio</small></span>
+<em>1012 m · 14 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>1019 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1026 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1049 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Colegio San Sebastian de Paine</b><small>Esparcimiento</small></span>
+<em>1051 m · 15 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Colegio Moderno Paine</b><small>Esparcimiento</small></span>
+<em>1055 m · 15 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1078 m · 15 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>1112 m · 15 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Nacimiento</b><small>Esparcimiento</small></span>
+<em>1114 m · 15 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1137 m · 16 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1163 m · 16 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Esp. Julio Bernaldo de Quiroz</b><small>Esparcimiento</small></span>
+<em>1174 m · 16 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1193 m · 16 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Especial Rucalhue</b><small>Esparcimiento</small></span>
+<em>1198 m · 16 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza los Faisanes</b><small>Esparcimiento</small></span>
+<em>1210 m · 17 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Doña Mera</b><small>Comercio</small></span>
+<em>1227 m · 17 min</em>
+</div>
+</div>
+</section>
+</main>
+<!-- 1. Script de la lógica interactiva de pestañas -->
+<script src="../app.js"></script>
+<!-- 2. Scripts del Mapa Automático de Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+      var map = L.map('map', {zoomControl: false}).setView([-33.805984, -70.736581], 14);
+      
+      // Capa base híbrida satelital
+      L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+          attribution: '&copy; Google',
+          maxZoom: 18
+      }).addTo(map);
+
+      // Marcador central
+      var customIcon = L.divIcon({
+          className: 'custom-pin',
+          html: "<div style='background-color:#ff4757; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></div>",
+          iconSize: [20, 20],
+          iconAnchor: [10, 10]
+      });
+      L.marker([-33.805984, -70.736581], {icon: customIcon}).addTo(map);
+
+      // Isócrona peatonal azul (15 min)
+      var isocrona = [[-33.803757, -70.748538], [-33.807162, -70.749046], [-33.807263, -70.748733], [-33.807356, -70.748471], [-33.811795, -70.744602], [-33.811876, -70.744531], [-33.815852, -70.740833], [-33.817067, -70.739411], [-33.817101, -70.739233], [-33.817148, -70.735494], [-33.815446, -70.73146], [-33.814021, -70.729437], [-33.812151, -70.727135], [-33.808328, -70.725282], [-33.804581, -70.725719], [-33.801108, -70.726151], [-33.801034, -70.726331], [-33.801157, -70.727244], [-33.802881, -70.73088], [-33.803014, -70.732078], [-33.80315, -70.732735], [-33.803227, -70.733442], [-33.801644, -70.737684], [-33.798451, -70.739076], [-33.796433, -70.740696], [-33.796431, -70.74073], [-33.798468, -70.744173], [-33.799167, -70.745185], [-33.803757, -70.748538]];
+      if (isocrona && isocrona.length > 0) {
+          var polygon = L.polygon(isocrona, {
+              color: '#3b82f6',
+              weight: 3,
+              fillColor: '#3b82f6',
+              fillOpacity: 0.3
+          }).addTo(map);
+          
+          // Encuadrar el mapa al polígono
+          map.fitBounds(polygon.getBounds());
+      }
+    </script>
+</body>
+</html>

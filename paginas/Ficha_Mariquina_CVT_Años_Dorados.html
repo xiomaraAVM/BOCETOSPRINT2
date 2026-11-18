@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Mariquina · Envejecer en el lugar correcto</title>
+<link href="../styless.css" rel="stylesheet"/>
+<!-- CSS del Mapa Automático -->
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+</head>
+<body class="paper-texture">
+<header class="navbar">
+<div class="nav-container" style="max-width: none; width: 100%; margin: 0; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; justify-content: space-between;">
+<div class="logo">
+<div>
+<strong>Condominios de Viviendas Tuteladas</strong>
+<span>Chile</span>
+</div>
+</div>
+<a class="primary-button" href="../index.html" style="text-decoration: none; padding: 8px 16px; font-size: 13px;">
+            ← Volver al inicio
+        </a>
+</div>
+</header>
+<main class="shell detail-page">
+<!-- HERO Y MAPA -->
+<section class="detail-hero" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+<div>
+<p class="eyebrow"><span></span> Ficha territorial · Mariquina</p>
+<h1 style="font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #001f3f;">CVT Años Dorados</h1>
+<p class="address" style="color: #666; margin-bottom: 1.5rem;">Calle Jose Puchi S/N, Mariquina</p>
+<p class="lead" style="font-size: 1.1rem; line-height: 1.6; text-align: justify; color: #4a4a4a;">
+            Conjuntos de viviendas pensadas para personas mayores de 60 años que valen por sí mismas. Su idea es ofrecer un lugar donde los adultos mayores puedan vivir con autonomía, conversar y tener actividades, pero manteniendo contacto con espacios que facilitan la vida de barrio.
+          </p>
+<div class="chips" style="margin-top: 2rem;">
+<span>En operación · 2014</span>
+<span>20 viviendas tuteladas</span>
+<span>Privado</span>
+            <span>periferia</span>
+          </div>
+</div>
+<div class="summary-card map-container" style="background: #faf8f5; padding: 12px; border-radius: 24px; border: 1px solid #eaeaea;">
+<div class="card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;">
+<span style="font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: #888; text-transform: uppercase;">Resumen de proximidad</span>
+<span style="font-size: 0.75rem; background: #fff; padding: 4px 10px; border-radius: 12px; border: 1px solid #ddd; font-weight: bold;">15 MINUTOS</span>
+</div>
+<!-- Mapa dinámico Leaflet -->
+<div id="map" style="height: 380px; width: 100%; border-radius: 16px; z-index: 1;"></div>
+</div>
+</section>
+<section aria-label="Dimensiones de análisis" class="dimension-tabs" role="tablist">
+<span style="font-size: 0.85rem; letter-spacing: 2px; color: #888; text-transform: uppercase;">DIMENSIONES</span>
+</section>
+<!-- BOTONES DE PESTAÑAS (Métricas) -->
+<section class="metrics">
+<button class="metric" data-tab-target="profile">
+<span></span><small>Población</small><strong>22.973</strong><em>residentes</em>
+</button>
+<button class="metric active" data-tab-target="access">
+<span></span><small>Equipamiento</small><strong>29</strong><em>servicios cercanos</em>
+</button>
+<button class="metric" data-tab-target="transport">
+<span></span><small>Transporte público</small><strong>1</strong><em>paraderos en 15 min</em>
+</button>
+<button class="metric" data-tab-target="public-space">
+<span></span><small>Espacio público</small><strong>2</strong><em>áreas verdes cercanas</em>
+</button>
+<button class="metric" data-tab-target="socioeconomic">
+<span></span><small>Ingresos</small><strong>$$</strong><em>nivel municipal</em>
+</button>
+</section>
+<!-- PANELES DE CONTENIDO (Lectura del Entorno) -->
+<section class="analysis-grid">
+<article class="analysis-card">
+<p class="eyebrow" style="color: #ff4757; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Lectura del entorno</p>
+<h2 data-panel-title="">Una ciudad para quedarse</h2>
+<button class="method-link" data-action="methodology" type="button"></button>
+<!-- PANEL: EQUIPAMIENTOS (Automático por Python) -->
+<div class="tab-panel active" data-panel="access">
+<div class="big-score">77<span>/100</span></div>
+<p>El proyecto tiene un acceso <b>alto</b> a servicios cotidianos en un radio caminable de 15 minutos.</p>
+<ul class="nearby-list">
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Salud</span>
+<b>CECOSF Doctor Silva de la Paz / 360 m · 5 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Educación</span>
+<b>Jardín Infantil Suyai / 316 m · 5 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Cultura</span>
+<b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Deporte</span>
+<b>Estadio Anfa Mariquina / 246 m · 4 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Esparcimiento</span>
+<b>Área Verde / Plaza / 1096 m · 15 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Culto</span>
+<b>Iglesia madre Candelaria / 580 m · 8 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Seguridad</span>
+<b>Seguridad sin nombre / 1179 m · 16 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Servicios</span>
+<b>Banco Estado / 1126 m · 16 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Social</span>
+<b style="color:#bbb; font-weight: normal;">Sin servicios consolidados a 15 min</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: TRANSPORTE PÚBLICO -->
+<div class="tab-panel" data-panel="transport">
+<div class="big-score">1<span></span></div>
+<p>Se detectó <b>1 paradero</b> de transporte público en un radio de caminata de 15 minutos.</p>
+<ul class="nearby-list">
+<li>
+<span style="width: 250px; display: inline-block; color: #888;">Paraderos cercanos consolidados</span>
+<b>1 paradero</b>
+</li>
+<li>
+<span style="width: 250px; display: inline-block; color: #888;">Estación de Metro/Tren más cercana</span>
+<b>Tren Mariquina · 4,8 km en línea recta</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: POBLACIÓN Y DEMOGRAFÍA -->
+<div class="tab-panel" data-panel="profile">
+<div class="bars">
+<div>
+<b>25%</b>
+<i style="height: 45.5%; background-color: #f39c12;"></i>
+<small>0–17 años</small>
+</div>
+<div>
+<b>55%</b>
+<i style="height: 100%; background-color: #f39c12;"></i>
+<small>18–59 años</small>
+</div>
+<div>
+<b>4.620 (20%)</b>
+<i style="height: 36.4%; background-color: #f39c12;"></i>
+<small>Personas de 60+ años</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Índice de envejecimiento</span>
+<b>81,1 mayores de 60 por cada 100 menores de 18</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Género</span>
+<b>51% F / 49% M</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Déficit habitacional comunal</span>
+<b>478 viviendas (déficit cuantitativo, Censo 2024; 5,8% de los 8.223 hogares)</b>
+</li>
+</ul>
+<p style="text-align: justify; margin-top: 15px; font-size: 0.85rem; color: #888;">
+    Esta información se obtuvo de la base de datos del Censo 2024 y corresponde al total de la comuna.
+  </p>
+</div>
+<!-- PANEL: ESPACIO PÚBLICO -->
+<div class="tab-panel" data-panel="public-space">
+<h2>Entorno y áreas verdes</h2>
+<div class="bars">
+<div>
+<b style="color: #e74c3c;">2</b>
+<i style="height: 100%; background-color: #e74c3c;"></i>
+<small>Parques y Áreas Verdes Totales</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Área verde</span>
+<b>Área Verde / Plaza · 1.096 m · 15 min</b>
+</li>
+<li>
+<span style="width: 200px; display: inline-block; color: #888;">Plaza</span>
+<b>Plaza San José de La Mariquina · 1.286 m · 18 min</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: SOCIOECONÓMICO -->
+<div class="tab-panel" data-panel="socioeconomic">
+<div class="socio-container">
+<div class="socio-intro">
+<h2>Indicadores socioeconómicos municipales</h2>
+<p>
+        Ingresos, gastos y distribución de los recursos municipales para los años 2023, 2024 y 2025.
+        Las cifras monetarias se presentan sin factor de corrección monetaria.
+      </p>
+</div>
+<div class="socio-kpis">
+<div class="socio-kpi">
+<span>Disponibilidad presupuestaria por habitante · 2025</span>
+<strong>451 M$</strong>
+<small>Disponibilidad presupuestaria municipal</small>
+</div>
+<div class="socio-kpi">
+<span>Ingreso municipal total · 2025</span>
+<strong>10.909.273 M$</strong>
+<small>Ingreso total percibido</small>
+</div>
+<div class="socio-kpi">
+<span>Gasto municipal total · 2025</span>
+<strong>10.993.019 M$</strong>
+<small>Gasto total devengado</small>
+</div>
+<div class="socio-kpi">
+<span>Ingresos propios permanentes · 2025</span>
+<strong>2.202.606 M$</strong>
+<small>IPP</small>
+</div>
+</div>
+<section class="socio-section">
+<h3>1. Ingresos propios según fuente de ingreso</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disponibilidad Presupuestaria Municipal por Habitante (M$)</td>
+<td>363</td>
+<td>404</td>
+<td>451</td>
+</tr>
+<tr class="socio-highlight">
+<td>Ingresos Municipales (Ingreso Total Percibido) (M$)</td>
+<td>8.638.313</td>
+<td>9.698.092</td>
+<td>10.909.273</td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<section class="socio-section">
+<h3>2. Gastos municipales</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de gasto</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+
+
+<tr class="socio-highlight">
+<td>Gastos Municipales (Gastos Total Devengado) (M$)</td>
+<td>8.116.698</td>
+<td>9.344.861</td>
+<td>10.993.019</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Actividades Municipales (M$)</td>
+<td>113.629</td>
+<td>145.247</td>
+<td>168.578</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Interna (M$)</td>
+<td>6.053.933</td>
+<td>6.820.656</td>
+<td>7.835.258</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Programas Culturales (M$)</td>
+<td>49.016</td>
+<td>72.578</td>
+<td>94.392</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Programas Recreacionales (M$)</td>
+<td>55.169</td>
+<td>66.990</td>
+<td>87.728</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Programas Sociales (M$)</td>
+<td>213.406</td>
+<td>239.459</td>
+<td>185.740</td>
+</tr>
+<tr>
+<td>Gastos Municipales Área de Gestión: Servicios Comunitarios (M$)</td>
+<td>1.631.545</td>
+<td>1.978.283</td>
+<td>2.621.323</td>
+</tr>
+
+<tr>
+<td>Monto Transferido al Fondo Común Municipal (M$)</td>
+<td>491.731</td>
+<td>576.225</td>
+<td>619.258</td>
+</tr>
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<section class="socio-section">
+<h3>3. Distribución del ingreso municipal según origen</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participación de Ingresos Propios Permanentes (IPP) en el Ingreso Total (%)</td>
+<td>19,8</td>
+<td>20,2</td>
+<td>20,2</td>
+</tr>
+<tr>
+<td>Participación del Fondo Común Municipal en el Ingreso Total (%)</td>
+<td>58,9</td>
+<td>60,2</td>
+<td>61,4</td>
+</tr>
+<tr>
+<td>Participación de Ingresos por Transferencias en el Ingreso Total (%)</td>
+<td>14,4</td>
+<td>11,1</td>
+<td>11,4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<a class="socio-source" href="https://www.bcn.cl/siit/reportescomunales/comunal.html?unidad=Comunales&amp;anno=2026" rel="noopener noreferrer" target="_blank">
+<strong>↗ Consultar fuente oficial: Reportes Comunales BCN</strong>
+<span>
+        Biblioteca del Congreso Nacional de Chile · Indicadores comunales,
+        ingresos y gastos municipales.
+      </span>
+<span>Haz clic aquí para consultar el reporte original.</span>
+</a>
+</div>
+</div>
+</article>
+</section>
+<!-- INVENTARIO COMPLETO (Interactivo con app.js) -->
+<section class="inventory">
+<div class="inventory-heading">
+<div>
+<p class="eyebrow">Inventario de proximidad</p>
+<h2>Dentro del área caminable en 15 minutos</h2>
+</div>
+<!-- Filtros controlados por app.js -->
+<div class="filter-list compact" id="equipment-filters">
+<button class="filter active" data-equipment="Todos">Todos</button>
+<button class="filter" data-equipment="Salud">Salud</button>
+<button class="filter" data-equipment="Comercio">Comercio</button>
+<!-- Nota: Python exporta "Esparcimiento", pero el botón dice Plaza. -->
+<button class="filter" data-equipment="Esparcimiento">Plaza/Parque</button>
+<button class="filter" data-equipment="Cultura">Cultura</button>
+<button class="filter" data-equipment="Transporte">Transporte</button>
+</div>
+</div>
+<div class="inventory-list">
+<!-- Python inyectará la lista con data-equipment-item para que app.js la filtre -->
+<div data-equipment-item="Culto">
+<span><b>Iglesia Santa Elisa</b><small>Culto</small></span>
+<em>922 m · 13 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Posta San José de la Mariquina</b><small>Salud</small></span>
+<em>910 m · 13 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Jardín Infantil Suyai</b><small>Educación</small></span>
+<em>316 m · 5 min</em>
+</div>
+<div data-equipment-item="Servicios">
+<span><b>Banco Estado</b><small>Servicios</small></span>
+<em>1126 m · 16 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Farmacia Integral</b><small>Salud</small></span>
+<em>1155 m · 16 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Salud sin nombre</b><small>Salud</small></span>
+<em>1063 m · 15 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>CECOSF Doctor Silva de la Paz</b><small>Salud</small></span>
+<em>360 m · 5 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Bebidas e Doces</b><small>Comercio</small></span>
+<em>558 m · 8 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia madre Candelaria</b><small>Culto</small></span>
+<em>580 m · 8 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Escuela Especial de Lenguaje Andorra</b><small>Educación</small></span>
+<em>857 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>742 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza San José de La Mariquina</b><small>Esparcimiento</small></span>
+<em>1286 m · 18 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>574 m · 8 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Estadio Municipal de San José de la Mariquina</b><small>Deporte</small></span>
+<em>594 m · 8 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Colegio Santa Cruz</b><small>Educación</small></span>
+<em>1188 m · 16 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>415 m · 6 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Skate Park</b><small>Deporte</small></span>
+<em>685 m · 10 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>673 m · 9 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>693 m · 10 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Gimnasio Municipal</b><small>Deporte</small></span>
+<em>673 m · 9 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Liceo Seminario Menor San Fidel</b><small>Educación</small></span>
+<em>529 m · 8 min</em>
+</div>
+<div data-equipment-item="Culto">
+<span><b>Iglesia Madre Candelaria</b><small>Culto</small></span>
+<em>585 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>1096 m · 15 min</em>
+</div>
+<div data-equipment-item="Seguridad">
+<span><b>Seguridad sin nombre</b><small>Seguridad</small></span>
+<em>1179 m · 16 min</em>
+</div>
+<div data-equipment-item="Educación">
+<span><b>Escuela Particular Padre Luis Beltrán</b><small>Educación</small></span>
+<em>1004 m · 14 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>416 m · 6 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Deporte sin nombre</b><small>Deporte</small></span>
+<em>254 m · 4 min</em>
+</div>
+<div data-equipment-item="Deporte">
+<span><b>Estadio Anfa Mariquina</b><small>Deporte</small></span>
+<em>246 m · 4 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Hospital Santa Elisa</b><small>Salud</small></span>
+<em>905 m · 13 min</em>
+</div>
+</div>
+</section>
+</main>
+<!-- 1. Script de la lógica interactiva de pestañas -->
+<script src="../app.js"></script>
+<!-- 2. Scripts del Mapa Automático de Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+      var map = L.map('map', {zoomControl: false}).setView([-39.539396, -72.976043], 14);
+      
+      // Capa base híbrida satelital
+      L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+          attribution: '&copy; Google',
+          maxZoom: 18
+      }).addTo(map);
+
+      // Marcador central
+      var customIcon = L.divIcon({
+          className: 'custom-pin',
+          html: "<div style='background-color:#ff4757; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></div>",
+          iconSize: [20, 20],
+          iconAnchor: [10, 10]
+      });
+      L.marker([-39.539396, -72.976043], {icon: customIcon}).addTo(map);
+
+      // Isócrona peatonal azul (15 min)
+      var isocrona = [[-39.53711, -72.98801], [-39.537268, -72.986157], [-39.537448, -72.98406], [-39.537627, -72.981963], [-39.538768, -72.977641], [-39.539047, -72.976691], [-39.540207, -72.974096], [-39.542564, -72.971141], [-39.543046, -72.969969], [-39.543217, -72.969164], [-39.543209, -72.968913], [-39.543202, -72.968662], [-39.541789, -72.964065], [-39.541758, -72.963973], [-39.54126, -72.963174], [-39.540151, -72.961492], [-39.54011, -72.961486], [-39.539977, -72.961474], [-39.539818, -72.96146], [-39.539792, -72.96147], [-39.539748, -72.961495], [-39.538783, -72.962552], [-39.537864, -72.963559], [-39.53775, -72.963694], [-39.537414, -72.964824], [-39.536602, -72.967141], [-39.533972, -72.970351], [-39.533547, -72.970852], [-39.530263, -72.975866], [-39.530116, -72.976054], [-39.529964, -72.976249], [-39.529222, -72.977232], [-39.529498, -72.977462], [-39.529654, -72.977276], [-39.529809, -72.977089], [-39.533014, -72.975327], [-39.536155, -72.97626], [-39.537448, -72.979836], [-39.537269, -72.981933], [-39.537089, -72.98403], [-39.53691, -72.986127], [-39.536751, -72.987979], [-39.536592, -72.989832], [-39.536951, -72.989863], [-39.53711, -72.98801]];
+      if (isocrona && isocrona.length > 0) {
+          var polygon = L.polygon(isocrona, {
+              color: '#3b82f6',
+              weight: 3,
+              fillColor: '#3b82f6',
+              fillOpacity: 0.3
+          }).addTo(map);
+          
+          // Encuadrar el mapa al polígono
+          map.fitBounds(polygon.getBounds());
+      }
+    </script>
+</body>
+</html>

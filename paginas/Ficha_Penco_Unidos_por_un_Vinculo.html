@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Penco · Envejecer en el lugar correcto</title>
+<link href="../styless.css" rel="stylesheet"/>
+<!-- CSS del Mapa Automático -->
+<link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet"/>
+</head>
+<body class="paper-texture">
+<header class="navbar">
+<div class="nav-container" style="max-width: none; width: 100%; margin: 0; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; justify-content: space-between;">
+<div class="logo">
+<div>
+<strong>Condominios de Viviendas Tuteladas</strong>
+<span>Chile</span>
+</div>
+</div>
+<a class="primary-button" href="../index.html" style="text-decoration: none; padding: 8px 16px; font-size: 13px;">
+            ← Volver al inicio
+        </a>
+</div>
+</header>
+<main class="shell detail-page">
+<!-- HERO Y MAPA -->
+<section class="detail-hero" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+<div>
+<p class="eyebrow"><span></span> Ficha territorial · Penco</p>
+<h1 style="font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; color: #001f3f;">Unidos por un Vinculo</h1>
+<p class="address" style="color: #666; margin-bottom: 1.5rem;">Esteban de Sosa 400, Penco</p>
+<p class="lead" style="font-size: 1.1rem; line-height: 1.6; text-align: justify; color: #4a4a4a;">
+            Conjuntos de viviendas pensadas para personas mayores de 60 años que valen por sí mismas. Su idea es ofrecer un lugar donde los adultos mayores puedan vivir con autonomía, conversar y tener actividades, pero manteniendo contacto con espacios que facilitan la vida de barrio.
+          </p>
+<div class="chips" style="margin-top: 2rem;">
+<span>En operación · 2012</span>
+<span>10 viviendas tuteladas</span>
+<span>Público</span>
+            <span>-</span>
+          </div>
+</div>
+<div class="summary-card map-container" style="background: #faf8f5; padding: 12px; border-radius: 24px; border: 1px solid #eaeaea;">
+<div class="card-title" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 0 8px;">
+<span style="font-size: 0.75rem; font-weight: bold; letter-spacing: 1px; color: #888; text-transform: uppercase;">Resumen de proximidad</span>
+<span style="font-size: 0.75rem; background: #fff; padding: 4px 10px; border-radius: 12px; border: 1px solid #ddd; font-weight: bold;">15 MINUTOS</span>
+</div>
+<!-- Mapa dinámico Leaflet -->
+<div id="map" style="height: 380px; width: 100%; border-radius: 16px; z-index: 1;"></div>
+</div>
+</section>
+<section aria-label="Dimensiones de análisis" class="dimension-tabs" role="tablist">
+<span style="font-size: 0.85rem; letter-spacing: 2px; color: #888; text-transform: uppercase;">DIMENSIONES</span>
+</section>
+<!-- BOTONES DE PESTAÑAS (Métricas) -->
+<section class="metrics">
+<button class="metric" data-tab-target="profile">
+<span></span><small>Población</small><strong>48.971</strong><em>residentes</em>
+</button>
+<button class="metric active" data-tab-target="access">
+<span></span><small>Equipamiento</small><strong>116</strong><em>servicios cercanos</em>
+</button>
+<button class="metric" data-tab-target="transport">
+<span></span><small>Transporte público</small><strong>58</strong><em>paraderos en 15 min</em>
+</button>
+<button class="metric" data-tab-target="public-space">
+<span></span><small>Espacio público</small><strong>6</strong><em>áreas verdes cercanas</em>
+</button>
+<button class="metric" data-tab-target="socioeconomic">
+<span></span><small>Ingresos</small><strong>$$</strong><em>nivel municipal</em>
+</button>
+</section>
+<!-- PANELES DE CONTENIDO (Lectura del Entorno) -->
+<section class="analysis-grid">
+<article class="analysis-card">
+<p class="eyebrow" style="color: #ff4757; font-weight: bold; letter-spacing: 1px; text-transform: uppercase;">Lectura del entorno</p>
+<h2 data-panel-title="">Una ciudad para quedarse</h2>
+<!-- PANEL: EQUIPAMIENTOS (Automático por Python) -->
+<div class="tab-panel active" data-panel="access">
+<div class="big-score">100<span>/100</span></div>
+<p>El proyecto tiene un acceso <b>alto</b> a servicios cotidianos en un radio caminable de 15 minutos.</p>
+<ul class="nearby-list">
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Salud</span>
+<b>SAR Penco / 908 m · 13 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Educación</span>
+<b>Escuela de Lenguaje Jardin de Palabras / 276 m · 4 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Cultura</span>
+<b>Museo de la Historia de Penco / 939 m · 13 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Deporte</span>
+<b>Deporte sin nombre / 556 m · 8 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Esparcimiento</span>
+<b>Área Verde / Plaza / 583 m · 8 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Culto</span>
+<b>Parroquia / 768 m · 11 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Seguridad</span>
+<b>Seguridad sin nombre / 31 m · 1 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Servicios</span>
+<b>Banco Estado / 957 m · 13 min</b>
+</li>
+<li>
+<span style="width: 150px; display: inline-block; color: #888;">Social</span>
+<b>Junta de Vecinos N° 5 Penco: Roberto Possi Gamonal / 792 m · 11 min</b>
+</li>
+</ul>
+</div>
+<!-- PANEL: TRANSPORTE PÚBLICO (Mixto: Automático + Manual) -->
+<div class="tab-panel" data-panel="transport">
+<div class="big-score">58<span></span></div>
+<p>Se detectaron <b>58 paraderos</b> de transporte público en un radio de caminata de 15 minutos.</p>
+<ul class="nearby-list">
+<li><span style="width: 250px; display: inline-block; color: #888;">Paraderos cercanos consolidados</span><b>58 paraderos</b></li>
+<li><span style="width: 250px; display: inline-block; color: #888;">Estación de Metro/Tren más cercana</span><b>Tren Lirquén · 4,0 km en línea recta</b></li>
+</ul>
+</div>
+<!-- PANEL: POBLACIÓN Y DEMOGRAFÍA (Mixto: Automático + Manual) -->
+<div class="tab-panel" data-panel="profile">
+<div class="bars">
+<div>
+<b>21%</b>
+<i style="height: 36.8%;background-color: #f39c12;"></i>
+<small>0–17 años</small>
+</div>
+<div>
+<b>57%</b>
+<i style="height: 100%;background-color: #f39c12;"></i>
+<small>18–59 años</small>
+</div>
+<div>
+<b>10.729 (22%)</b>
+<i style="height: 38.6%; background-color: #f39c12;"></i>
+<small>Personas de 60+ años</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li><span style="width: 200px; display: inline-block; color: #888;">Índice de envejecimiento</span><b>102,7 mayores de 60 por cada 100 menores de 18</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Género</span><b>52% F / 48% M</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Déficit habitacional comunal</span><b>1.104 viviendas (déficit cuantitativo, Censo 2024; 6,6% de los 16.829 hogares)</b></li>
+</ul>
+<p style="text-align: justify; margin-top: 15px; font-size: 0.85rem; color: #888;">
+              Esta información se obtuvo de base de datos del Censo 2024 y corresponde al total de la comuna.
+            </p>
+</div>
+<!-- PANEL: ESPACIO PÚBLICO (Automático por Python) -->
+<div class="tab-panel" data-panel="public-space">
+<h2>Entorno y áreas verdes</h2>
+<div class="bars">
+<div>
+<b style="color: #e74c3c;">6</b>
+<i style="height: 100%; background-color: #e74c3c;"></i>
+<small>Parques y Áreas Verdes Totales</small>
+</div>
+</div>
+<ul class="nearby-list">
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde más cercana</span><b>Área Verde / Plaza · 583 m · 8 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 710 m · 10 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 747 m · 10 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Área verde</span><b>Área Verde / Plaza · 860 m · 12 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Plaza</span><b>Plaza Los Conquistadores · 989 m · 14 min</b></li>
+<li><span style="width: 200px; display: inline-block; color: #888;">Plaza</span><b>Plazoleta Miraflores · 992 m · 14 min</b></li>
+</ul>
+</div>
+<!-- PANEL: SOCIOECONÓMICO -->
+<div class="tab-panel" data-panel="socioeconomic">
+<div class="socio-container">
+<!-- ENCABEZADO -->
+<div class="socio-intro">
+<h2>Indicadores socioeconómicos municipales</h2>
+<p>
+        Ingresos, gastos y distribución de los recursos municipales para los años
+        2023, 2024 y 2025. Las cifras monetarias se presentan sin factor de
+        corrección monetaria.
+      </p>
+</div>
+<!-- INDICADORES DESTACADOS -->
+<div class="socio-kpis">
+<div class="socio-kpi">
+<span>Disponibilidad presupuestaria por habitante · 2025</span>
+<strong>328 M$</strong>
+<small>Según la unidad reportada por la BCN</small>
+</div>
+<div class="socio-kpi">
+<span>Ingreso municipal total · 2025</span>
+<strong>16.498.840 M$</strong>
+<small>Ingreso total percibido</small>
+</div>
+<div class="socio-kpi">
+<span>Gasto municipal total · 2025</span>
+<strong>16.301.748 M$</strong>
+<small>Gasto total devengado</small>
+</div>
+<div class="socio-kpi">
+<span>Ingresos propios permanentes · 2025</span>
+<strong>4.518.660 M$</strong>
+<small>IPP</small>
+</div>
+</div>
+<!-- INGRESOS MUNICIPALES -->
+<section class="socio-section">
+<h3>1. Ingresos propios según fuente de ingreso</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disponibilidad Presupuestaria Municipal por Habitante (M$)</td>
+<td>291</td>
+<td>308</td>
+<td>328</td>
+</tr>
+<tr class="socio-highlight">
+<td>Ingresos Municipales (Ingreso Total Percibido) (M$)</td>
+<td>14.562.429</td>
+<td>15.481.817</td>
+<td>16.498.840</td>
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<!-- GASTOS MUNICIPALES -->
+<section class="socio-section">
+<h3>2. Gastos municipales</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de gasto</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+
+
+<tr class="socio-highlight">
+<td>Gastos Municipales (Gastos Total Devengado) (M$)</td>
+<td>14.026.821</td>
+<td>16.008.892</td>
+<td>16.301.748</td>
+</tr>
+<tr>
+<td>Área de Gestión: Actividades Municipales (M$)</td>
+<td>193.629</td>
+<td>502.108</td>
+<td>479.712</td>
+</tr>
+<tr>
+<td>Área de Gestión: Interna (M$)</td>
+<td>9.373.855</td>
+<td>10.749.103</td>
+<td>10.815.774</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Culturales (M$)</td>
+<td>108.370</td>
+<td>150.971</td>
+<td>208.233</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Recreacionales (M$)</td>
+<td>89.970</td>
+<td>170.933</td>
+<td>113.638</td>
+</tr>
+<tr>
+<td>Área de Gestión: Programas Sociales (M$)</td>
+<td>1.008.424</td>
+<td>837.357</td>
+<td>890.792</td>
+</tr>
+<tr>
+<td>Área de Gestión: Servicios Comunitarios (M$)</td>
+<td>3.252.573</td>
+<td>3.657.443</td>
+<td>3.793.599</td>
+</tr>
+
+<tr>
+<td>Monto Transferido al Fondo Común Municipal (M$)</td>
+<td>1.103.585</td>
+<td>1.266.458</td>
+<td>1.263.148</td>
+</tr>
+
+
+
+</tbody>
+</table>
+</div>
+</section>
+<!-- DISTRIBUCIÓN DEL INGRESO -->
+<section class="socio-section">
+<h3>3. Distribución del ingreso municipal según origen</h3>
+<div class="socio-table-wrap">
+<table class="socio-table">
+<thead>
+<tr>
+<th>Tipo de ingreso</th>
+<th>2023</th>
+<th>2024</th>
+<th>2025</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Participación de Ingresos Propios Permanentes (IPP) en el Ingreso Total (%)</td>
+<td>27,5%</td>
+<td>26,9%</td>
+<td>27,4%</td>
+</tr>
+<tr>
+<td>Participación del Fondo Común Municipal en el Ingreso Total (%)</td>
+<td>52,9%</td>
+<td>56,2%</td>
+<td>55,3%</td>
+</tr>
+<tr>
+<td>Participación de Ingresos por Transferencias en el Ingreso Total (%)</td>
+<td>10,3%</td>
+<td>7,2%</td>
+<td>7,5%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- ENLACE A LA FUENTE OFICIAL -->
+<a class="socio-source" href="https://www.bcn.cl/siit/reportescomunales/comunal.html?unidad=Comunales&amp;anno=2026" rel="noopener noreferrer" target="_blank">
+<strong>↗ Consultar fuente oficial: Reportes Comunales BCN</strong>
+<span>
+        Biblioteca del Congreso Nacional de Chile · Indicadores comunales,
+        ingresos y gastos municipales.
+      </span>
+<span>Haz clic aquí para consultar el reporte original.</span>
+</a>
+</div>
+</div>
+</article>
+</section>
+<!-- INVENTARIO COMPLETO (Interactivo con app.js) -->
+<section class="inventory">
+<div class="inventory-heading">
+<div>
+<p class="eyebrow">Inventario de proximidad</p>
+<h2>Dentro del área caminable en 15 minutos</h2>
+</div>
+<!-- Filtros controlados por app.js -->
+<div class="filter-list compact" id="equipment-filters">
+<button class="filter active" data-equipment="Todos">Todos</button>
+<button class="filter" data-equipment="Salud">Salud</button>
+<button class="filter" data-equipment="Comercio">Comercio</button>
+<!-- Nota: Python exporta "Esparcimiento", pero el botón dice Plaza. -->
+<button class="filter" data-equipment="Esparcimiento">Plaza/Parque</button>
+<button class="filter" data-equipment="Cultura">Cultura</button>
+<button class="filter" data-equipment="Transporte">Transporte</button>
+</div>
+</div>
+<div class="inventory-list">
+<div data-equipment-item="Esparcimiento">
+<span><b>Seguridad sin nombre</b><small>Esparcimiento</small></span>
+<em>31 m · 1 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Max Grissar esq. Inés de Suarez</b><small>Transporte</small></span>
+<em>35 m · 1 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Max Grissar esq. Inés de Suarez</b><small>Transporte</small></span>
+<em>44 m · 1 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>135 m · 2 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>136 m · 2 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Parque Industrial / Oriente</b><small>Transporte</small></span>
+<em>196 m · 3 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Max Grissar esq. Roberto Ovalle</b><small>Transporte</small></span>
+<em>207 m · 3 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Roberto Ovalle</b><small>Transporte</small></span>
+<em>226 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Esteban de Sosa esq. Abate Molina</b><small>Transporte</small></span>
+<em>251 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Esteban de Sosa esq. Abate Molina</b><small>Transporte</small></span>
+<em>255 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>255 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>265 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Lomas del Conquistador</b><small>Transporte</small></span>
+<em>271 m · 4 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela de Lenguaje Jardin de Palabras</b><small>Esparcimiento</small></span>
+<em>276 m · 4 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Lomas del Conquistador / Sur</b><small>Transporte</small></span>
+<em>321 m · 5 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Roberto Ovalle esq. Picis</b><small>Transporte</small></span>
+<em>357 m · 5 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Roberto Ovalle esq. Heriberto Urzua</b><small>Transporte</small></span>
+<em>370 m · 5 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Forjadores de Chile</b><small>Transporte</small></span>
+<em>394 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Complejo Educacional Gloria Méndez Briones</b><small>Esparcimiento</small></span>
+<em>396 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Forjadores de Chile</b><small>Transporte</small></span>
+<em>402 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Jardín Infantil Ann Kudao</b><small>Esparcimiento</small></span>
+<em>417 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>420 m · 6 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Forjadores de Chile</b><small>Transporte</small></span>
+<em>428 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Centro Educacional Alborada</b><small>Esparcimiento</small></span>
+<em>442 m · 6 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Colegio A-Lafken</b><small>Esparcimiento</small></span>
+<em>451 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Membrillar esq. Victoria</b><small>Transporte</small></span>
+<em>466 m · 7 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Colegio Italia</b><small>Esparcimiento</small></span>
+<em>468 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Rubén Hurtado esq. Canapus</b><small>Transporte</small></span>
+<em>473 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Rubén Hurtado esq. Canapus</b><small>Transporte</small></span>
+<em>479 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Membrillar esq. Cruz</b><small>Transporte</small></span>
+<em>505 m · 7 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Miramar esq. Maitén</b><small>Transporte</small></span>
+<em>551 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>556 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Educación sin nombre</b><small>Esparcimiento</small></span>
+<em>556 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Maitén esq. Miramar</b><small>Transporte</small></span>
+<em>563 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Guzmán</b><small>Transporte</small></span>
+<em>568 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>O'Higgins esq. Talcahuano</b><small>Transporte</small></span>
+<em>575 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>San Vicente - Bernardo O'Higgins</b><small>Transporte</small></span>
+<em>576 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Forjadores de Chile</b><small>Esparcimiento</small></span>
+<em>577 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Montahue Bernardo Los Bellotos</b><small>Transporte</small></span>
+<em>580 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Guzmán</b><small>Transporte</small></span>
+<em>581 m · 8 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>583 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Membrillar esq. Los Carrera</b><small>Transporte</small></span>
+<em>587 m · 8 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Panadería Amas Amor</b><small>Comercio</small></span>
+<em>595 m · 8 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Montahue - Ruta 150 (N)</b><small>Transporte</small></span>
+<em>614 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Montahue - Ruta 150 (S)</b><small>Transporte</small></span>
+<em>615 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Ramón Carnicer Bernardo Vicente Pérez Rosales</b><small>Transporte</small></span>
+<em>622 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>641 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Mini Market</b><small>Comercio</small></span>
+<em>641 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Montahue Esquina El Pangue</b><small>Transporte</small></span>
+<em>642 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Ramón Carnicer Bernardo Vicente Pérez Rosales</b><small>Transporte</small></span>
+<em>645 m · 9 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Colegio El Refugio</b><small>Esparcimiento</small></span>
+<em>652 m · 9 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Provisiones Eugenio</b><small>Comercio</small></span>
+<em>668 m · 9 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Paradero de Transporte Público</b><small>Transporte</small></span>
+<em>679 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Los Carrera esq. Chacabuco</b><small>Transporte</small></span>
+<em>684 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Centro Deportivo</b><small>Esparcimiento</small></span>
+<em>684 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Talcahuano esq. Las Heras</b><small>Transporte</small></span>
+<em>690 m · 10 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Los Queules - El Arrayán</b><small>Transporte</small></span>
+<em>699 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>710 m · 10 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Das Gutte Bortt</b><small>Comercio</small></span>
+<em>711 m · 10 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Das Gute Brot</b><small>Comercio</small></span>
+<em>727 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>747 m · 10 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>747 m · 10 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Minimarket: Los Carrera</b><small>Comercio</small></span>
+<em>764 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parroquia</b><small>Esparcimiento</small></span>
+<em>768 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Las Carretas</b><small>Comercio</small></span>
+<em>773 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Penco</b><small>Esparcimiento</small></span>
+<em>774 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Penco esq. Cruz</b><small>Transporte</small></span>
+<em>789 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Las Heras esq. Membrillar</b><small>Transporte</small></span>
+<em>791 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Junta de Vecinos N° 5 Penco: Roberto Possi Gamonal</b><small>Esparcimiento</small></span>
+<em>792 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Gabito</b><small>Comercio</small></span>
+<em>792 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>El Maiten - Penco / Oriente</b><small>Transporte</small></span>
+<em>798 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Penco esq. Maitén</b><small>Transporte</small></span>
+<em>800 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Freire - San Vicente</b><small>Transporte</small></span>
+<em>801 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Gabito</b><small>Comercio</small></span>
+<em>803 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Iglesia Metodista de Chile</b><small>Esparcimiento</small></span>
+<em>813 m · 11 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Los Carrera esq. Penco</b><small>Transporte</small></span>
+<em>816 m · 11 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Almacen y proviciones M &amp; M</b><small>Comercio</small></span>
+<em>816 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Bomberos de Penco</b><small>Esparcimiento</small></span>
+<em>824 m · 11 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Escuela Marta Stowhas</b><small>Esparcimiento</small></span>
+<em>828 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Maitén esq. Penco</b><small>Transporte</small></span>
+<em>830 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Las Heras esq. Chacabuco</b><small>Transporte</small></span>
+<em>853 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Liceo Pencopolitano</b><small>Esparcimiento</small></span>
+<em>858 m · 12 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Área Verde / Plaza</b><small>Esparcimiento</small></span>
+<em>860 m · 12 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Villa Marina</b><small>Comercio</small></span>
+<em>868 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Bellavista Norte - Calle 1 (S)</b><small>Transporte</small></span>
+<em>883 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Bellavista Norte - Calle 1 (N)</b><small>Transporte</small></span>
+<em>892 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Penco esq. O'Higgins</b><small>Transporte</small></span>
+<em>897 m · 12 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>penco esq. Maitén</b><small>Transporte</small></span>
+<em>902 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>3 Comisaría Penco</b><small>Esparcimiento</small></span>
+<em>903 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Freire - Membrillar</b><small>Transporte</small></span>
+<em>908 m · 13 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>SAR Penco</b><small>Salud</small></span>
+<em>908 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Gym: Energy House</b><small>Esparcimiento</small></span>
+<em>913 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Maipú esq. Cruz</b><small>Transporte</small></span>
+<em>914 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>El Maiten esq Penco  oriente</b><small>Transporte</small></span>
+<em>916 m · 13 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Sabrocarnes</b><small>Comercio</small></span>
+<em>923 m · 13 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Don Juanito</b><small>Comercio</small></span>
+<em>937 m · 13 min</em>
+</div>
+<div data-equipment-item="Cultura">
+<span><b>Museo de la Historia de Penco</b><small>Cultura</small></span>
+<em>939 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Parroquia de Penco</b><small>Esparcimiento</small></span>
+<em>946 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>La Iglesia de Jesucristo de los Santos de los Últimos Días</b><small>Esparcimiento</small></span>
+<em>946 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Banco Estado</b><small>Esparcimiento</small></span>
+<em>957 m · 13 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Selecta</b><small>Comercio</small></span>
+<em>962 m · 13 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Parada de autobús</b><small>Transporte</small></span>
+<em>964 m · 13 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Minimarket</b><small>Comercio</small></span>
+<em>970 m · 13 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Ilustre Municipalidad de Penco</b><small>Esparcimiento</small></span>
+<em>976 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Correos de Chile</b><small>Esparcimiento</small></span>
+<em>977 m · 14 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Mini Market</b><small>Comercio</small></span>
+<em>977 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plaza Los Conquistadores</b><small>Esparcimiento</small></span>
+<em>989 m · 14 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Panadería y pastelería</b><small>Comercio</small></span>
+<em>991 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Plazoleta Miraflores</b><small>Esparcimiento</small></span>
+<em>992 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Preuniversitarío Municipal</b><small>Esparcimiento</small></span>
+<em>996 m · 14 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Mini Mercado</b><small>Comercio</small></span>
+<em>998 m · 14 min</em>
+</div>
+<div data-equipment-item="Esparcimiento">
+<span><b>Deporte sin nombre</b><small>Esparcimiento</small></span>
+<em>999 m · 14 min</em>
+</div>
+<div data-equipment-item="Transporte">
+<span><b>Maipú esq. O'Higgins</b><small>Transporte</small></span>
+<em>1002 m · 14 min</em>
+</div>
+<div data-equipment-item="Salud">
+<span><b>Farmacia Penco</b><small>Salud</small></span>
+<em>1016 m · 14 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Vittoria</b><small>Comercio</small></span>
+<em>1026 m · 14 min</em>
+</div>
+<div data-equipment-item="Comercio">
+<span><b>Don Luis</b><small>Comercio</small></span>
+<em>1111 m · 15 min</em>
+</div>
+</div>
+</section>
+</main>
+<!-- 1. Script de la lógica interactiva de pestañas -->
+<script src="../app.js"></script>
+<!-- 2. Scripts del Mapa Automático de Leaflet -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+      var map = L.map('map', {zoomControl: false}).setView([-36.74627, -72.999638], 14);
+      
+      // Capa base híbrida satelital
+      L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+          attribution: '&copy; Google',
+          maxZoom: 18
+      }).addTo(map);
+
+      // Marcador central
+      var customIcon = L.divIcon({
+          className: 'custom-pin',
+          html: "<div style='background-color:#ff4757; width:16px; height:16px; border-radius:50%; border:3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.5);'></div>",
+          iconSize: [20, 20],
+          iconAnchor: [10, 10]
+      });
+      L.marker([-36.74627, -72.999638], {icon: customIcon}).addTo(map);
+
+      // Isócrona peatonal azul (15 min)
+      var isocrona = [[-36.741923, -73.005816], [-36.743147, -73.005709], [-36.743338, -73.005596], [-36.743518, -73.005285], [-36.749275, -73.003758], [-36.749551, -73.003996], [-36.750736, -73.005353], [-36.751096, -73.005357], [-36.752486, -73.005379], [-36.752801, -73.005204], [-36.754045, -73.001054], [-36.754709, -72.996283], [-36.754583, -72.995409], [-36.752951, -72.994348], [-36.752624, -72.994197], [-36.749177, -72.992611], [-36.746802, -72.990244], [-36.746655, -72.990121], [-36.74648, -72.990055], [-36.746276, -72.990009], [-36.74604, -72.989959], [-36.740566, -72.989396], [-36.740223, -72.989505], [-36.738268, -72.994549], [-36.737631, -72.996228], [-36.736889, -72.998386], [-36.737579, -73.003112], [-36.737632, -73.003411], [-36.737684, -73.00371], [-36.738255, -73.004341], [-36.741923, -73.005816]];
+      if (isocrona && isocrona.length > 0) {
+          var polygon = L.polygon(isocrona, {
+              color: '#3b82f6',
+              weight: 3,
+              fillColor: '#3b82f6',
+              fillOpacity: 0.3
+          }).addTo(map);
+          
+          // Encuadrar el mapa al polígono
+          map.fitBounds(polygon.getBounds());
+      }
+    </script>
+</body>
+</html>
